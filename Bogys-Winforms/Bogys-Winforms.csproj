@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="CustomDesigns\" />
     <Folder Include="Images\LoginImages\" />
     <Folder Include="Windows\" />
   </ItemGroup>
