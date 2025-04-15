@@ -35,6 +35,7 @@
             label2 = new Label();
             linkLabel1 = new LinkLabel();
             panel1 = new Panel();
+            textBox3 = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -79,7 +80,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI Semibold", 10F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.Location = new Point(439, 284);
+            button1.Location = new Point(439, 348);
             button1.Name = "button1";
             button1.Size = new Size(319, 50);
             button1.TabIndex = 2;
@@ -101,7 +102,7 @@
             linkLabel1.AutoSize = true;
             linkLabel1.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             linkLabel1.LinkColor = Color.FromArgb(168, 160, 192);
-            linkLabel1.Location = new Point(621, 92);
+            linkLabel1.Location = new Point(623, 92);
             linkLabel1.Name = "linkLabel1";
             linkLabel1.Size = new Size(72, 25);
             linkLabel1.TabIndex = 3;
@@ -110,10 +111,25 @@
             // 
             // panel1
             // 
+            panel1.BackgroundImage = Properties.Resources.LoginPanelImage;
+            panel1.BackgroundImageLayout = ImageLayout.Stretch;
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
             panel1.Size = new Size(395, 426);
             panel1.TabIndex = 4;
+            // 
+            // textBox3
+            // 
+            textBox3.BackColor = Color.FromArgb(60, 54, 76);
+            textBox3.BorderStyle = BorderStyle.FixedSingle;
+            textBox3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox3.ForeColor = Color.White;
+            textBox3.Location = new Point(439, 285);
+            textBox3.Name = "textBox3";
+            textBox3.PlaceholderText = "Confirm Password";
+            textBox3.Size = new Size(319, 34);
+            textBox3.TabIndex = 1;
+            textBox3.TextAlign = HorizontalAlignment.Center;
             // 
             // Login
             // 
@@ -124,6 +140,7 @@
             Controls.Add(panel1);
             Controls.Add(linkLabel1);
             Controls.Add(button1);
+            Controls.Add(textBox3);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(label2);
@@ -146,5 +163,6 @@
         private Label label2;
         private LinkLabel linkLabel1;
         private Panel panel1;
+        private TextBox textBox3;
     }
 }
