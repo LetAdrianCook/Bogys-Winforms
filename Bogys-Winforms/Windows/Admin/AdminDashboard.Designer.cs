@@ -1,6 +1,6 @@
 ﻿namespace Bogys_Winforms.Windows
 {
-    partial class Dashboard
+    partial class AdminDashboard
     {
         /// <summary>
         /// Required designer variable.
