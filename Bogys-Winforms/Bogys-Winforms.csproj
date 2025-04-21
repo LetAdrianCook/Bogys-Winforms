@@ -12,6 +12,11 @@
   <ItemGroup>
     <Folder Include="CustomDesigns\" />
     <Folder Include="Images\LoginImages\" />
+    <Folder Include="SQLqueries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
   </ItemGroup>
 
   <ItemGroup>

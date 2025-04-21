@@ -1,6 +1,6 @@
 ﻿namespace Bogys_Winforms
 {
-    partial class Login
+    partial class loginBtn
     {
         /// <summary>
         ///  Required designer variable.
@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            usernameTxt = new TextBox();
+            passwordTxt = new TextBox();
             button1 = new Button();
             label2 = new Label();
             linkLabel1 = new LinkLabel();
             panel1 = new Panel();
-            textBox3 = new TextBox();
+            cpasswordTxt = new TextBox();
             SuspendLayout();
             // 
             // label1
@@ -48,31 +48,31 @@
             label1.TabIndex = 0;
             label1.Text = "Login to your account";
             // 
-            // textBox1
+            // usernameTxt
             // 
-            textBox1.BackColor = Color.FromArgb(60, 54, 76);
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.White;
-            textBox1.Location = new Point(439, 155);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Username";
-            textBox1.Size = new Size(319, 34);
-            textBox1.TabIndex = 1;
-            textBox1.TextAlign = HorizontalAlignment.Center;
+            usernameTxt.BackColor = Color.FromArgb(60, 54, 76);
+            usernameTxt.BorderStyle = BorderStyle.FixedSingle;
+            usernameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            usernameTxt.ForeColor = Color.White;
+            usernameTxt.Location = new Point(439, 155);
+            usernameTxt.Name = "usernameTxt";
+            usernameTxt.PlaceholderText = "Username";
+            usernameTxt.Size = new Size(319, 34);
+            usernameTxt.TabIndex = 1;
+            usernameTxt.TextAlign = HorizontalAlignment.Center;
             // 
-            // textBox2
+            // passwordTxt
             // 
-            textBox2.BackColor = Color.FromArgb(60, 54, 76);
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.ForeColor = Color.White;
-            textBox2.Location = new Point(439, 222);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Password";
-            textBox2.Size = new Size(319, 34);
-            textBox2.TabIndex = 1;
-            textBox2.TextAlign = HorizontalAlignment.Center;
+            passwordTxt.BackColor = Color.FromArgb(60, 54, 76);
+            passwordTxt.BorderStyle = BorderStyle.FixedSingle;
+            passwordTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            passwordTxt.ForeColor = Color.White;
+            passwordTxt.Location = new Point(439, 222);
+            passwordTxt.Name = "passwordTxt";
+            passwordTxt.PlaceholderText = "Password";
+            passwordTxt.Size = new Size(319, 34);
+            passwordTxt.TabIndex = 1;
+            passwordTxt.TextAlign = HorizontalAlignment.Center;
             // 
             // button1
             // 
@@ -118,20 +118,20 @@
             panel1.Size = new Size(395, 426);
             panel1.TabIndex = 4;
             // 
-            // textBox3
+            // cpasswordTxt
             // 
-            textBox3.BackColor = Color.FromArgb(60, 54, 76);
-            textBox3.BorderStyle = BorderStyle.FixedSingle;
-            textBox3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.ForeColor = Color.White;
-            textBox3.Location = new Point(439, 285);
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "Confirm Password";
-            textBox3.Size = new Size(319, 34);
-            textBox3.TabIndex = 1;
-            textBox3.TextAlign = HorizontalAlignment.Center;
+            cpasswordTxt.BackColor = Color.FromArgb(60, 54, 76);
+            cpasswordTxt.BorderStyle = BorderStyle.FixedSingle;
+            cpasswordTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cpasswordTxt.ForeColor = Color.White;
+            cpasswordTxt.Location = new Point(439, 285);
+            cpasswordTxt.Name = "cpasswordTxt";
+            cpasswordTxt.PlaceholderText = "Confirm Password";
+            cpasswordTxt.Size = new Size(319, 34);
+            cpasswordTxt.TabIndex = 1;
+            cpasswordTxt.TextAlign = HorizontalAlignment.Center;
             // 
-            // Login
+            // loginBtn
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -140,14 +140,14 @@
             Controls.Add(panel1);
             Controls.Add(linkLabel1);
             Controls.Add(button1);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(cpasswordTxt);
+            Controls.Add(passwordTxt);
+            Controls.Add(usernameTxt);
             Controls.Add(label2);
             Controls.Add(label1);
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.FixedSingle;
-            Name = "Login";
+            Name = "loginBtn";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             ResumeLayout(false);
@@ -157,12 +157,12 @@
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox usernameTxt;
+        private TextBox passwordTxt;
         private Button button1;
         private Label label2;
         private LinkLabel linkLabel1;
         private Panel panel1;
-        private TextBox textBox3;
+        private TextBox cpasswordTxt;
     }
 }

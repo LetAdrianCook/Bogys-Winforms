@@ -1,8 +1,8 @@
 namespace Bogys_Winforms
 {
-    public partial class Login : Form
+    public partial class loginBtn : Form
     {
-        public Login()
+        public loginBtn()
         {
             InitializeComponent();
         }
