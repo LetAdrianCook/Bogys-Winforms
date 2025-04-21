@@ -29,26 +29,26 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            LoginLink = new LinkLabel();
+            dateTimePicker1 = new DateTimePicker();
             registerBtn = new Button();
+            textBox4 = new TextBox();
             passwordTxt = new TextBox();
-            usernameTxt = new TextBox();
-            label2 = new Label();
-            label1 = new Label();
-            textBox1 = new TextBox();
             textBox2 = new TextBox();
             textBox3 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
+            textBox1 = new TextBox();
+            usernameTxt = new TextBox();
             label3 = new Label();
-            textBox4 = new TextBox();
             label4 = new Label();
-            linkLabel1 = new LinkLabel();
+            label2 = new Label();
+            label1 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(80, 68, 92);
-            panel1.Controls.Add(linkLabel1);
+            panel1.Controls.Add(LoginLink);
             panel1.Controls.Add(dateTimePicker1);
             panel1.Controls.Add(registerBtn);
             panel1.Controls.Add(textBox4);
@@ -66,6 +66,26 @@
             panel1.Size = new Size(707, 454);
             panel1.TabIndex = 2;
             // 
+            // LoginLink
+            // 
+            LoginLink.AutoSize = true;
+            LoginLink.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LoginLink.LinkColor = Color.FromArgb(192, 192, 255);
+            LoginLink.Location = new Point(533, 359);
+            LoginLink.Name = "LoginLink";
+            LoginLink.Size = new Size(54, 25);
+            LoginLink.TabIndex = 4;
+            LoginLink.TabStop = true;
+            LoginLink.Text = "Login";
+            LoginLink.LinkClicked += LoginLink_LinkClicked;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Location = new Point(333, 267);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(350, 31);
+            dateTimePicker1.TabIndex = 3;
+            // 
             // registerBtn
             // 
             registerBtn.BackColor = Color.FromArgb(225, 107, 87);
@@ -80,6 +100,17 @@
             registerBtn.Text = "Register";
             registerBtn.UseVisualStyleBackColor = false;
             // 
+            // textBox4
+            // 
+            textBox4.BorderStyle = BorderStyle.FixedSingle;
+            textBox4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox4.ForeColor = Color.Black;
+            textBox4.Location = new Point(63, 264);
+            textBox4.Name = "textBox4";
+            textBox4.PlaceholderText = " Confirm Password";
+            textBox4.Size = new Size(245, 34);
+            textBox4.TabIndex = 1;
+            // 
             // passwordTxt
             // 
             passwordTxt.BorderStyle = BorderStyle.FixedSingle;
@@ -90,50 +121,6 @@
             passwordTxt.PlaceholderText = "Password";
             passwordTxt.Size = new Size(245, 34);
             passwordTxt.TabIndex = 1;
-            // 
-            // usernameTxt
-            // 
-            usernameTxt.BorderStyle = BorderStyle.FixedSingle;
-            usernameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            usernameTxt.ForeColor = Color.Black;
-            usernameTxt.Location = new Point(63, 132);
-            usernameTxt.Name = "usernameTxt";
-            usernameTxt.PlaceholderText = "Username";
-            usernameTxt.Size = new Size(245, 34);
-            usernameTxt.TabIndex = 1;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semilight", 9F);
-            label2.ForeColor = Color.FromArgb(255, 228, 186);
-            label2.Location = new Point(19, 55);
-            label2.Name = "label2";
-            label2.Size = new Size(383, 25);
-            label2.TabIndex = 0;
-            label2.Text = "Fill up the required fields to create your account.";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(255, 228, 186);
-            label1.Location = new Point(19, 23);
-            label1.Name = "label1";
-            label1.Size = new Size(107, 32);
-            label1.TabIndex = 0;
-            label1.Text = "Register";
-            // 
-            // textBox1
-            // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.Black;
-            textBox1.Location = new Point(333, 132);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "First Name";
-            textBox1.Size = new Size(164, 34);
-            textBox1.TabIndex = 1;
             // 
             // textBox2
             // 
@@ -157,12 +144,27 @@
             textBox3.Size = new Size(350, 34);
             textBox3.TabIndex = 1;
             // 
-            // dateTimePicker1
+            // textBox1
             // 
-            dateTimePicker1.Location = new Point(333, 267);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(350, 31);
-            dateTimePicker1.TabIndex = 3;
+            textBox1.BorderStyle = BorderStyle.FixedSingle;
+            textBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.ForeColor = Color.Black;
+            textBox1.Location = new Point(333, 132);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "First Name";
+            textBox1.Size = new Size(164, 34);
+            textBox1.TabIndex = 1;
+            // 
+            // usernameTxt
+            // 
+            usernameTxt.BorderStyle = BorderStyle.FixedSingle;
+            usernameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            usernameTxt.ForeColor = Color.Black;
+            usernameTxt.Location = new Point(63, 132);
+            usernameTxt.Name = "usernameTxt";
+            usernameTxt.PlaceholderText = "Username";
+            usernameTxt.Size = new Size(245, 34);
+            usernameTxt.TabIndex = 1;
             // 
             // label3
             // 
@@ -175,17 +177,6 @@
             label3.TabIndex = 0;
             label3.Text = "Birthdate : ";
             // 
-            // textBox4
-            // 
-            textBox4.BorderStyle = BorderStyle.FixedSingle;
-            textBox4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox4.ForeColor = Color.Black;
-            textBox4.Location = new Point(63, 264);
-            textBox4.Name = "textBox4";
-            textBox4.PlaceholderText = " Confirm Password";
-            textBox4.Size = new Size(245, 34);
-            textBox4.TabIndex = 1;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -197,17 +188,27 @@
             label4.TabIndex = 0;
             label4.Text = "Already have an account?";
             // 
-            // linkLabel1
+            // label2
             // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkLabel1.LinkColor = Color.FromArgb(192, 192, 255);
-            linkLabel1.Location = new Point(533, 359);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(54, 25);
-            linkLabel1.TabIndex = 4;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Login";
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI Semilight", 9F);
+            label2.ForeColor = Color.FromArgb(255, 228, 186);
+            label2.Location = new Point(19, 55);
+            label2.Name = "label2";
+            label2.Size = new Size(383, 25);
+            label2.TabIndex = 0;
+            label2.Text = "Fill up the required fields to create your account.";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(255, 228, 186);
+            label1.Location = new Point(19, 23);
+            label1.Name = "label1";
+            label1.Size = new Size(107, 32);
+            label1.TabIndex = 0;
+            label1.Text = "Register";
             // 
             // Register
             // 
@@ -241,6 +242,6 @@
         private TextBox textBox1;
         private Label label3;
         private Label label4;
-        private LinkLabel linkLabel1;
+        private LinkLabel LoginLink;
     }
 }

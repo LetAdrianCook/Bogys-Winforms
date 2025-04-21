@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             panel1 = new Panel();
+            linkLabel1 = new LinkLabel();
+            label4 = new Label();
             loginBtn = new Button();
             passwordTxt = new TextBox();
             usernameTxt = new TextBox();
             label2 = new Label();
             label1 = new Label();
             panel2 = new Panel();
-            linkLabel1 = new LinkLabel();
-            label4 = new Label();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,6 +55,30 @@
             panel1.Size = new Size(367, 454);
             panel1.TabIndex = 0;
             // 
+            // linkLabel1
+            // 
+            linkLabel1.AutoSize = true;
+            linkLabel1.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            linkLabel1.LinkColor = Color.FromArgb(192, 192, 255);
+            linkLabel1.Location = new Point(245, 347);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(72, 25);
+            linkLabel1.TabIndex = 4;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "Register";
+            linkLabel1.LinkClicked += RegisterLink_LinkClicked;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semilight", 9F);
+            label4.ForeColor = Color.FromArgb(255, 228, 186);
+            label4.Location = new Point(60, 347);
+            label4.Name = "label4";
+            label4.Size = new Size(192, 25);
+            label4.TabIndex = 5;
+            label4.Text = "Don't have an account?";
+            // 
             // loginBtn
             // 
             loginBtn.BackColor = Color.FromArgb(225, 107, 87);
@@ -65,9 +89,10 @@
             loginBtn.Location = new Point(60, 266);
             loginBtn.Name = "loginBtn";
             loginBtn.Size = new Size(245, 49);
-            loginBtn.TabIndex = 2;
+            loginBtn.TabIndex = 3;
             loginBtn.Text = "Login";
             loginBtn.UseVisualStyleBackColor = false;
+            loginBtn.Click += loginBtn_Click;
             // 
             // passwordTxt
             // 
@@ -78,7 +103,7 @@
             passwordTxt.Name = "passwordTxt";
             passwordTxt.PlaceholderText = "Password";
             passwordTxt.Size = new Size(245, 34);
-            passwordTxt.TabIndex = 1;
+            passwordTxt.TabIndex = 2;
             // 
             // usernameTxt
             // 
@@ -121,29 +146,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(397, 532);
             panel2.TabIndex = 1;
-            // 
-            // linkLabel1
-            // 
-            linkLabel1.AutoSize = true;
-            linkLabel1.Font = new Font("Segoe UI Semilight", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            linkLabel1.LinkColor = Color.FromArgb(192, 192, 255);
-            linkLabel1.Location = new Point(245, 347);
-            linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new Size(72, 25);
-            linkLabel1.TabIndex = 6;
-            linkLabel1.TabStop = true;
-            linkLabel1.Text = "Register";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semilight", 9F);
-            label4.ForeColor = Color.FromArgb(255, 228, 186);
-            label4.Location = new Point(60, 347);
-            label4.Name = "label4";
-            label4.Size = new Size(192, 25);
-            label4.TabIndex = 5;
-            label4.Text = "Don't have an account?";
             // 
             // Login
             // 
