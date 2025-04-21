@@ -63,9 +63,9 @@ namespace Bogys_Winforms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Bogsy_Logo {
+        internal static System.Drawing.Bitmap loginpanel {
             get {
-                object obj = ResourceManager.GetObject("Bogsy-Logo", resourceCulture);
+                object obj = ResourceManager.GetObject("loginpanel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,19 +73,9 @@ namespace Bogys_Winforms.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap icons8_search_30 {
+        internal static System.Drawing.Bitmap registerpanel {
             get {
-                object obj = ResourceManager.GetObject("icons8-search-30", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap LoginPanelImage {
-            get {
-                object obj = ResourceManager.GetObject("LoginPanelImage", resourceCulture);
+                object obj = ResourceManager.GetObject("registerpanel", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

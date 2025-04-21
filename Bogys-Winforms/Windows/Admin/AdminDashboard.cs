@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Bogys_Winforms.Windows
+namespace Bogys_Winforms.Windows.Admin
 {
     public partial class AdminDashboard: Form
     {

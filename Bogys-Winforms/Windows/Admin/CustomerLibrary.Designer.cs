@@ -35,7 +35,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             Name = "CustomerLibrary";
-            Size = new Size(1058, 554);
+            Size = new Size(837, 444);
             ResumeLayout(false);
         }
 
