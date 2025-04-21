@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Bogys_Winforms.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace Bogys_Winforms
 {
     class AppDbContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<Users> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=LAPTOP-J3KT7FLV;Initial Catalog=BogsyWinforms;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");

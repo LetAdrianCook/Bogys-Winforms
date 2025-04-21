@@ -30,18 +30,18 @@
         {
             panel1 = new Panel();
             LoginLink = new LinkLabel();
-            dateTimePicker1 = new DateTimePicker();
+            birthDatePicker = new DateTimePicker();
             registerBtn = new Button();
-            textBox4 = new TextBox();
             passwordTxt = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox1 = new TextBox();
+            lastnameTxt = new TextBox();
+            addressTxt = new TextBox();
+            firstnameTxt = new TextBox();
             usernameTxt = new TextBox();
             label3 = new Label();
             label4 = new Label();
             label2 = new Label();
             label1 = new Label();
+            confirmpassTxt = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -49,13 +49,13 @@
             // 
             panel1.BackColor = Color.FromArgb(80, 68, 92);
             panel1.Controls.Add(LoginLink);
-            panel1.Controls.Add(dateTimePicker1);
+            panel1.Controls.Add(birthDatePicker);
             panel1.Controls.Add(registerBtn);
-            panel1.Controls.Add(textBox4);
+            panel1.Controls.Add(confirmpassTxt);
             panel1.Controls.Add(passwordTxt);
-            panel1.Controls.Add(textBox2);
-            panel1.Controls.Add(textBox3);
-            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(lastnameTxt);
+            panel1.Controls.Add(addressTxt);
+            panel1.Controls.Add(firstnameTxt);
             panel1.Controls.Add(usernameTxt);
             panel1.Controls.Add(label3);
             panel1.Controls.Add(label4);
@@ -79,12 +79,12 @@
             LoginLink.Text = "Login";
             LoginLink.LinkClicked += LoginLink_LinkClicked;
             // 
-            // dateTimePicker1
+            // birthDatePicker
             // 
-            dateTimePicker1.Location = new Point(333, 267);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(350, 31);
-            dateTimePicker1.TabIndex = 3;
+            birthDatePicker.Location = new Point(333, 267);
+            birthDatePicker.Name = "birthDatePicker";
+            birthDatePicker.Size = new Size(350, 31);
+            birthDatePicker.TabIndex = 3;
             // 
             // registerBtn
             // 
@@ -99,17 +99,7 @@
             registerBtn.TabIndex = 2;
             registerBtn.Text = "Register";
             registerBtn.UseVisualStyleBackColor = false;
-            // 
-            // textBox4
-            // 
-            textBox4.BorderStyle = BorderStyle.FixedSingle;
-            textBox4.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox4.ForeColor = Color.Black;
-            textBox4.Location = new Point(63, 264);
-            textBox4.Name = "textBox4";
-            textBox4.PlaceholderText = " Confirm Password";
-            textBox4.Size = new Size(245, 34);
-            textBox4.TabIndex = 1;
+            registerBtn.Click += registerBtn_Click;
             // 
             // passwordTxt
             // 
@@ -122,38 +112,38 @@
             passwordTxt.Size = new Size(245, 34);
             passwordTxt.TabIndex = 1;
             // 
-            // textBox2
+            // lastnameTxt
             // 
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.ForeColor = Color.Black;
-            textBox2.Location = new Point(519, 132);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Last Name";
-            textBox2.Size = new Size(164, 34);
-            textBox2.TabIndex = 1;
+            lastnameTxt.BorderStyle = BorderStyle.FixedSingle;
+            lastnameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lastnameTxt.ForeColor = Color.Black;
+            lastnameTxt.Location = new Point(519, 132);
+            lastnameTxt.Name = "lastnameTxt";
+            lastnameTxt.PlaceholderText = "Last Name";
+            lastnameTxt.Size = new Size(164, 34);
+            lastnameTxt.TabIndex = 1;
             // 
-            // textBox3
+            // addressTxt
             // 
-            textBox3.BorderStyle = BorderStyle.FixedSingle;
-            textBox3.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox3.ForeColor = Color.Black;
-            textBox3.Location = new Point(333, 199);
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "Address";
-            textBox3.Size = new Size(350, 34);
-            textBox3.TabIndex = 1;
+            addressTxt.BorderStyle = BorderStyle.FixedSingle;
+            addressTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            addressTxt.ForeColor = Color.Black;
+            addressTxt.Location = new Point(333, 199);
+            addressTxt.Name = "addressTxt";
+            addressTxt.PlaceholderText = "Address";
+            addressTxt.Size = new Size(350, 34);
+            addressTxt.TabIndex = 1;
             // 
-            // textBox1
+            // firstnameTxt
             // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.Black;
-            textBox1.Location = new Point(333, 132);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "First Name";
-            textBox1.Size = new Size(164, 34);
-            textBox1.TabIndex = 1;
+            firstnameTxt.BorderStyle = BorderStyle.FixedSingle;
+            firstnameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            firstnameTxt.ForeColor = Color.Black;
+            firstnameTxt.Location = new Point(333, 132);
+            firstnameTxt.Name = "firstnameTxt";
+            firstnameTxt.PlaceholderText = "First Name";
+            firstnameTxt.Size = new Size(164, 34);
+            firstnameTxt.TabIndex = 1;
             // 
             // usernameTxt
             // 
@@ -210,6 +200,17 @@
             label1.TabIndex = 0;
             label1.Text = "Register";
             // 
+            // confirmpassTxt
+            // 
+            confirmpassTxt.BorderStyle = BorderStyle.FixedSingle;
+            confirmpassTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            confirmpassTxt.ForeColor = Color.Black;
+            confirmpassTxt.Location = new Point(63, 264);
+            confirmpassTxt.Name = "confirmpassTxt";
+            confirmpassTxt.PlaceholderText = " Confirm Password";
+            confirmpassTxt.Size = new Size(245, 34);
+            confirmpassTxt.TabIndex = 1;
+            // 
             // Register
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -235,13 +236,13 @@
         private TextBox usernameTxt;
         private Label label2;
         private Label label1;
-        private DateTimePicker dateTimePicker1;
-        private TextBox textBox4;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox1;
+        private DateTimePicker birthDatePicker;
+        private TextBox lastnameTxt;
+        private TextBox addressTxt;
+        private TextBox firstnameTxt;
         private Label label3;
         private Label label4;
         private LinkLabel LoginLink;
+        private TextBox confirmpassTxt;
     }
 }
