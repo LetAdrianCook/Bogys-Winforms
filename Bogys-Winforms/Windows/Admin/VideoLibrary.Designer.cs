@@ -43,7 +43,7 @@
             // CustomerView
             // 
             CustomerView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            CustomerView.Location = new Point(33, 111);
+            CustomerView.Location = new Point(34, 92);
             CustomerView.Name = "CustomerView";
             CustomerView.RowHeadersWidth = 62;
             CustomerView.Size = new Size(757, 294);
@@ -56,7 +56,7 @@
             registerBtn.FlatStyle = FlatStyle.Flat;
             registerBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             registerBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            registerBtn.Location = new Point(33, 496);
+            registerBtn.Location = new Point(34, 479);
             registerBtn.Name = "registerBtn";
             registerBtn.Size = new Size(357, 49);
             registerBtn.TabIndex = 23;
@@ -68,7 +68,7 @@
             usernameTxt.BorderStyle = BorderStyle.FixedSingle;
             usernameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             usernameTxt.ForeColor = Color.Black;
-            usernameTxt.Location = new Point(33, 440);
+            usernameTxt.Location = new Point(34, 423);
             usernameTxt.Name = "usernameTxt";
             usernameTxt.PlaceholderText = "Video Title";
             usernameTxt.Size = new Size(357, 34);
@@ -79,7 +79,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semilight", 9F);
             label3.ForeColor = Color.FromArgb(255, 228, 186);
-            label3.Location = new Point(422, 445);
+            label3.Location = new Point(423, 428);
             label3.Name = "label3";
             label3.Size = new Size(105, 25);
             label3.TabIndex = 18;
@@ -90,7 +90,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semilight", 9F);
             label2.ForeColor = Color.FromArgb(255, 228, 186);
-            label2.Location = new Point(33, 64);
+            label2.Location = new Point(34, 45);
             label2.Name = "label2";
             label2.Size = new Size(195, 25);
             label2.TabIndex = 16;
@@ -101,7 +101,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(255, 228, 186);
-            label1.Location = new Point(33, 32);
+            label1.Location = new Point(34, 13);
             label1.Name = "label1";
             label1.Size = new Size(168, 32);
             label1.TabIndex = 17;
@@ -111,7 +111,7 @@
             // 
             comboBox1.FormattingEnabled = true;
             comboBox1.Items.AddRange(new object[] { "DVD", "VCD" });
-            comboBox1.Location = new Point(533, 440);
+            comboBox1.Location = new Point(534, 423);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(257, 33);
             comboBox1.TabIndex = 26;
@@ -123,7 +123,7 @@
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.FromArgb(255, 228, 186);
-            button1.Location = new Point(33, 577);
+            button1.Location = new Point(34, 560);
             button1.Name = "button1";
             button1.Size = new Size(357, 49);
             button1.TabIndex = 23;
@@ -137,7 +137,7 @@
             button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button2.ForeColor = Color.FromArgb(255, 228, 186);
-            button2.Location = new Point(433, 496);
+            button2.Location = new Point(434, 479);
             button2.Name = "button2";
             button2.Size = new Size(357, 49);
             button2.TabIndex = 23;
