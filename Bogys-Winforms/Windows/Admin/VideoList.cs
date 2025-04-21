@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Bogys_Winforms.Windows.Admin
 {
-    public partial class Report: UserControl
+    public partial class VideoList: UserControl
     {
-        public Report()
+        public VideoList()
         {
             InitializeComponent();
         }
