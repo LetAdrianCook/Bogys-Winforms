@@ -12,6 +12,7 @@ namespace Bogys_Winforms
     class AppDbContext : DbContext
     {
         public DbSet<Users> Users { get; set; }
+        public DbSet<Video> Video { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=LAPTOP-J3KT7FLV;Initial Catalog=BogsyWinforms;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");
