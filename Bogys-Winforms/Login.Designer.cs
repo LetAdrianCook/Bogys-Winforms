@@ -37,7 +37,9 @@
             label2 = new Label();
             label1 = new Label();
             panel2 = new Panel();
+            label3 = new Label();
             panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -142,10 +144,22 @@
             // 
             panel2.BackgroundImage = Properties.Resources.loginpanel;
             panel2.BackgroundImageLayout = ImageLayout.Zoom;
+            panel2.Controls.Add(label3);
             panel2.Location = new Point(3, 1);
             panel2.Name = "panel2";
             panel2.Size = new Size(397, 532);
             panel2.TabIndex = 1;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI Semilight", 9F);
+            label3.ForeColor = Color.FromArgb(255, 228, 186);
+            label3.Location = new Point(22, 17);
+            label3.Name = "label3";
+            label3.Size = new Size(216, 25);
+            label3.TabIndex = 2;
+            label3.Text = "Bogsy Video Rental Store™";
             // 
             // Login
             // 
@@ -161,6 +175,8 @@
             Text = "Login";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -175,5 +191,6 @@
         private Label label2;
         private LinkLabel linkLabel1;
         private Label label4;
+        private Label label3;
     }
 }

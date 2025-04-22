@@ -46,7 +46,6 @@ namespace Bogys_Winforms.Windows.Admin
 
             if (result == DialogResult.Yes)
             {
-
                 var newVideo = new Video
                 {
                     VideoTitle = titleTxt.Text.Trim(),
@@ -72,29 +71,6 @@ namespace Bogys_Winforms.Windows.Admin
                 }
             }
         }
-        private bool checkInput()
-        {
-
-            if (VideoView.CurrentRow == null || VideoView.CurrentRow.Cells["ID"].Value == null)
-            {
-                MessageBox.Show("Please select a customer to edit.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
-
-            if (string.IsNullOrWhiteSpace(titleTxt.Text))
-            {
-                MessageBox.Show("Video Title cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                titleTxt.Focus();
-                return false;
-            }
-
-            return true;
-        }
-
-        private void ClearFields()
-        {
-            titleTxt.Clear();
-        }
         private void VideoView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -103,6 +79,56 @@ namespace Bogys_Winforms.Windows.Admin
                 titleTxt.Text = row.Cells["VideoTitle"].Value.ToString();
                 videoTypeCbx.SelectedItem = VideoView.Rows[e.RowIndex].Cells["VideoCategory"].Value.ToString();
             }
+        }
+
+        private void editBtn_Click(object sender, EventArgs e)
+        {
+            if (!checkInput())
+            {
+                return;
+            }
+            var result = MessageBox.Show("Are you sure you want to edit this Video?",
+                                         "Confirm Edit",
+                                          MessageBoxButtons.YesNo,
+                                          MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells["ID"].Value);
+                using (var context = new AppDbContext())
+                {
+                    var videos = context.Video.FirstOrDefault(u => u.ID == videoId);
+                    if (videos != null)
+                    {
+                        videos.VideoTitle = titleTxt.Text;
+                        videos.VideoCategory = videoTypeCbx.Text;
+                        context.SaveChanges();
+                    }
+                }
+                ClearFields();
+                LoadVideos();
+            }
+        }
+        private bool checkInput()
+        {
+            if (string.IsNullOrWhiteSpace(titleTxt.Text))
+            {
+                MessageBox.Show("Video Title cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                titleTxt.Focus();
+                return false;
+            }
+
+            if (VideoView.CurrentRow == null || VideoView.CurrentRow.Cells["ID"].Value == null)
+            {
+                MessageBox.Show("Please select a Video to edit or delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+        private void ClearFields()
+        {
+            titleTxt.Clear();
         }
     }
 }
