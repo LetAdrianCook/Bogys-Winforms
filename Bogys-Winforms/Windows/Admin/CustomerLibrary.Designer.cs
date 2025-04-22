@@ -90,6 +90,7 @@
             registerBtn.TabIndex = 13;
             registerBtn.Text = "Edit";
             registerBtn.UseVisualStyleBackColor = false;
+            registerBtn.Click += editBtn_Click;
             // 
             // lastnameTxt
             // 
@@ -150,10 +151,13 @@
             // 
             CustomerView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             CustomerView.Location = new Point(34, 92);
+            CustomerView.MultiSelect = false;
             CustomerView.Name = "CustomerView";
             CustomerView.RowHeadersWidth = 62;
+            CustomerView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             CustomerView.Size = new Size(757, 294);
             CustomerView.TabIndex = 15;
+            CustomerView.CellClick += CustomerView_CellClick;
             // 
             // CustomerLibrary
             // 

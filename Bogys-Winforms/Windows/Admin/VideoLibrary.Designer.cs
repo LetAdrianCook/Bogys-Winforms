@@ -34,7 +34,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            comboBox1 = new ComboBox();
+            videoTypeCbx = new ComboBox();
             button1 = new Button();
             button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)CustomerView).BeginInit();
@@ -107,14 +107,14 @@
             label1.TabIndex = 17;
             label1.Text = "Video Library";
             // 
-            // comboBox1
+            // videoTypeCbx
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "DVD", "VCD" });
-            comboBox1.Location = new Point(534, 423);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(257, 33);
-            comboBox1.TabIndex = 26;
+            videoTypeCbx.FormattingEnabled = true;
+            videoTypeCbx.Items.AddRange(new object[] { "DVD", "VCD" });
+            videoTypeCbx.Location = new Point(534, 423);
+            videoTypeCbx.Name = "videoTypeCbx";
+            videoTypeCbx.Size = new Size(257, 33);
+            videoTypeCbx.TabIndex = 26;
             // 
             // button1
             // 
@@ -149,7 +149,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(80, 68, 92);
-            Controls.Add(comboBox1);
+            Controls.Add(videoTypeCbx);
             Controls.Add(CustomerView);
             Controls.Add(button2);
             Controls.Add(button1);
@@ -173,7 +173,7 @@
         private Label label3;
         private Label label2;
         private Label label1;
-        private ComboBox comboBox1;
+        private ComboBox videoTypeCbx;
         private Button button1;
         private Button button2;
     }

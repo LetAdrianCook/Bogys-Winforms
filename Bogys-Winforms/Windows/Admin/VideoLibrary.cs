@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Bogys_Winforms.Windows.Admin
 {
-    public partial class VideoLibrary: UserControl
+    public partial class VideoLibrary : UserControl
     {
         public VideoLibrary()
         {
