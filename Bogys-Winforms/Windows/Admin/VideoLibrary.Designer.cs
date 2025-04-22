@@ -53,6 +53,7 @@
             VideoView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             VideoView.Size = new Size(757, 294);
             VideoView.TabIndex = 25;
+            VideoView.CellClick += VideoView_CellClick;
             // 
             // addBtn
             // 

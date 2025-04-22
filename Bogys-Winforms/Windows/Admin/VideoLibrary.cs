@@ -18,10 +18,10 @@ namespace Bogys_Winforms.Windows.Admin
             InitializeComponent();
             VideoView.DataBindingComplete += VideoView_DataBindingComplete;
             LoadVideos();
-            videoTypeCbx.SelectedIndex = 0;
         }
         private void LoadVideos()
         {
+            videoTypeCbx.SelectedIndex = 0;
             using (var context = new AppDbContext())
             {
                 var videos = context.Video.ToList();
@@ -35,13 +35,74 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void addBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(titleTxt.Text)) 
+            if (!checkInput())
             {
-                MessageBox.Show("Please fill in the Video Title.");
                 return;
             }
+            var result = MessageBox.Show("Are you sure you want to Add this Video?",
+                                        "Confirm Add",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
 
+            if (result == DialogResult.Yes)
+            {
 
+                var newVideo = new Video
+                {
+                    VideoTitle = titleTxt.Text.Trim(),
+                    VideoCategory = videoTypeCbx.Text,
+                    VideoInCount = 0,
+                    VideoOutCount = 0,
+                    VideoAdded = DateTime.Now
+                };
+
+                try
+                {
+                    using (var context = new AppDbContext())
+                    {
+                        context.Video.Add(newVideo);
+                        context.SaveChanges();
+                    }
+                    ClearFields();
+                    LoadVideos();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saving user: " + ex.Message);
+                }
+            }
+        }
+        private bool checkInput()
+        {
+
+            if (VideoView.CurrentRow == null || VideoView.CurrentRow.Cells["ID"].Value == null)
+            {
+                MessageBox.Show("Please select a customer to edit.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(titleTxt.Text))
+            {
+                MessageBox.Show("Video Title cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                titleTxt.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private void ClearFields()
+        {
+            titleTxt.Clear();
+        }
+        private void VideoView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = VideoView.Rows[e.RowIndex];
+                titleTxt.Text = row.Cells["VideoTitle"].Value.ToString();
+                videoTypeCbx.SelectedItem = VideoView.Rows[e.RowIndex].Cells["VideoCategory"].Value.ToString();
+            }
         }
     }
 }
