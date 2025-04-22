@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bogys_Winforms.Models;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Bogys_Winforms.Windows.Admin
 {
@@ -83,10 +84,9 @@ namespace Bogys_Winforms.Windows.Admin
 
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (!checkInput())
-            {
-                return;
-            }
+            if (!CheckID()) return;
+            if (!checkInput()) return;
+
             var result = MessageBox.Show("Are you sure you want to edit this Video?",
                                          "Confirm Edit",
                                           MessageBoxButtons.YesNo,
@@ -117,18 +117,47 @@ namespace Bogys_Winforms.Windows.Admin
                 titleTxt.Focus();
                 return false;
             }
-
+            return true;
+        }
+        private bool CheckID()
+        {
             if (VideoView.CurrentRow == null || VideoView.CurrentRow.Cells["ID"].Value == null)
             {
                 MessageBox.Show("Please select a Video to edit or delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-
             return true;
         }
         private void ClearFields()
         {
             titleTxt.Clear();
+        }
+        private void deleteBtn_Click(object sender, EventArgs e)
+        {
+            if (!CheckID())
+            {
+                return;
+            }
+            var result = MessageBox.Show("Are you sure you want to delete this Video?",
+                                        "Confirm Edit",
+                                         MessageBoxButtons.YesNo,
+                                         MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells["ID"].Value);
+                using (var context = new AppDbContext())
+                {
+                    var videos = context.Video.FirstOrDefault(u => u.ID == videoId);
+                    if (videos != null)
+                    {
+                        context.Video.Remove(videos);
+                        context.SaveChanges();
+                    }
+                }
+                ClearFields();
+                LoadVideos();
+            }
         }
     }
 }

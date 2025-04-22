@@ -36,7 +36,7 @@
             label2 = new Label();
             label1 = new Label();
             videoTypeCbx = new ComboBox();
-            button1 = new Button();
+            deleteBtn = new Button();
             editBtn = new Button();
             videoBindingSource = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)VideoView).BeginInit();
@@ -123,19 +123,20 @@
             videoTypeCbx.Size = new Size(257, 33);
             videoTypeCbx.TabIndex = 26;
             // 
-            // button1
+            // deleteBtn
             // 
-            button1.BackColor = Color.FromArgb(225, 107, 87);
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.FromArgb(255, 228, 186);
-            button1.Location = new Point(34, 560);
-            button1.Name = "button1";
-            button1.Size = new Size(357, 49);
-            button1.TabIndex = 23;
-            button1.Text = "Delete";
-            button1.UseVisualStyleBackColor = false;
+            deleteBtn.BackColor = Color.FromArgb(225, 107, 87);
+            deleteBtn.FlatAppearance.BorderSize = 0;
+            deleteBtn.FlatStyle = FlatStyle.Flat;
+            deleteBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            deleteBtn.ForeColor = Color.FromArgb(255, 228, 186);
+            deleteBtn.Location = new Point(34, 560);
+            deleteBtn.Name = "deleteBtn";
+            deleteBtn.Size = new Size(357, 49);
+            deleteBtn.TabIndex = 23;
+            deleteBtn.Text = "Delete";
+            deleteBtn.UseVisualStyleBackColor = false;
+            deleteBtn.Click += deleteBtn_Click;
             // 
             // editBtn
             // 
@@ -164,7 +165,7 @@
             Controls.Add(videoTypeCbx);
             Controls.Add(VideoView);
             Controls.Add(editBtn);
-            Controls.Add(button1);
+            Controls.Add(deleteBtn);
             Controls.Add(addBtn);
             Controls.Add(titleTxt);
             Controls.Add(label3);
@@ -187,7 +188,7 @@
         private Label label2;
         private Label label1;
         private ComboBox videoTypeCbx;
-        private Button button1;
+        private Button deleteBtn;
         private Button editBtn;
         private BindingSource videoBindingSource;
     }
