@@ -31,7 +31,7 @@
             components = new System.ComponentModel.Container();
             VideoView = new DataGridView();
             addBtn = new Button();
-            usernameTxt = new TextBox();
+            titleTxt = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -69,16 +69,16 @@
             addBtn.UseVisualStyleBackColor = false;
             addBtn.Click += addBtn_Click;
             // 
-            // usernameTxt
+            // titleTxt
             // 
-            usernameTxt.BorderStyle = BorderStyle.FixedSingle;
-            usernameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            usernameTxt.ForeColor = Color.Black;
-            usernameTxt.Location = new Point(34, 423);
-            usernameTxt.Name = "usernameTxt";
-            usernameTxt.PlaceholderText = "Video Title";
-            usernameTxt.Size = new Size(357, 34);
-            usernameTxt.TabIndex = 22;
+            titleTxt.BorderStyle = BorderStyle.FixedSingle;
+            titleTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            titleTxt.ForeColor = Color.Black;
+            titleTxt.Location = new Point(34, 423);
+            titleTxt.Name = "titleTxt";
+            titleTxt.PlaceholderText = "Video Title";
+            titleTxt.Size = new Size(357, 34);
+            titleTxt.TabIndex = 22;
             // 
             // label3
             // 
@@ -164,7 +164,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(addBtn);
-            Controls.Add(usernameTxt);
+            Controls.Add(titleTxt);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -180,7 +180,7 @@
 
         private DataGridView VideoView;
         private Button addBtn;
-        private TextBox usernameTxt;
+        private TextBox titleTxt;
         private Label label3;
         private Label label2;
         private Label label1;

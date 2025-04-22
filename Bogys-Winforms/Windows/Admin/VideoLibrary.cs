@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bogys_Winforms.Models;
 
 namespace Bogys_Winforms.Windows.Admin
 {
@@ -34,6 +35,12 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void addBtn_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(titleTxt.Text)) 
+            {
+                MessageBox.Show("Please fill in the Video Title.");
+                return;
+            }
+
 
         }
     }
