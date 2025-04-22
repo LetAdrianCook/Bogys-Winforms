@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            CustomerView = new DataGridView();
-            registerBtn = new Button();
+            components = new System.ComponentModel.Container();
+            VideoView = new DataGridView();
+            addBtn = new Button();
             usernameTxt = new TextBox();
             label3 = new Label();
             label2 = new Label();
@@ -37,31 +38,36 @@
             videoTypeCbx = new ComboBox();
             button1 = new Button();
             button2 = new Button();
-            ((System.ComponentModel.ISupportInitialize)CustomerView).BeginInit();
+            videoBindingSource = new BindingSource(components);
+            ((System.ComponentModel.ISupportInitialize)VideoView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)videoBindingSource).BeginInit();
             SuspendLayout();
             // 
-            // CustomerView
+            // VideoView
             // 
-            CustomerView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            CustomerView.Location = new Point(34, 92);
-            CustomerView.Name = "CustomerView";
-            CustomerView.RowHeadersWidth = 62;
-            CustomerView.Size = new Size(757, 294);
-            CustomerView.TabIndex = 25;
+            VideoView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            VideoView.Location = new Point(34, 92);
+            VideoView.MultiSelect = false;
+            VideoView.Name = "VideoView";
+            VideoView.RowHeadersWidth = 62;
+            VideoView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            VideoView.Size = new Size(757, 294);
+            VideoView.TabIndex = 25;
             // 
-            // registerBtn
+            // addBtn
             // 
-            registerBtn.BackColor = Color.FromArgb(225, 107, 87);
-            registerBtn.FlatAppearance.BorderSize = 0;
-            registerBtn.FlatStyle = FlatStyle.Flat;
-            registerBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            registerBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            registerBtn.Location = new Point(34, 479);
-            registerBtn.Name = "registerBtn";
-            registerBtn.Size = new Size(357, 49);
-            registerBtn.TabIndex = 23;
-            registerBtn.Text = "Add";
-            registerBtn.UseVisualStyleBackColor = false;
+            addBtn.BackColor = Color.FromArgb(225, 107, 87);
+            addBtn.FlatAppearance.BorderSize = 0;
+            addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            addBtn.ForeColor = Color.FromArgb(255, 228, 186);
+            addBtn.Location = new Point(34, 479);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(357, 49);
+            addBtn.TabIndex = 23;
+            addBtn.Text = "Add";
+            addBtn.UseVisualStyleBackColor = false;
+            addBtn.Click += addBtn_Click;
             // 
             // usernameTxt
             // 
@@ -144,31 +150,36 @@
             button2.Text = "Edit";
             button2.UseVisualStyleBackColor = false;
             // 
+            // videoBindingSource
+            // 
+            videoBindingSource.DataSource = typeof(Models.Video);
+            // 
             // VideoLibrary
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(80, 68, 92);
             Controls.Add(videoTypeCbx);
-            Controls.Add(CustomerView);
+            Controls.Add(VideoView);
             Controls.Add(button2);
             Controls.Add(button1);
-            Controls.Add(registerBtn);
+            Controls.Add(addBtn);
             Controls.Add(usernameTxt);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "VideoLibrary";
             Size = new Size(823, 664);
-            ((System.ComponentModel.ISupportInitialize)CustomerView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)VideoView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)videoBindingSource).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView CustomerView;
-        private Button registerBtn;
+        private DataGridView VideoView;
+        private Button addBtn;
         private TextBox usernameTxt;
         private Label label3;
         private Label label2;
@@ -176,5 +187,6 @@
         private ComboBox videoTypeCbx;
         private Button button1;
         private Button button2;
+        private BindingSource videoBindingSource;
     }
 }

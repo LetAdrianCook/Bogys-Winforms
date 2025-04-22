@@ -15,6 +15,26 @@ namespace Bogys_Winforms.Windows.Admin
         public VideoLibrary()
         {
             InitializeComponent();
+            VideoView.DataBindingComplete += VideoView_DataBindingComplete;
+            LoadVideos();
+            videoTypeCbx.SelectedIndex = 0;
+        }
+        private void LoadVideos()
+        {
+            using (var context = new AppDbContext())
+            {
+                var videos = context.Video.ToList();
+                VideoView.DataSource = videos;
+            }
+        }
+        private void VideoView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            VideoView.ClearSelection();
+            VideoView.CurrentCell = null;
+        }
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
