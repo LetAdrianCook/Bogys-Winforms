@@ -1,6 +1,6 @@
 ﻿namespace Bogys_Winforms.Windows.Admin
 {
-    partial class AdminDashboard
+    partial class CustomerDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -31,10 +31,7 @@
             panel1 = new Panel();
             panel2 = new Panel();
             button6 = new Button();
-            reportBtn = new Button();
-            listBtn = new Button();
-            videoBtn = new Button();
-            customerBtn = new Button();
+            rentalBtn = new Button();
             panel3 = new Panel();
             dashboardPanel = new Panel();
             panel2.SuspendLayout();
@@ -51,10 +48,7 @@
             // 
             panel2.BackColor = Color.FromArgb(61, 52, 70);
             panel2.Controls.Add(button6);
-            panel2.Controls.Add(reportBtn);
-            panel2.Controls.Add(listBtn);
-            panel2.Controls.Add(videoBtn);
-            panel2.Controls.Add(customerBtn);
+            panel2.Controls.Add(rentalBtn);
             panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
@@ -78,73 +72,22 @@
             button6.TextAlign = ContentAlignment.MiddleLeft;
             button6.UseVisualStyleBackColor = true;
             // 
-            // reportBtn
+            // rentalBtn
             // 
-            reportBtn.Dock = DockStyle.Top;
-            reportBtn.FlatAppearance.BorderSize = 0;
-            reportBtn.FlatStyle = FlatStyle.Flat;
-            reportBtn.Font = new Font("Segoe UI Semilight", 10F);
-            reportBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            reportBtn.Location = new Point(0, 261);
-            reportBtn.Name = "reportBtn";
-            reportBtn.Padding = new Padding(5, 0, 0, 0);
-            reportBtn.Size = new Size(235, 51);
-            reportBtn.TabIndex = 5;
-            reportBtn.Text = "Rental Report";
-            reportBtn.TextAlign = ContentAlignment.MiddleLeft;
-            reportBtn.UseVisualStyleBackColor = true;
-            reportBtn.Click += reportBtn_Click;
-            // 
-            // listBtn
-            // 
-            listBtn.Dock = DockStyle.Top;
-            listBtn.FlatAppearance.BorderSize = 0;
-            listBtn.FlatStyle = FlatStyle.Flat;
-            listBtn.Font = new Font("Segoe UI Semilight", 10F);
-            listBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            listBtn.Location = new Point(0, 210);
-            listBtn.Name = "listBtn";
-            listBtn.Padding = new Padding(5, 0, 0, 0);
-            listBtn.Size = new Size(235, 51);
-            listBtn.TabIndex = 4;
-            listBtn.Text = "Video List";
-            listBtn.TextAlign = ContentAlignment.MiddleLeft;
-            listBtn.UseVisualStyleBackColor = true;
-            listBtn.Click += listBtn_Click;
-            // 
-            // videoBtn
-            // 
-            videoBtn.Dock = DockStyle.Top;
-            videoBtn.FlatAppearance.BorderSize = 0;
-            videoBtn.FlatStyle = FlatStyle.Flat;
-            videoBtn.Font = new Font("Segoe UI Semilight", 10F);
-            videoBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            videoBtn.Location = new Point(0, 159);
-            videoBtn.Name = "videoBtn";
-            videoBtn.Padding = new Padding(5, 0, 0, 0);
-            videoBtn.Size = new Size(235, 51);
-            videoBtn.TabIndex = 2;
-            videoBtn.Text = "Video Library";
-            videoBtn.TextAlign = ContentAlignment.MiddleLeft;
-            videoBtn.UseVisualStyleBackColor = true;
-            videoBtn.Click += videoBtn_Click;
-            // 
-            // customerBtn
-            // 
-            customerBtn.Dock = DockStyle.Top;
-            customerBtn.FlatAppearance.BorderSize = 0;
-            customerBtn.FlatStyle = FlatStyle.Flat;
-            customerBtn.Font = new Font("Segoe UI Semilight", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            customerBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            customerBtn.Location = new Point(0, 108);
-            customerBtn.Name = "customerBtn";
-            customerBtn.Padding = new Padding(5, 0, 0, 0);
-            customerBtn.Size = new Size(235, 51);
-            customerBtn.TabIndex = 1;
-            customerBtn.Text = "Customer Library";
-            customerBtn.TextAlign = ContentAlignment.MiddleLeft;
-            customerBtn.UseVisualStyleBackColor = true;
-            customerBtn.Click += customerBtn_Click;
+            rentalBtn.Dock = DockStyle.Top;
+            rentalBtn.FlatAppearance.BorderSize = 0;
+            rentalBtn.FlatStyle = FlatStyle.Flat;
+            rentalBtn.Font = new Font("Segoe UI Semilight", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rentalBtn.ForeColor = Color.FromArgb(255, 228, 186);
+            rentalBtn.Location = new Point(0, 108);
+            rentalBtn.Name = "rentalBtn";
+            rentalBtn.Padding = new Padding(5, 0, 0, 0);
+            rentalBtn.Size = new Size(235, 51);
+            rentalBtn.TabIndex = 1;
+            rentalBtn.Text = "Rental Module";
+            rentalBtn.TextAlign = ContentAlignment.MiddleLeft;
+            rentalBtn.UseVisualStyleBackColor = true;
+            rentalBtn.Click += rentalBtn_Click;
             // 
             // panel3
             // 
@@ -165,7 +108,7 @@
             dashboardPanel.Size = new Size(823, 664);
             dashboardPanel.TabIndex = 2;
             // 
-            // AdminDashboard
+            // CustomerDashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -173,9 +116,9 @@
             Controls.Add(dashboardPanel);
             Controls.Add(panel2);
             Controls.Add(panel1);
-            Name = "AdminDashboard";
+            Name = "CustomerDashboard";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "AdminDashboard";
+            Text = "CustomerDashboard";
             panel2.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -184,12 +127,9 @@
 
         private Panel panel1;
         private Panel panel2;
-        private Button customerBtn;
+        private Button rentalBtn;
         private Panel panel3;
         private Panel dashboardPanel;
-        private Button reportBtn;
-        private Button listBtn;
-        private Button videoBtn;
         private Button button6;
     }
 }

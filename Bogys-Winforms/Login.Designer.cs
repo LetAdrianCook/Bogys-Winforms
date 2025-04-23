@@ -106,6 +106,7 @@
             passwordTxt.PlaceholderText = "Password";
             passwordTxt.Size = new Size(245, 34);
             passwordTxt.TabIndex = 2;
+            passwordTxt.UseSystemPasswordChar = true;
             // 
             // usernameTxt
             // 

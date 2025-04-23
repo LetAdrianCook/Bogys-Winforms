@@ -13,6 +13,7 @@ namespace Bogys_Winforms
     {
         public DbSet<Users> Users { get; set; }
         public DbSet<Video> Video { get; set; }
+        public DbSet<Rent> Rent { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=LAPTOP-J3KT7FLV;Initial Catalog=BogsyWinforms;Integrated Security=True;Encrypt=True;Trust Server Certificate=True");

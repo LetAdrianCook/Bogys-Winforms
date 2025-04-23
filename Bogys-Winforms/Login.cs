@@ -37,7 +37,7 @@ namespace Bogys_Winforms
                     }
                     else if (user.UserType == "CLIENT")
                     {
-                        var clientDashboard = new AdminDashboard();
+                        var clientDashboard = new CustomerDashboard();
                         clientDashboard.Show();
                     }
                     this.Hide();

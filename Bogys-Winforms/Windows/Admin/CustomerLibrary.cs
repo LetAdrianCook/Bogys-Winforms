@@ -74,7 +74,6 @@ namespace Bogys_Winforms.Windows.Admin
                 clearFields();
                 LoadCustomer();
             }
-            
         }
         private void clearFields()
         {
@@ -84,55 +83,43 @@ namespace Bogys_Winforms.Windows.Admin
             addressTxt.Clear();
             birthDatePicker.Value = DateTime.Today;
         }
-        private void addBtn_Click(object sender, EventArgs e)
-        {
-          
-        
-        }
         private bool checkInput()
         {
-
             if (CustomerView.CurrentRow == null || CustomerView.CurrentRow.Cells["Id"].Value == null)
             {
                 MessageBox.Show("Please select a customer to edit.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-
             if (string.IsNullOrWhiteSpace(usernameTxt.Text))
             {
                 MessageBox.Show("Username cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 usernameTxt.Focus();
                 return false;
             }
-
             if (string.IsNullOrWhiteSpace(firstnameTxt.Text))
             {
                 MessageBox.Show("First name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 firstnameTxt.Focus();
                 return false;
             }
-
             if (string.IsNullOrWhiteSpace(lastnameTxt.Text))
             {
                 MessageBox.Show("Last name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 lastnameTxt.Focus();
                 return false;
             }
-
             if (string.IsNullOrWhiteSpace(addressTxt.Text))
             {
                 MessageBox.Show("Address cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 addressTxt.Focus();
                 return false;
             }
-
             if (birthDatePicker.Value.Date > DateTime.Today)
             {
                 MessageBox.Show("Birthdate cannot be in the future.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 birthDatePicker.Focus();
                 return false;
             }
-
             return true;
         }
 

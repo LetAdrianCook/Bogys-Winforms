@@ -116,6 +116,7 @@
             // 
             // videoTypeCbx
             // 
+            videoTypeCbx.DropDownStyle = ComboBoxStyle.DropDownList;
             videoTypeCbx.FormattingEnabled = true;
             videoTypeCbx.Items.AddRange(new object[] { "DVD", "VCD" });
             videoTypeCbx.Location = new Point(534, 423);

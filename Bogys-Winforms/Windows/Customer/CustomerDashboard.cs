@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace Bogys_Winforms.Windows.Admin
 {
-    public partial class AdminDashboard : Form
+    public partial class CustomerDashboard : Form
     {
         NavigationControl navigationControl;
         NavigationButtons navigationButtons;
 
         Color btndDefaultColor = Color.FromArgb(61, 52, 70);
         Color btndSelectedColor = Color.FromArgb(80, 68, 92);
-        public AdminDashboard()
+        public CustomerDashboard()
         {
             InitializeComponent();
             InitializeNavigationButton();
@@ -26,7 +26,7 @@ namespace Bogys_Winforms.Windows.Admin
         private void InitializeNavigationControl()
         {
             List<UserControl> userControls = new List<UserControl>()
-            { new CustomerLibrary(), new VideoLibrary(), new VideoList(), new RentalReport()};
+            { new RentalModule()};
 
             navigationControl = new NavigationControl(userControls, dashboardPanel);
             navigationControl.Display(0);
@@ -34,30 +34,15 @@ namespace Bogys_Winforms.Windows.Admin
         private void InitializeNavigationButton()
         {
             List<Button> buttons = new List<Button>()
-            { customerBtn, videoBtn, listBtn, reportBtn};
+            { rentalBtn };
 
             navigationButtons = new NavigationButtons(buttons, btndDefaultColor, btndSelectedColor);
-            navigationButtons.Highlight(customerBtn);
+            navigationButtons.Highlight(rentalBtn);
         }
-        private void customerBtn_Click(object sender, EventArgs e)
+        private void rentalBtn_Click(object sender, EventArgs e)
         {
             navigationControl.Display(0);
-            navigationButtons.Highlight(customerBtn);
-        }
-        private void videoBtn_Click(object sender, EventArgs e)
-        {
-            navigationControl.Display(1);
-            navigationButtons.Highlight(videoBtn);
-        }
-        private void listBtn_Click(object sender, EventArgs e)
-        {
-            navigationControl.Display(2);
-            navigationButtons.Highlight(listBtn);
-        }
-        private void reportBtn_Click(object sender, EventArgs e)
-        {
-            navigationControl.Display(3);
-            navigationButtons.Highlight(reportBtn);
+            navigationButtons.Highlight(rentalBtn);
         }
     }
 }
