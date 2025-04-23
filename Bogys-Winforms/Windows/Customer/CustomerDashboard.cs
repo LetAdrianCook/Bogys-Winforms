@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bogys_Winforms.Windows.Customer;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,7 +27,7 @@ namespace Bogys_Winforms.Windows.Admin
         private void InitializeNavigationControl()
         {
             List<UserControl> userControls = new List<UserControl>()
-            { new RentalModule()};
+            { new RentalModule(), new ReturnModule()};
 
             navigationControl = new NavigationControl(userControls, dashboardPanel);
             navigationControl.Display(0);
@@ -34,7 +35,7 @@ namespace Bogys_Winforms.Windows.Admin
         private void InitializeNavigationButton()
         {
             List<Button> buttons = new List<Button>()
-            { rentalBtn };
+            { rentalBtn, returnBtn };
 
             navigationButtons = new NavigationButtons(buttons, btndDefaultColor, btndSelectedColor);
             navigationButtons.Highlight(rentalBtn);
@@ -43,6 +44,12 @@ namespace Bogys_Winforms.Windows.Admin
         {
             navigationControl.Display(0);
             navigationButtons.Highlight(rentalBtn);
+        }
+
+        private void returnBtn_Click(object sender, EventArgs e)
+        {
+            navigationControl.Display(1);
+            navigationButtons.Highlight(returnBtn);
         }
     }
 }

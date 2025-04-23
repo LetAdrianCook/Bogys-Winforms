@@ -99,9 +99,9 @@
             label2.ForeColor = Color.FromArgb(255, 228, 186);
             label2.Location = new Point(33, 66);
             label2.Name = "label2";
-            label2.Size = new Size(178, 25);
+            label2.Size = new Size(118, 25);
             label2.TabIndex = 27;
-            label2.Text = "Rent or Return Videos";
+            label2.Text = "Return Videos";
             // 
             // label1
             // 
