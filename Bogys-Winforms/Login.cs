@@ -24,7 +24,6 @@ namespace Bogys_Winforms
                 string username = usernameTxt.Text;
                 string password = passwordTxt.Text;
 
-                // Authenticate user
                 var user = context.Users
                     .FirstOrDefault(u => u.UserName == username && u.UserPassword == password);
 
