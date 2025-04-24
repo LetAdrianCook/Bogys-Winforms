@@ -41,6 +41,7 @@
             rentalDaysCbx = new ComboBox();
             label6 = new Label();
             titleTxt = new TextBox();
+            txtUserID = new TextBox();
             ((System.ComponentModel.ISupportInitialize)VideoView).BeginInit();
             SuspendLayout();
             // 
@@ -188,6 +189,17 @@
             titleTxt.Size = new Size(159, 34);
             titleTxt.TabIndex = 30;
             // 
+            // txtUserID
+            // 
+            txtUserID.BorderStyle = BorderStyle.FixedSingle;
+            txtUserID.Enabled = false;
+            txtUserID.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUserID.ForeColor = Color.Black;
+            txtUserID.Location = new Point(638, 3);
+            txtUserID.Name = "txtUserID";
+            txtUserID.Size = new Size(159, 34);
+            txtUserID.TabIndex = 30;
+            // 
             // RentalModule
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -198,6 +210,7 @@
             Controls.Add(VideoView);
             Controls.Add(rentBtn);
             Controls.Add(titleTxt);
+            Controls.Add(txtUserID);
             Controls.Add(textBox2);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -227,5 +240,6 @@
         private ComboBox rentalDaysCbx;
         private Label label6;
         private TextBox titleTxt;
+        private TextBox txtUserID;
     }
 }

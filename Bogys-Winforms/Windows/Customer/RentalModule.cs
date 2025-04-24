@@ -12,9 +12,12 @@ namespace Bogys_Winforms.Windows.Admin
 {
     public partial class RentalModule : UserControl
     {
-        public RentalModule()
+        private int currentCustomerID;
+        public RentalModule(int userID)
         {
             InitializeComponent();
+            currentCustomerID = userID;
+            txtUserID.Text = currentCustomerID.ToString();
             VideoView.DataBindingComplete += VideoView_DataBindingComplete;
             LoadVideos();
         }

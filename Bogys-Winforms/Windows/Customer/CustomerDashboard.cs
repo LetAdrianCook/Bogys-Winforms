@@ -1,4 +1,6 @@
-﻿using Bogys_Winforms.Windows.Customer;
+﻿using Bogys_Winforms.Models;
+using Bogys_Winforms.Windows.Customer;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,21 +15,23 @@ namespace Bogys_Winforms.Windows.Admin
 {
     public partial class CustomerDashboard : Form
     {
+        private int currentCustomer; 
         NavigationControl navigationControl;
         NavigationButtons navigationButtons;
 
         Color btndDefaultColor = Color.FromArgb(61, 52, 70);
         Color btndSelectedColor = Color.FromArgb(80, 68, 92);
-        public CustomerDashboard()
+        public CustomerDashboard(int sessionID)
         {
             InitializeComponent();
+            currentCustomer = sessionID;
             InitializeNavigationButton();
             InitializeNavigationControl();
         }
         private void InitializeNavigationControl()
         {
             List<UserControl> userControls = new List<UserControl>()
-            { new RentalModule(), new ReturnModule()};
+            { new RentalModule(currentCustomer), new ReturnModule()};
 
             navigationControl = new NavigationControl(userControls, dashboardPanel);
             navigationControl.Display(0);

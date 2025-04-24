@@ -35,9 +35,8 @@
             rentalBtn = new Button();
             panel3 = new Panel();
             dashboardPanel = new Panel();
-            label1 = new Label();
+            userIdTxt = new Label();
             panel2.SuspendLayout();
-            dashboardPanel.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -50,6 +49,7 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(61, 52, 70);
+            panel2.Controls.Add(userIdTxt);
             panel2.Controls.Add(returnBtn);
             panel2.Controls.Add(button6);
             panel2.Controls.Add(rentalBtn);
@@ -123,24 +123,23 @@
             // dashboardPanel
             // 
             dashboardPanel.BackColor = Color.FromArgb(80, 68, 92);
-            dashboardPanel.Controls.Add(label1);
             dashboardPanel.Dock = DockStyle.Fill;
             dashboardPanel.Location = new Point(235, 0);
             dashboardPanel.Name = "dashboardPanel";
             dashboardPanel.Size = new Size(823, 664);
             dashboardPanel.TabIndex = 2;
             // 
-            // label1
+            // userIdTxt
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(255, 228, 186);
-            label1.Location = new Point(687, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(133, 25);
-            label1.TabIndex = 0;
-            label1.Text = "User : John Doe";
-            label1.TextAlign = ContentAlignment.TopRight;
+            userIdTxt.AutoSize = true;
+            userIdTxt.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            userIdTxt.ForeColor = Color.FromArgb(255, 228, 186);
+            userIdTxt.Location = new Point(54, 260);
+            userIdTxt.Name = "userIdTxt";
+            userIdTxt.Size = new Size(133, 25);
+            userIdTxt.TabIndex = 0;
+            userIdTxt.Text = "User : John Doe";
+            userIdTxt.TextAlign = ContentAlignment.TopRight;
             // 
             // CustomerDashboard
             // 
@@ -154,8 +153,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CustomerDashboard";
             panel2.ResumeLayout(false);
-            dashboardPanel.ResumeLayout(false);
-            dashboardPanel.PerformLayout();
+            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -167,7 +165,7 @@
         private Panel panel3;
         private Panel dashboardPanel;
         private Button button6;
-        private Label label1;
+        private Label userIdTxt;
         private Button returnBtn;
     }
 }

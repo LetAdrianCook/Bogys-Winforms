@@ -17,6 +17,7 @@ namespace Bogys_Winforms.Models
         public int RentDays { get; set; }
         public float OverdueFee { get; set; }
         public float Total { get; set; } 
+        public string Status { get; set; } 
         public DateOnly RentDate { get; set; }
         public DateOnly ReturnDate { get; set; }
     }
