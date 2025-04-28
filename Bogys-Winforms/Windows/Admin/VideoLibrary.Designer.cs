@@ -39,6 +39,8 @@
             deleteBtn = new Button();
             editBtn = new Button();
             videoBindingSource = new BindingSource(components);
+            stockTxt = new TextBox();
+            label4 = new Label();
             ((System.ComponentModel.ISupportInitialize)VideoView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)videoBindingSource).BeginInit();
             SuspendLayout();
@@ -146,7 +148,7 @@
             editBtn.FlatStyle = FlatStyle.Flat;
             editBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            editBtn.Location = new Point(434, 479);
+            editBtn.Location = new Point(434, 560);
             editBtn.Name = "editBtn";
             editBtn.Size = new Size(357, 49);
             editBtn.TabIndex = 23;
@@ -158,6 +160,28 @@
             // 
             videoBindingSource.DataSource = typeof(Models.Video);
             // 
+            // stockTxt
+            // 
+            stockTxt.BorderStyle = BorderStyle.FixedSingle;
+            stockTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            stockTxt.ForeColor = Color.Black;
+            stockTxt.Location = new Point(534, 494);
+            stockTxt.Name = "stockTxt";
+            stockTxt.PlaceholderText = "Video Stocks";
+            stockTxt.Size = new Size(257, 34);
+            stockTxt.TabIndex = 22;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Semilight", 9F);
+            label4.ForeColor = Color.FromArgb(255, 228, 186);
+            label4.Location = new Point(423, 499);
+            label4.Name = "label4";
+            label4.Size = new Size(84, 25);
+            label4.TabIndex = 18;
+            label4.Text = "Video in :";
+            // 
             // VideoLibrary
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -168,7 +192,9 @@
             Controls.Add(editBtn);
             Controls.Add(deleteBtn);
             Controls.Add(addBtn);
+            Controls.Add(stockTxt);
             Controls.Add(titleTxt);
+            Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -192,5 +218,7 @@
         private Button deleteBtn;
         private Button editBtn;
         private BindingSource videoBindingSource;
+        private TextBox stockTxt;
+        private Label label4;
     }
 }

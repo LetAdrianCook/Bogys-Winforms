@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bogys_Winforms.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Bogys_Winforms.Migrations;
 
 namespace Bogys_Winforms.Windows.Admin
 {
@@ -19,6 +20,7 @@ namespace Bogys_Winforms.Windows.Admin
             InitializeComponent();
             VideoView.DataBindingComplete += VideoView_DataBindingComplete;
             LoadVideos();
+            TextFieldControl();
         }
         private void LoadVideos()
         {
@@ -47,11 +49,13 @@ namespace Bogys_Winforms.Windows.Admin
 
             if (result == DialogResult.Yes)
             {
+                float vidPrice = VideoPrice();
                 var newVideo = new Video
                 {
                     VideoTitle = titleTxt.Text.Trim(),
                     VideoCategory = videoTypeCbx.Text,
-                    VideoInCount = 0,
+                    VideoPrice = vidPrice,
+                    VideoInCount = Convert.ToInt32(stockTxt.Text),
                     VideoOutCount = 0,
                     VideoAdded = DateTime.Now
                 };
@@ -63,6 +67,7 @@ namespace Bogys_Winforms.Windows.Admin
                         context.Video.Add(newVideo);
                         context.SaveChanges();
                     }
+                    TextFieldControl();
                     ClearFields();
                     LoadVideos();
                 }
@@ -79,6 +84,7 @@ namespace Bogys_Winforms.Windows.Admin
                 DataGridViewRow row = VideoView.Rows[e.RowIndex];
                 titleTxt.Text = row.Cells["VideoTitle"].Value.ToString();
                 videoTypeCbx.SelectedItem = VideoView.Rows[e.RowIndex].Cells["VideoCategory"].Value.ToString();
+                TextFieldControl();
             }
         }
 
@@ -105,6 +111,7 @@ namespace Bogys_Winforms.Windows.Admin
                         context.SaveChanges();
                     }
                 }
+                TextFieldControl();
                 ClearFields();
                 LoadVideos();
             }
@@ -118,6 +125,18 @@ namespace Bogys_Winforms.Windows.Admin
                 return false;
             }
             return true;
+        }
+        private float VideoPrice()
+        {
+            if (videoTypeCbx.Text == "VCD")
+            {
+                return 25;
+            }
+            if (videoTypeCbx.Text == "DVD")
+            {
+                return 50;
+            }
+            return 0;
         }
         private bool CheckID()
         {
@@ -156,8 +175,25 @@ namespace Bogys_Winforms.Windows.Admin
                     }
                 }
                 ClearFields();
+                TextFieldControl();
                 LoadVideos();
             }
+        }
+        private void TextFieldControl()
+        {
+            if (VideoView.CurrentRow == null)
+            {
+                titleTxt.Enabled = false;
+                stockTxt.Enabled = false;
+                videoTypeCbx.Enabled = false;
+               
+            }else
+            {
+                titleTxt.Enabled = true;
+                stockTxt.Enabled = true;
+                videoTypeCbx.Enabled = true;
+            }
+               
         }
     }
 }

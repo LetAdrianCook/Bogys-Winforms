@@ -35,7 +35,6 @@ namespace Bogys_Winforms.Windows.Admin
             VideoView.ClearSelection();
             VideoView.CurrentCell = null;
         }
-
         private void VideoView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
