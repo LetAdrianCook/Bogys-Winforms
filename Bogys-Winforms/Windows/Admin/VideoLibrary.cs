@@ -83,6 +83,7 @@ namespace Bogys_Winforms.Windows.Admin
             {
                 DataGridViewRow row = VideoView.Rows[e.RowIndex];
                 titleTxt.Text = row.Cells["VideoTitle"].Value.ToString();
+                stockTxt.Text = row.Cells["VideoInCount"].Value.ToString();
                 videoTypeCbx.SelectedItem = VideoView.Rows[e.RowIndex].Cells["VideoCategory"].Value.ToString();
                 TextFieldControl();
             }
@@ -103,11 +104,13 @@ namespace Bogys_Winforms.Windows.Admin
                 int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells["ID"].Value);
                 using (var context = new AppDbContext())
                 {
+                    float vidPrice = VideoPrice();
                     var videos = context.Video.FirstOrDefault(u => u.ID == videoId);
                     if (videos != null)
                     {
                         videos.VideoTitle = titleTxt.Text;
                         videos.VideoCategory = videoTypeCbx.Text;
+                        videos.VideoPrice = vidPrice;
                         context.SaveChanges();
                     }
                 }
@@ -119,6 +122,12 @@ namespace Bogys_Winforms.Windows.Admin
         private bool checkInput()
         {
             if (string.IsNullOrWhiteSpace(titleTxt.Text))
+            {
+                MessageBox.Show("Video Title cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                titleTxt.Focus();
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(stockTxt.Text))
             {
                 MessageBox.Show("Video Title cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 titleTxt.Focus();
@@ -150,6 +159,7 @@ namespace Bogys_Winforms.Windows.Admin
         private void ClearFields()
         {
             titleTxt.Clear();
+            stockTxt.Clear();
         }
         private void deleteBtn_Click(object sender, EventArgs e)
         {
