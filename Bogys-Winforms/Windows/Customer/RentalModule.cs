@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bogys_Winforms.Models;
 
 namespace Bogys_Winforms.Windows.Admin
 {
@@ -41,6 +42,54 @@ namespace Bogys_Winforms.Windows.Admin
             {
                 DataGridViewRow row = VideoView.Rows[e.RowIndex];
                 titleTxt.Text = row.Cells["VideoTitle"].Value.ToString();
+            }
+        }
+
+        private void rentBtn_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to Add this Video?",
+                                      "Confirm Add",
+                                       MessageBoxButtons.YesNo,
+                                       MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells["ID"].Value);
+                float videoPrice = Convert.ToSingle(VideoView.CurrentRow.Cells["VideoPrice"].Value);
+                float rentDays = Convert.ToSingle(videoTypeCbx.SelectedItem);
+                DateOnly rentDate = DateOnly.FromDateTime(DateTime.Now);
+                DateOnly returnDate = rentDate.AddDays(Convert.ToInt32(videoTypeCbx.SelectedItem));
+
+                float total = videoPrice * rentDays;
+
+                var newVideoRent = new Rent
+                {
+                    UserID = currentCustomerID,
+                    VideoID = videoId,
+                    VideoTitle = titleTxt.Text,
+                    VideoCategory = videoTypeCbx.Text,
+                    VideoPrice = videoPrice,
+                    RentDays = Convert.ToInt32(rentalDaysCbx.Text),
+                    OverdueFee = 0,
+                    Total = total,
+                    RentDate = rentDate,
+                    ReturnDate = returnDate,
+                    Status = "ACTIVE",
+                };
+
+                try
+                {
+                    using (var context = new AppDbContext())
+                    {
+                        context.Rent.Add(newVideoRent);
+                        context.SaveChanges();
+                    }
+                    LoadVideos();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error saving user: " + ex.Message);
+                }
             }
         }
     }

@@ -70,6 +70,7 @@
             rentBtn.TabIndex = 31;
             rentBtn.Text = "Rent";
             rentBtn.UseVisualStyleBackColor = false;
+            rentBtn.Click += rentBtn_Click;
             // 
             // searchTxt
             // 
