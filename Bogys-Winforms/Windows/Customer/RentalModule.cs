@@ -81,9 +81,18 @@ namespace Bogys_Winforms.Windows.Admin
                 {
                     using (var context = new AppDbContext())
                     {
-                        context.Rent.Add(newVideoRent);
-                        context.SaveChanges();
+                        var videos = context.Video.FirstOrDefault(u => u.ID == videoId);
+                        if (videos != null)
+                        {
+                            videos.VideoInCount -= 1;
+                            videos.VideoOutCount += 1;
+
+                            context.Rent.Add(newVideoRent);
+
+                            context.SaveChanges();
+                        }
                     }
+                   
                     LoadVideos();
                 }
                 catch (Exception ex)
