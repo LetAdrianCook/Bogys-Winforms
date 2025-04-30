@@ -27,9 +27,26 @@ namespace Bogys_Winforms.Windows.Admin
             rentalDaysCbx.SelectedIndex = 0;
             using (var context = new AppDbContext())
             {
-                var videos = context.Video.ToList();
+                var videos = context.Video.Where(v => v.VideoInCount > 0).Select(v => new
+                    {
+                        v.ID,
+                        v.VideoTitle,
+                        v.VideoCategory,
+                        v.VideoInCount,
+                        v.VideoPrice
+                    }).ToList();
+            
                 VideoView.DataSource = videos;
+                SetVideoColumnHeader();
             }
+        }
+        private void SetVideoColumnHeader()
+        {
+            VideoView.Columns["ID"].HeaderText = "Video ID";
+            VideoView.Columns["VideoTitle"].HeaderText = "Title";
+            VideoView.Columns["VideoCategory"].HeaderText = "Category";
+            VideoView.Columns["VideoInCount"].HeaderText = "Available Stock";
+            VideoView.Columns["VideoPrice"].HeaderText = "Rental Price";
         }
         private void VideoView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -56,22 +73,21 @@ namespace Bogys_Winforms.Windows.Admin
             {
                 int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells["ID"].Value);
                 float videoPrice = Convert.ToSingle(VideoView.CurrentRow.Cells["VideoPrice"].Value);
-                float rentDays = Convert.ToSingle(videoTypeCbx.SelectedItem);
+                int rentDays = Convert.ToInt32(rentalDaysCbx.SelectedItem);
+                string category = Convert.ToString(VideoView.CurrentRow.Cells["VideoCategory"].Value);
                 DateOnly rentDate = DateOnly.FromDateTime(DateTime.Now);
-                DateOnly returnDate = rentDate.AddDays(Convert.ToInt32(videoTypeCbx.SelectedItem));
-
-                float total = videoPrice * rentDays;
+                DateOnly returnDate = rentDate.AddDays(Convert.ToInt32(rentalDaysCbx.SelectedItem));
 
                 var newVideoRent = new Rent
                 {
                     UserID = currentCustomerID,
                     VideoID = videoId,
                     VideoTitle = titleTxt.Text,
-                    VideoCategory = videoTypeCbx.Text,
+                    VideoCategory = category,
                     VideoPrice = videoPrice,
-                    RentDays = Convert.ToInt32(rentalDaysCbx.Text),
-                    OverdueFee = 0,
-                    Total = total,
+                    RentDays = rentDays,
+                    OverdueFee = 0 ,
+                    Total = videoPrice * rentDays,
                     RentDate = rentDate,
                     ReturnDate = returnDate,
                     Status = "ACTIVE",
