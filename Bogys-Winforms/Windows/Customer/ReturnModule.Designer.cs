@@ -33,10 +33,8 @@
             returnBtn = new Button();
             titleTxt = new TextBox();
             feeTxt = new TextBox();
-            totalTxt = new TextBox();
             label4 = new Label();
             label6 = new Label();
-            label5 = new Label();
             searchTxt = new TextBox();
             label3 = new Label();
             label2 = new Label();
@@ -101,17 +99,6 @@
             feeTxt.Size = new Size(159, 34);
             feeTxt.TabIndex = 56;
             // 
-            // totalTxt
-            // 
-            totalTxt.BorderStyle = BorderStyle.FixedSingle;
-            totalTxt.Enabled = false;
-            totalTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            totalTxt.ForeColor = Color.Black;
-            totalTxt.Location = new Point(33, 322);
-            totalTxt.Name = "totalTxt";
-            totalTxt.Size = new Size(159, 34);
-            totalTxt.TabIndex = 57;
-            // 
             // label4
             // 
             label4.AutoSize = true;
@@ -133,17 +120,6 @@
             label6.Size = new Size(134, 25);
             label6.TabIndex = 51;
             label6.Text = "Video Selected :";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semilight", 9F);
-            label5.ForeColor = Color.FromArgb(255, 228, 186);
-            label5.Location = new Point(33, 294);
-            label5.Name = "label5";
-            label5.Size = new Size(57, 25);
-            label5.TabIndex = 53;
-            label5.Text = "Total :";
             // 
             // searchTxt
             // 
@@ -199,10 +175,8 @@
             Controls.Add(returnBtn);
             Controls.Add(titleTxt);
             Controls.Add(feeTxt);
-            Controls.Add(totalTxt);
             Controls.Add(label4);
             Controls.Add(label6);
-            Controls.Add(label5);
             Controls.Add(searchTxt);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -221,10 +195,8 @@
         private Button returnBtn;
         private TextBox titleTxt;
         private TextBox feeTxt;
-        private TextBox totalTxt;
         private Label label4;
         private Label label6;
-        private Label label5;
         private TextBox searchTxt;
         private Label label3;
         private Label label2;

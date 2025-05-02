@@ -72,7 +72,6 @@ namespace Bogys_Winforms.Windows.Admin
             if (result == DialogResult.Yes)
             {
                 int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells["ID"].Value);
-                float videoPrice = Convert.ToSingle(VideoView.CurrentRow.Cells["VideoPrice"].Value);
                 int rentDays = Convert.ToInt32(rentalDaysCbx.SelectedItem);
                 string category = Convert.ToString(VideoView.CurrentRow.Cells["VideoCategory"].Value);
                 DateOnly rentDate = DateOnly.FromDateTime(DateTime.Now);
@@ -84,10 +83,8 @@ namespace Bogys_Winforms.Windows.Admin
                     VideoID = videoId,
                     VideoTitle = titleTxt.Text,
                     VideoCategory = category,
-                    VideoPrice = videoPrice,
                     RentDays = rentDays,
                     OverdueFee = 0 ,
-                    Total = videoPrice * rentDays,
                     RentDate = rentDate,
                     ReturnDate = returnDate,
                     Status = "ACTIVE",

@@ -21,6 +21,21 @@ namespace Bogys_Winforms.Windows.Customer
             LoadVideosRented();
 
         }
+        private void VideoRentedView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            VideoRentedView.ClearSelection();
+            VideoRentedView.CurrentCell = null;
+        }
+
+        private void VideoRentedView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = VideoRentedView.Rows[e.RowIndex];
+                titleTxt.Text = row.Cells["VideoTitle"].Value.ToString();
+                feeTxt.Text = row.Cells["OverdueFee"].Value.ToString();
+            }
+        }
         private void LoadVideosRented()
         {
             UpdateAllOverdueFees();
@@ -34,7 +49,6 @@ namespace Bogys_Winforms.Windows.Customer
                     r.VideoCategory,
                     r.RentDays,
                     r.OverdueFee,
-                    r.Total,
                     r.RentDate,
                     r.ReturnDate,
                     r.Status
@@ -49,9 +63,8 @@ namespace Bogys_Winforms.Windows.Customer
             VideoRentedView.Columns["VideoID"].HeaderText = "Video ID ";
             VideoRentedView.Columns["VideoTitle"].HeaderText = "Title";
             VideoRentedView.Columns["VideoCategory"].HeaderText = "Category";
-            VideoRentedView.Columns["RentDays"].HeaderText = "Available Stock";
+            VideoRentedView.Columns["RentDays"].HeaderText = "Day(s) Rented";
             VideoRentedView.Columns["OverdueFee"].HeaderText = "Overdue Fee";
-            VideoRentedView.Columns["Total"].HeaderText = "Total";
             VideoRentedView.Columns["RentDate"].HeaderText = "Rental Date";
             VideoRentedView.Columns["ReturnDate"].HeaderText = "Return Date";
             VideoRentedView.Columns["Status"].HeaderText = "Status";
@@ -65,19 +78,20 @@ namespace Bogys_Winforms.Windows.Customer
                 {
                     DateOnly today = DateOnly.FromDateTime(DateTime.Today);
 
-                    var overdueItems = context.Rent
-                        .Where(r => r.Status != "OVERDUE" && r.ReturnDate < today)
-                        .ToList();
+                    var overdueItems = context.Rent.Where(r => r.ReturnDate < today).ToList();
 
                     foreach (var rentedVideo in overdueItems)
                     {
-                        rentedVideo.Status = "OVERDUE";
+                        if (rentedVideo.Status != "OVERDUE")
+                        {
+                            rentedVideo.Status = "OVERDUE";
+                        }
 
                         int daysOverdue = today.DayNumber - rentedVideo.ReturnDate.DayNumber;
 
                         float fee = daysOverdue * 5f;
 
-                        rentedVideo.Total = fee;
+                        rentedVideo.OverdueFee = fee;
                     }
                     context.SaveChanges();
                 }
@@ -88,21 +102,6 @@ namespace Bogys_Winforms.Windows.Customer
             }
         }
 
-        private void VideoRentedView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            VideoRentedView.ClearSelection();
-            VideoRentedView.CurrentCell = null;
-        }
-
-        private void VideoRentedView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = VideoRentedView.Rows[e.RowIndex];
-                titleTxt.Text = row.Cells["VideoTitle"].Value.ToString();
-                feeTxt.Text = row.Cells["OverdueFee"].Value.ToString();
-                feeTxt.Text = row.Cells["Total"].Value.ToString();
-            }
-        }
+      
     }
 }
