@@ -31,7 +31,7 @@ namespace Bogys_Winforms.Windows.Admin
         private void InitializeNavigationControl()
         {
             List<UserControl> userControls = new List<UserControl>()
-            { new RentalModule(currentCustomer), new ReturnModule()};
+            { new RentalModule(currentCustomer), new ReturnModule(currentCustomer)};
 
             navigationControl = new NavigationControl(userControls, dashboardPanel);
             navigationControl.Display(0);

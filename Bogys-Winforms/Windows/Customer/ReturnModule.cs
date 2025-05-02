@@ -12,9 +12,11 @@ namespace Bogys_Winforms.Windows.Customer
 {
     public partial class ReturnModule : UserControl
     {
-        public ReturnModule()
+        private int currentCustomerID;
+        public ReturnModule(int userID)
         {
             InitializeComponent();
+            currentCustomerID = userID;
             VideoRentedView.DataBindingComplete += VideoRentedView_DataBindingComplete;
             LoadVideosRented();
 
@@ -24,7 +26,8 @@ namespace Bogys_Winforms.Windows.Customer
             UpdateAllOverdueFees();
             using (var context = new AppDbContext())
             {
-                var rent = context.Rent.Select(r => new
+                var rent = context.Rent
+                .Where(r => r.UserID == currentCustomerID).Select(r => new
                 {
                     r.VideoID,
                     r.VideoTitle,
@@ -52,28 +55,6 @@ namespace Bogys_Winforms.Windows.Customer
             VideoRentedView.Columns["RentDate"].HeaderText = "Rental Date";
             VideoRentedView.Columns["ReturnDate"].HeaderText = "Return Date";
             VideoRentedView.Columns["Status"].HeaderText = "Status";
-        }
-        public bool CheckAndUpdateOverdueStatus(int rentalId)
-        {
-            using (var context = new AppDbContext())
-            {
-                var rentedItem = context.Rent
-                    .FirstOrDefault(r => r.ID == rentalId && r.Status != "OVERDUE");
-
-                if (rentedItem == null)
-                    return false;
-
-                DateOnly today = DateOnly.FromDateTime(DateTime.Today);
-
-                if (rentedItem.ReturnDate < today)
-                {
-                    rentedItem.Status = "OVERDUE";
-                    context.SaveChanges();
-                    return true;
-                }
-
-                return false;
-            }
         }
 
         public void UpdateAllOverdueFees()
