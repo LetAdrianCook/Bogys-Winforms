@@ -15,7 +15,7 @@ namespace Bogys_Winforms.Windows.Admin
 {
     public partial class CustomerDashboard : Form
     {
-        private int currentCustomer; 
+        private int currentCustomer;
         NavigationControl navigationControl;
         NavigationButtons navigationButtons;
 

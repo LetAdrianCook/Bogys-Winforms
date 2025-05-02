@@ -19,7 +19,10 @@ namespace Bogys_Winforms.Windows.Customer
             currentCustomerID = userID;
             VideoRentedView.DataBindingComplete += VideoRentedView_DataBindingComplete;
             LoadVideosRented();
-
+        }
+        private void ReturnModule_Load(object sender, EventArgs e)
+        {
+            LoadVideosRented();
         }
         private void VideoRentedView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -36,7 +39,7 @@ namespace Bogys_Winforms.Windows.Customer
                 feeTxt.Text = row.Cells["OverdueFee"].Value.ToString();
             }
         }
-        private void LoadVideosRented()
+        public void LoadVideosRented()
         {
             UpdateAllOverdueFees();
             using (var context = new AppDbContext())
@@ -102,6 +105,6 @@ namespace Bogys_Winforms.Windows.Customer
             }
         }
 
-      
+
     }
 }

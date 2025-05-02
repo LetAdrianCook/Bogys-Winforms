@@ -30,7 +30,7 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
-            button6 = new Button();
+            logoutBtn = new Button();
             reportBtn = new Button();
             listBtn = new Button();
             videoBtn = new Button();
@@ -50,7 +50,7 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(61, 52, 70);
-            panel2.Controls.Add(button6);
+            panel2.Controls.Add(logoutBtn);
             panel2.Controls.Add(reportBtn);
             panel2.Controls.Add(listBtn);
             panel2.Controls.Add(videoBtn);
@@ -62,21 +62,22 @@
             panel2.Size = new Size(235, 664);
             panel2.TabIndex = 1;
             // 
-            // button6
+            // logoutBtn
             // 
-            button6.Dock = DockStyle.Bottom;
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Segoe UI Semilight", 10F);
-            button6.ForeColor = Color.FromArgb(255, 228, 186);
-            button6.Location = new Point(0, 609);
-            button6.Name = "button6";
-            button6.Padding = new Padding(5, 0, 0, 0);
-            button6.Size = new Size(235, 55);
-            button6.TabIndex = 6;
-            button6.Text = "Logout";
-            button6.TextAlign = ContentAlignment.MiddleLeft;
-            button6.UseVisualStyleBackColor = true;
+            logoutBtn.Dock = DockStyle.Bottom;
+            logoutBtn.FlatAppearance.BorderSize = 0;
+            logoutBtn.FlatStyle = FlatStyle.Flat;
+            logoutBtn.Font = new Font("Segoe UI Semilight", 10F);
+            logoutBtn.ForeColor = Color.FromArgb(255, 228, 186);
+            logoutBtn.Location = new Point(0, 609);
+            logoutBtn.Name = "logoutBtn";
+            logoutBtn.Padding = new Padding(5, 0, 0, 0);
+            logoutBtn.Size = new Size(235, 55);
+            logoutBtn.TabIndex = 6;
+            logoutBtn.Text = "Logout";
+            logoutBtn.TextAlign = ContentAlignment.MiddleLeft;
+            logoutBtn.UseVisualStyleBackColor = true;
+            logoutBtn.Click += logoutBtn_Click;
             // 
             // reportBtn
             // 
@@ -190,6 +191,6 @@
         private Button reportBtn;
         private Button listBtn;
         private Button videoBtn;
-        private Button button6;
+        private Button logoutBtn;
     }
 }

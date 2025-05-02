@@ -183,6 +183,7 @@
             Controls.Add(label1);
             Name = "ReturnModule";
             Size = new Size(823, 664);
+            Load += ReturnModule_Load;
             ((System.ComponentModel.ISupportInitialize)VideoRentedView).EndInit();
             ResumeLayout(false);
             PerformLayout();
