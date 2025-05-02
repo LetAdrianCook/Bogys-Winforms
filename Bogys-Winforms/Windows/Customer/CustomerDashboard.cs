@@ -55,5 +55,14 @@ namespace Bogys_Winforms.Windows.Admin
             navigationControl.Display(1);
             navigationButtons.Highlight(returnBtn);
         }
+
+        private void logoutBtn_Click(object sender, EventArgs e)
+        {
+            currentCustomer = 0;
+
+            var loginForm = new Login();
+            loginForm.Show();
+            this.Close();
+        }
     }
 }
