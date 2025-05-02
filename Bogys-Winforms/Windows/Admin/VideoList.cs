@@ -23,7 +23,6 @@ namespace Bogys_Winforms.Windows.Admin
             {
                 var rent = context.Rent.Select(r => new
                 {
-
                     r.UserID,
                     r.VideoID,
                     r.VideoTitle,

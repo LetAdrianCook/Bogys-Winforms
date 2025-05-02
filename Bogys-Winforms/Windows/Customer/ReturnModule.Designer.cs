@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             videoTypeCbx = new ComboBox();
-            VideoView = new DataGridView();
+            VideoRentedView = new DataGridView();
             returnBtn = new Button();
             titleTxt = new TextBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            feeTxt = new TextBox();
+            totalTxt = new TextBox();
             label4 = new Label();
             label6 = new Label();
             label5 = new Label();
@@ -41,7 +41,7 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
-            ((System.ComponentModel.ISupportInitialize)VideoView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)VideoRentedView).BeginInit();
             SuspendLayout();
             // 
             // videoTypeCbx
@@ -53,16 +53,17 @@
             videoTypeCbx.Size = new Size(152, 33);
             videoTypeCbx.TabIndex = 61;
             // 
-            // VideoView
+            // VideoRentedView
             // 
-            VideoView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            VideoView.Location = new Point(246, 116);
-            VideoView.MultiSelect = false;
-            VideoView.Name = "VideoView";
-            VideoView.RowHeadersWidth = 62;
-            VideoView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            VideoView.Size = new Size(544, 512);
-            VideoView.TabIndex = 60;
+            VideoRentedView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            VideoRentedView.Location = new Point(246, 116);
+            VideoRentedView.MultiSelect = false;
+            VideoRentedView.Name = "VideoRentedView";
+            VideoRentedView.RowHeadersWidth = 62;
+            VideoRentedView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            VideoRentedView.Size = new Size(544, 512);
+            VideoRentedView.TabIndex = 60;
+            VideoRentedView.CellClick += VideoRentedView_CellClick;
             // 
             // returnBtn
             // 
@@ -89,27 +90,27 @@
             titleTxt.Size = new Size(159, 34);
             titleTxt.TabIndex = 55;
             // 
-            // textBox1
+            // feeTxt
             // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Enabled = false;
-            textBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.Black;
-            textBox1.Location = new Point(33, 239);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(159, 34);
-            textBox1.TabIndex = 56;
+            feeTxt.BorderStyle = BorderStyle.FixedSingle;
+            feeTxt.Enabled = false;
+            feeTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            feeTxt.ForeColor = Color.Black;
+            feeTxt.Location = new Point(33, 239);
+            feeTxt.Name = "feeTxt";
+            feeTxt.Size = new Size(159, 34);
+            feeTxt.TabIndex = 56;
             // 
-            // textBox2
+            // totalTxt
             // 
-            textBox2.BorderStyle = BorderStyle.FixedSingle;
-            textBox2.Enabled = false;
-            textBox2.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.ForeColor = Color.Black;
-            textBox2.Location = new Point(33, 322);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(159, 34);
-            textBox2.TabIndex = 57;
+            totalTxt.BorderStyle = BorderStyle.FixedSingle;
+            totalTxt.Enabled = false;
+            totalTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            totalTxt.ForeColor = Color.Black;
+            totalTxt.Location = new Point(33, 322);
+            totalTxt.Name = "totalTxt";
+            totalTxt.Size = new Size(159, 34);
+            totalTxt.TabIndex = 57;
             // 
             // label4
             // 
@@ -194,11 +195,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(80, 68, 92);
             Controls.Add(videoTypeCbx);
-            Controls.Add(VideoView);
+            Controls.Add(VideoRentedView);
             Controls.Add(returnBtn);
             Controls.Add(titleTxt);
-            Controls.Add(textBox1);
-            Controls.Add(textBox2);
+            Controls.Add(feeTxt);
+            Controls.Add(totalTxt);
             Controls.Add(label4);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -208,7 +209,7 @@
             Controls.Add(label1);
             Name = "ReturnModule";
             Size = new Size(823, 664);
-            ((System.ComponentModel.ISupportInitialize)VideoView).EndInit();
+            ((System.ComponentModel.ISupportInitialize)VideoRentedView).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -216,11 +217,11 @@
         #endregion
 
         private ComboBox videoTypeCbx;
-        private DataGridView VideoView;
+        private DataGridView VideoRentedView;
         private Button returnBtn;
         private TextBox titleTxt;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox feeTxt;
+        private TextBox totalTxt;
         private Label label4;
         private Label label6;
         private Label label5;
