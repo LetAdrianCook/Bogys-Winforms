@@ -51,8 +51,8 @@ namespace Bogys_Winforms
                 UserName = usernameTxt.Text.Trim(),
                 UserPassword = passwordTxt.Text, 
                 UserAddress = addressTxt.Text.Trim(),
-                UserType = "CLIENT", 
-                BirthDate = birthDatePicker.Value.Date,
+                UserType = "CLIENT",
+                BirthDate = DateOnly.FromDateTime(birthDatePicker.Value),
                 FirstName = firstnameTxt.Text.Trim(),
                 LastName = lastnameTxt.Text.Trim(),
                 CreatedAt = DateTime.Now

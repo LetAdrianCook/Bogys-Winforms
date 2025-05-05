@@ -15,7 +15,7 @@ namespace Bogys_Winforms.Models
         public string UserPassword { get; set; }
         public string UserAddress { get; set; }
         public string UserType { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateOnly BirthDate { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime CreatedAt { get; set; }

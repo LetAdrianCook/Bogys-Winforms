@@ -8,11 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bogys_Winforms.Models;
+using Bogys_Winforms.Services.AdminFunctions;
 
 namespace Bogys_Winforms.Windows.Admin
 {
     public partial class CustomerLibrary : UserControl
     {
+        CustomerLibraryFunctions customerFunction = new CustomerLibraryFunctions();
         public CustomerLibrary()
         {
             InitializeComponent();
@@ -21,11 +23,8 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void LoadCustomer()
         {
-            using (var context = new AppDbContext())
-            {
-                var customers = context.Users.ToList();
-                CustomerView.DataSource = customers;
-            }
+            var customers = customerFunction.GetAllCustomers();
+            CustomerView.DataSource = customers;
         }
         private void CustomerView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -46,33 +45,35 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void editBtn_Click(object sender, EventArgs e)
         {
-            if (!checkInput())
-            {
-                return;
-            }
-            var result = MessageBox.Show("Are you sure you want to edit this customer?",
-                                         "Confirm Edit",
-                                          MessageBoxButtons.YesNo,
-                                          MessageBoxIcon.Question);
+            if (!checkInput()) return;
 
-            if (result == DialogResult.Yes)
+            var result = MessageBox.Show("Are you sure you want to edit this customer?",
+                                        "Confirm Edit",
+                                        MessageBoxButtons.YesNo,
+                                        MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes) return;
+
+            int customerId = Convert.ToInt32(CustomerView.CurrentRow.Cells["ID"].Value);
+            DateOnly birthDate = DateOnly.FromDateTime(birthDatePicker.Value);
+
+            bool success = customerFunction.EditCustomer(
+                customerId,
+                usernameTxt.Text,
+                firstnameTxt.Text,
+                lastnameTxt.Text,
+                addressTxt.Text,
+                birthDate 
+            );
+
+            if (success)
             {
-                int userId = Convert.ToInt32(CustomerView.CurrentRow.Cells["ID"].Value);
-                using (var context = new AppDbContext())
-                {
-                    var customer = context.Users.FirstOrDefault(u => u.ID == userId);
-                    if (customer != null)
-                    {
-                        customer.UserName = usernameTxt.Text;
-                        customer.FirstName = firstnameTxt.Text;
-                        customer.LastName = lastnameTxt.Text;
-                        customer.UserAddress = addressTxt.Text;
-                        customer.BirthDate = birthDatePicker.Value;
-                        context.SaveChanges();
-                    }
-                }
                 clearFields();
                 LoadCustomer();
+            }
+            else
+            {
+                MessageBox.Show("Customer not found");
             }
         }
         private void clearFields()
