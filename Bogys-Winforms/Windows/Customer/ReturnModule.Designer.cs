@@ -76,6 +76,7 @@
             returnBtn.TabIndex = 59;
             returnBtn.Text = "Return";
             returnBtn.UseVisualStyleBackColor = false;
+            returnBtn.Click += returnBtn_Click;
             // 
             // titleTxt
             // 

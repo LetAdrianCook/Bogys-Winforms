@@ -47,6 +47,7 @@ namespace Bogys_Winforms.Windows.Customer
                 var rent = context.Rent
                 .Where(r => r.UserID == currentCustomerID).Select(r => new
                 {
+                    r.ID,
                     r.VideoID,
                     r.VideoTitle,
                     r.VideoCategory,
@@ -63,6 +64,7 @@ namespace Bogys_Winforms.Windows.Customer
         }
         private void SetVideoColumnHeader()
         {
+            VideoRentedView.Columns["ID"].HeaderText = "Rent ID ";
             VideoRentedView.Columns["VideoID"].HeaderText = "Video ID ";
             VideoRentedView.Columns["VideoTitle"].HeaderText = "Title";
             VideoRentedView.Columns["VideoCategory"].HeaderText = "Category";
@@ -105,6 +107,87 @@ namespace Bogys_Winforms.Windows.Customer
             }
         }
 
+        private void returnBtn_Click(object sender, EventArgs e)
+        {
+            // Get rental ID from grid (adjust column name if needed)
+            var selectedRow = VideoRentedView.CurrentRow;
+            int rentalId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+            string overdueFeeTxt = Convert.ToString(selectedRow.Cells["OverdueFee"].Value);
 
+            if (VideoRentedView.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a video to return");
+                return;
+            }
+
+            var confirmResult = MessageBox.Show(
+                "Are you sure you want to return this movie? with overdue fee of " + overdueFeeTxt ,
+                "Confirm Return",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirmResult != DialogResult.Yes)
+            {
+                return;
+            }
+
+
+
+            try
+            {
+                bool success = ReturnMovie(rentalId);
+
+                if (success)
+                {
+                    LoadVideosRented();
+                    MessageBox.Show("Video returned successfully!");
+                }
+                else
+                {
+                    MessageBox.Show("Return failed: Rental or video not found");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error returning movie: {ex.Message}");
+            }
+        }
+
+        public bool ReturnMovie(int rentalId)
+        {
+            using (var context = new AppDbContext())
+            {
+                using (var returnVideo = context.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var rentedMovie = context.Rent
+                            .FirstOrDefault(r => r.ID == rentalId);
+
+                        if (rentedMovie == null) return false;
+
+                        var video = context.Video
+                            .FirstOrDefault(v => v.ID == rentedMovie.VideoID);
+
+                        if (video == null) return false;
+
+                        video.VideoInCount += 1;
+                        video.VideoOutCount -= 1;
+
+                        context.Rent.Remove(rentedMovie);
+
+                        context.SaveChanges();
+                        returnVideo.Commit();
+                        return true;
+                    }
+                    catch
+                    {
+                        returnVideo.Rollback();
+                        throw;
+                    }
+                }
+            }
+        }
     }
 }

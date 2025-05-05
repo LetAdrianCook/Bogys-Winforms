@@ -23,6 +23,7 @@ namespace Bogys_Winforms.Windows.Admin
             {
                 var rent = context.Rent.Select(r => new
                 {
+                    r.ID,
                     r.UserID,
                     r.VideoID,
                     r.VideoTitle,
@@ -40,11 +41,12 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void SetVideoColumnHeader()
         {
-            VideoView.Columns["UserID"].HeaderText = "User ID";
+            VideoView.Columns["ID"].HeaderText = "Rent ID";
             VideoView.Columns["VideoID"].HeaderText = "Video ID ";
+            VideoView.Columns["UserID"].HeaderText = "User ID";
             VideoView.Columns["VideoTitle"].HeaderText = "Title";
             VideoView.Columns["VideoCategory"].HeaderText = "Category";
-            VideoView.Columns["RentDays"].HeaderText = "Available Stock";
+            VideoView.Columns["RentDays"].HeaderText = "Rent Days";
             VideoView.Columns["OverdueFee"].HeaderText = "Overdue Fee";
             VideoView.Columns["RentDate"].HeaderText = "Rental Date";
             VideoView.Columns["ReturnDate"].HeaderText = "Return Date";
