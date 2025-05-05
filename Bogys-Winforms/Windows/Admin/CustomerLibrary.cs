@@ -40,7 +40,7 @@ namespace Bogys_Winforms.Windows.Admin
                 firstnameTxt.Text = row.Cells["FirstName"].Value.ToString();
                 lastnameTxt.Text = row.Cells["LastName"].Value.ToString();
                 addressTxt.Text = row.Cells["UserAddress"].Value.ToString();
-                birthDatePicker.Value = Convert.ToDateTime(row.Cells["BirthDate"].Value);
+                birthDatePicker.Value = ((DateOnly)row.Cells["BirthDate"].Value).ToDateTime(TimeOnly.MinValue);
             }
         }
         private void editBtn_Click(object sender, EventArgs e)
