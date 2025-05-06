@@ -20,17 +20,18 @@ namespace Bogys_Winforms.Windows.Admin
     public partial class VideoLibrary : UserControl
     {
         VideoLibraryFunctions vidLibFunction = new VideoLibraryFunctions();
+        InputValidator validator = new InputValidator();
         StringsVariables strTxt = new StringsVariables();
         public VideoLibrary()
         {
             InitializeComponent();
             VideoView.DataBindingComplete += VideoView_DataBindingComplete;
             LoadVideos();
-            TextFieldControl();
         }
         private void LoadVideos()
         {
             videoTypeCbx.SelectedIndex = 0;
+            rentDaysCbx.SelectedIndex = 0;
             VideoView.DataSource = vidLibFunction.GetAllVideos();
             vidLibFunction.HeaderTitle(VideoView);
         }
@@ -45,39 +46,23 @@ namespace Bogys_Winforms.Windows.Admin
             {
                 return;
             }
-            var result = MessageBox.Show(strTxt.AddBtnMsg, strTxt.AddBtnMsgTitle,
-                                         MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Question);
+            var result = MessageBox.Show(strTxt.AddBtnMsg, strTxt.AddBtnMsgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
+            int vidPrice = VideoPrice();
+            int rentDays = Convert.ToInt32(rentDaysCbx.SelectedItem);
+            int inCount = Convert.ToInt32(stockTxt.Text);
+
+            bool success = vidLibFunction.AddVideo(titleTxt.Text, videoTypeCbx.Text,
+                                                    vidPrice, rentDays, inCount);
+            if (!success)
             {
-                float vidPrice = VideoPrice();
-                var newVideo = new Video
-                {
-                    VideoTitle = titleTxt.Text.Trim(),
-                    VideoCategory = videoTypeCbx.Text,
-                    VideoPrice = vidPrice,
-                    VideoInCount = Convert.ToInt32(stockTxt.Text),
-                    VideoOutCount = 0,
-                    VideoAdded = DateTime.Now
-                };
-
-                try
-                {
-                    using (var context = new AppDbContext())
-                    {
-                        context.Video.Add(newVideo);
-                        context.SaveChanges();
-                    }
-                    TextFieldControl();
-                    ClearFields();
-                    LoadVideos();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(strTxt.errSavingUser + ex.Message);
-                }
+                MessageBox.Show(strTxt.validateVidTitle, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+
+            ClearFields();
+            LoadVideos();
+
         }
         private void VideoView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -86,58 +71,51 @@ namespace Bogys_Winforms.Windows.Admin
                 DataGridViewRow row = VideoView.Rows[e.RowIndex];
                 titleTxt.Text = row.Cells[strTxt.VideoTitle].Value.ToString();
                 stockTxt.Text = row.Cells[strTxt.VideoInCount].Value.ToString();
+                rentDaysCbx.Text = row.Cells[strTxt.RentDays].Value.ToString();
                 videoTypeCbx.SelectedItem = VideoView.Rows[e.RowIndex].Cells[strTxt.VideoCategory].Value.ToString();
-                TextFieldControl();
             }
         }
-
         private void editBtn_Click(object sender, EventArgs e)
         {
             if (!CheckID()) return;
             if (!checkInput()) return;
 
-            var result = MessageBox.Show("Are you sure you want to edit this Video?",
-                                         "Confirm Edit",
-                                          MessageBoxButtons.YesNo,
-                                          MessageBoxIcon.Question);
+            var result = MessageBox.Show(strTxt.editMsg, strTxt.editMsgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Yes)
+            if (result != DialogResult.Yes) return;
+
+            int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.ID].Value);
+            int vidPrice = VideoPrice();
+            int rentDays = Convert.ToInt32(rentDaysCbx.SelectedItem);
+            int inCount = Convert.ToInt32(stockTxt.Text);
+
+            bool success = vidLibFunction.EditVideo(videoId, titleTxt.Text,
+                                                    videoTypeCbx.Text, inCount,
+                                                    rentDays, vidPrice);
+            if (success)
             {
-                int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells["ID"].Value);
-                using (var context = new AppDbContext())
-                {
-                    float vidPrice = VideoPrice();
-                    var videos = context.Video.FirstOrDefault(u => u.ID == videoId);
-                    if (videos != null)
-                    {
-                        videos.VideoTitle = titleTxt.Text;
-                        videos.VideoCategory = videoTypeCbx.Text;
-                        videos.VideoPrice = vidPrice;
-                        context.SaveChanges();
-                    }
-                }
-                TextFieldControl();
                 ClearFields();
                 LoadVideos();
             }
         }
         private bool checkInput()
         {
-            if (string.IsNullOrWhiteSpace(titleTxt.Text))
-            {
-                MessageBox.Show("Video Title cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                titleTxt.Focus();
-                return false;
-            }
+            if (!validator.ValidateTextBox(titleTxt, strTxt._VideoTitle)) return false;
             if (string.IsNullOrWhiteSpace(stockTxt.Text))
             {
-                MessageBox.Show("Video Title cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                titleTxt.Focus();
+                MessageBox.Show("Video in cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                stockTxt.Focus();
+                return false;
+            }
+            if (!stockTxt.Text.All(char.IsDigit))
+            {
+                MessageBox.Show("Stock must be a whole number no decimals.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                stockTxt.Focus();
                 return false;
             }
             return true;
         }
-        private float VideoPrice()
+        private int VideoPrice()
         {
             if (videoTypeCbx.Text == "VCD")
             {
@@ -151,7 +129,7 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private bool CheckID()
         {
-            if (VideoView.CurrentRow == null || VideoView.CurrentRow.Cells["ID"].Value == null)
+            if (VideoView.CurrentRow == null || VideoView.CurrentRow.Cells[strTxt.ID].Value == null)
             {
                 MessageBox.Show("Please select a Video to edit or delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
@@ -187,25 +165,8 @@ namespace Bogys_Winforms.Windows.Admin
                     }
                 }
                 ClearFields();
-                TextFieldControl();
                 LoadVideos();
-            }
-        }
-        private void TextFieldControl()
-        {
-            if (VideoView.CurrentRow == null)
-            {
-                titleTxt.Enabled = false;
-                stockTxt.Enabled = false;
-                videoTypeCbx.Enabled = false;
-               
-            }else
-            {
-                titleTxt.Enabled = true;
-                stockTxt.Enabled = true;
-                videoTypeCbx.Enabled = true;
-            }
-               
+            }               
         }
     }
 }
