@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bogys_Winforms.Services
 {
-
     class InputValidator
     {
-        public static bool ValidateTextBox(TextBox txt, string fieldName)
+        public bool ValidateTextBox(TextBox txt, string fieldName)
         {
             if (string.IsNullOrWhiteSpace(txt.Text))
             {

@@ -16,6 +16,8 @@ namespace Bogys_Winforms.Windows.Admin
     public partial class CustomerLibrary : UserControl
     {
         CustomerLibraryFunctions customerFunction = new CustomerLibraryFunctions();
+        InputValidator validator = new InputValidator();
+
         public CustomerLibrary()
         {
             InitializeComponent();
@@ -55,14 +57,7 @@ namespace Bogys_Winforms.Windows.Admin
             int customerId = Convert.ToInt32(CustomerView.CurrentRow.Cells["ID"].Value);
             DateOnly birthDate = DateOnly.FromDateTime(birthDatePicker.Value);
 
-            bool success = customerFunction.EditCustomer(
-                customerId,
-                usernameTxt.Text,
-                firstnameTxt.Text,
-                lastnameTxt.Text,
-                addressTxt.Text,
-                birthDate 
-            );
+            bool success = customerFunction.EditCustomer(customerId,usernameTxt.Text,firstnameTxt.Text,lastnameTxt.Text,addressTxt.Text,birthDate);
 
             if (success)
             {
@@ -85,10 +80,10 @@ namespace Bogys_Winforms.Windows.Admin
                 MessageBox.Show("Please select a customer to edit.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!InputValidator.ValidateTextBox(usernameTxt, "Username")) return false;
-            if (!InputValidator.ValidateTextBox(firstnameTxt, "First name")) return false;
-            if (!InputValidator.ValidateTextBox(lastnameTxt, "Last name")) return false;
-            if (!InputValidator.ValidateTextBox(addressTxt, "Address")) return false;
+            if (!validator.ValidateTextBox(usernameTxt, "Username")) return false;
+            if (!validator.ValidateTextBox(firstnameTxt, "First name")) return false;
+            if (!validator.ValidateTextBox(lastnameTxt, "Last name")) return false;
+            if (!validator.ValidateTextBox(addressTxt, "Address")) return false;
             if (birthDatePicker.Value.Date > DateTime.Today)
             {
                 MessageBox.Show("Birthdate cannot be in the future.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -97,7 +92,6 @@ namespace Bogys_Winforms.Windows.Admin
             }
             return true;
         }
-
 
     }
 }
