@@ -33,22 +33,23 @@ namespace Bogys_Winforms.Services.AdminFunctions
             .ToList();
             }
         }
-        public void HeaderTitle(DataGridView dateGridView)
+        public void HeaderTitle(DataGridView dataGridView)
         {
-            dateGridView.Columns[strTxt.ID].Visible = false;
-            dateGridView.Columns[strTxt.UserName].HeaderText = strTxt._UserName;
-            dateGridView.Columns[strTxt.UserPassword].Visible = false;
-            dateGridView.Columns[strTxt.UserType].Visible = false;
-            dateGridView.Columns[strTxt.FirstName].HeaderText = strTxt._FirstName;
-            dateGridView.Columns[strTxt.LastName].HeaderText = strTxt._LastName;
-            dateGridView.Columns[strTxt.Email].HeaderText = strTxt._Email;
-            dateGridView.Columns[strTxt.Phonenumber].HeaderText = strTxt._Phonenumber;
-            dateGridView.Columns[strTxt.UserAddress].HeaderText = strTxt._UserAddress;
-            dateGridView.Columns[strTxt.BirthDate].HeaderText = strTxt._BirthDate;
-            dateGridView.Columns[strTxt.CreatedAt].HeaderText = strTxt._CreatedAt;
+            dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView.ColumnHeadersDefaultCellStyle.Font, FontStyle.Bold);
+            dataGridView.Columns[strTxt.ID].Visible = false;
+            dataGridView.Columns[strTxt.UserName].HeaderText = strTxt._UserName;
+            dataGridView.Columns[strTxt.UserPassword].Visible = false;
+            dataGridView.Columns[strTxt.UserType].Visible = false;
+            dataGridView.Columns[strTxt.FirstName].HeaderText = strTxt._FirstName;
+            dataGridView.Columns[strTxt.LastName].HeaderText = strTxt._LastName;
+            dataGridView.Columns[strTxt.Email].HeaderText = strTxt._Email;
+            dataGridView.Columns[strTxt.Phonenumber].HeaderText = strTxt._Phonenumber;
+            dataGridView.Columns[strTxt.UserAddress].HeaderText = strTxt._UserAddress;
+            dataGridView.Columns[strTxt.BirthDate].HeaderText = strTxt._BirthDate;
+            dataGridView.Columns[strTxt.CreatedAt].HeaderText = strTxt._CreatedAt;
         }
         public bool EditCustomer(int userId, string username, string firstName,
-                             string lastName, string address, DateOnly birthDate)
+                             string lastName, string address, string email, string phonenumber, DateOnly birthDate)
         {
             using (var context = new AppDbContext())
             {
@@ -59,6 +60,8 @@ namespace Bogys_Winforms.Services.AdminFunctions
                 customer.FirstName = firstName;
                 customer.LastName = lastName;
                 customer.UserAddress = address;
+                customer.Email = email;
+                customer.Phonenumber = phonenumber;
                 customer.BirthDate = birthDate;
 
                 context.SaveChanges();

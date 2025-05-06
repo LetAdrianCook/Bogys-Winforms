@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Bogys_Winforms.Models;
 using Bogys_Winforms.Services.AdminFunctions;
 using Bogys_Winforms.Services;
+using Bogys_Winforms.Strings;
 
 namespace Bogys_Winforms.Windows.Admin
 {
@@ -17,6 +18,7 @@ namespace Bogys_Winforms.Windows.Admin
     {
         CustomerLibraryFunctions customerFunction = new CustomerLibraryFunctions();
         InputValidator validator = new InputValidator();
+        StringsVariables strTxt = new StringsVariables();
 
         public CustomerLibrary()
         {
@@ -39,26 +41,30 @@ namespace Bogys_Winforms.Windows.Admin
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = CustomerView.Rows[e.RowIndex];
-                usernameTxt.Text = row.Cells["UserName"].Value.ToString();
-                firstnameTxt.Text = row.Cells["FirstName"].Value.ToString();
-                lastnameTxt.Text = row.Cells["LastName"].Value.ToString();
-                addressTxt.Text = row.Cells["UserAddress"].Value.ToString();
-                birthDatePicker.Value = ((DateOnly)row.Cells["BirthDate"].Value).ToDateTime(TimeOnly.MinValue);
+                usernameTxt.Text = row.Cells[strTxt.UserName].Value.ToString();
+                firstnameTxt.Text = row.Cells[strTxt.FirstName].Value.ToString();
+                lastnameTxt.Text = row.Cells[strTxt.LastName].Value.ToString();
+                addressTxt.Text = row.Cells[strTxt.UserAddress].Value.ToString();
+                emailTxt.Text = row.Cells[strTxt.Email].Value.ToString();
+                phoneTxt.Text = row.Cells[strTxt.Phonenumber].Value.ToString();
+                birthDatePicker.Value = ((DateOnly)row.Cells[strTxt.BirthDate].Value).ToDateTime(TimeOnly.MinValue);
             }
         }
         private void editBtn_Click(object sender, EventArgs e)
         {
             if (!checkInput()) return;
 
-            var result = MessageBox.Show("Are you sure you want to edit this customer?","Confirm Edit",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
+            var result = MessageBox.Show(strTxt.editMsg, strTxt.editMsgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result != DialogResult.Yes) return;
 
-            int customerId = Convert.ToInt32(CustomerView.CurrentRow.Cells["ID"].Value);
+            int customerId = Convert.ToInt32(CustomerView.CurrentRow.Cells[strTxt.ID].Value);
             DateOnly birthDate = DateOnly.FromDateTime(birthDatePicker.Value);
 
-            bool success = customerFunction.EditCustomer(customerId,usernameTxt.Text,firstnameTxt.Text,lastnameTxt.Text,addressTxt.Text,birthDate);
-
+            bool success = customerFunction.EditCustomer(customerId, usernameTxt.Text,
+                                                         firstnameTxt.Text, lastnameTxt.Text,
+                                                         addressTxt.Text, emailTxt.Text, phoneTxt.Text, 
+                                                         birthDate);
             if (success)
             {
                 clearFields();
@@ -71,22 +77,32 @@ namespace Bogys_Winforms.Windows.Admin
             firstnameTxt.Clear();
             lastnameTxt.Clear();
             addressTxt.Clear();
+            emailTxt.Clear();
+            phoneTxt.Clear();
             birthDatePicker.Value = DateTime.Today;
         }
         private bool checkInput()
         {
-            if (CustomerView.CurrentRow == null || CustomerView.CurrentRow.Cells["Id"].Value == null)
+            if (CustomerView.CurrentRow == null || CustomerView.CurrentRow.Cells[strTxt.ID].Value == null)
             {
-                MessageBox.Show("Please select a customer to edit.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(strTxt.customerSelect, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (!validator.ValidateTextBox(usernameTxt, "Username")) return false;
-            if (!validator.ValidateTextBox(firstnameTxt, "First name")) return false;
-            if (!validator.ValidateTextBox(lastnameTxt, "Last name")) return false;
-            if (!validator.ValidateTextBox(addressTxt, "Address")) return false;
+            if (!validator.ValidateTextBox(usernameTxt, strTxt._UserName)) return false;
+            if (!validator.ValidateTextBox(firstnameTxt, strTxt._FirstName)) return false;
+            if (!validator.ValidateTextBox(lastnameTxt, strTxt._LastName)) return false;
+            if (!validator.ValidateTextBox(addressTxt, strTxt._UserAddress)) return false;
+            if (!validator.ValidateTextBox(emailTxt, strTxt._Email)) return false;
+            string phone = phoneTxt.Text.Trim();
+            if (phone.Length != 11 || !phone.All(char.IsDigit))
+            {
+                MessageBox.Show(strTxt.validatePhoneMsg, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                phoneTxt.Focus();
+                return false;
+            }
             if (birthDatePicker.Value.Date > DateTime.Today)
             {
-                MessageBox.Show("Birthdate cannot be in the future.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(strTxt.validateBday, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 birthDatePicker.Focus();
                 return false;
             }
