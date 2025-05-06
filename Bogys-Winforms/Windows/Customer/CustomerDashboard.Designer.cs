@@ -57,7 +57,7 @@
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(235, 664);
+            panel2.Size = new Size(235, 1024);
             panel2.TabIndex = 1;
             // 
             // userIdTxt
@@ -96,7 +96,7 @@
             logoutBtn.FlatStyle = FlatStyle.Flat;
             logoutBtn.Font = new Font("Segoe UI Semilight", 10F);
             logoutBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            logoutBtn.Location = new Point(0, 609);
+            logoutBtn.Location = new Point(0, 969);
             logoutBtn.Name = "logoutBtn";
             logoutBtn.Padding = new Padding(5, 0, 0, 0);
             logoutBtn.Size = new Size(235, 55);
@@ -139,20 +139,21 @@
             dashboardPanel.Dock = DockStyle.Fill;
             dashboardPanel.Location = new Point(235, 0);
             dashboardPanel.Name = "dashboardPanel";
-            dashboardPanel.Size = new Size(823, 664);
+            dashboardPanel.Size = new Size(1663, 1024);
             dashboardPanel.TabIndex = 2;
             // 
             // CustomerDashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1058, 664);
+            ClientSize = new Size(1898, 1024);
             Controls.Add(dashboardPanel);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "CustomerDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "CustomerDashboard";
+            WindowState = FormWindowState.Maximized;
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             ResumeLayout(false);

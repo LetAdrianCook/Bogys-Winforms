@@ -40,6 +40,8 @@
             usernameTxt = new TextBox();
             label3 = new Label();
             CustomerView = new DataGridView();
+            emailTxt = new TextBox();
+            phoneTxt = new TextBox();
             ((System.ComponentModel.ISupportInitialize)usersBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CustomerView).BeginInit();
             SuspendLayout();
@@ -53,7 +55,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semilight", 9F);
             label2.ForeColor = Color.FromArgb(255, 228, 186);
-            label2.Location = new Point(34, 45);
+            label2.Location = new Point(79, 94);
             label2.Name = "label2";
             label2.Size = new Size(222, 25);
             label2.TabIndex = 1;
@@ -64,7 +66,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(255, 228, 186);
-            label1.Location = new Point(34, 13);
+            label1.Location = new Point(79, 62);
             label1.Name = "label1";
             label1.Size = new Size(175, 32);
             label1.TabIndex = 2;
@@ -72,7 +74,7 @@
             // 
             // birthDatePicker
             // 
-            birthDatePicker.Location = new Point(441, 497);
+            birthDatePicker.Location = new Point(1228, 650);
             birthDatePicker.Name = "birthDatePicker";
             birthDatePicker.Size = new Size(350, 31);
             birthDatePicker.TabIndex = 14;
@@ -84,7 +86,7 @@
             registerBtn.FlatStyle = FlatStyle.Flat;
             registerBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             registerBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            registerBtn.Location = new Point(34, 564);
+            registerBtn.Location = new Point(653, 869);
             registerBtn.Name = "registerBtn";
             registerBtn.Size = new Size(357, 49);
             registerBtn.TabIndex = 13;
@@ -97,10 +99,10 @@
             lastnameTxt.BorderStyle = BorderStyle.FixedSingle;
             lastnameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lastnameTxt.ForeColor = Color.Black;
-            lastnameTxt.Location = new Point(227, 494);
+            lastnameTxt.Location = new Point(831, 647);
             lastnameTxt.Name = "lastnameTxt";
             lastnameTxt.PlaceholderText = "Last Name";
-            lastnameTxt.Size = new Size(164, 34);
+            lastnameTxt.Size = new Size(240, 34);
             lastnameTxt.TabIndex = 9;
             // 
             // addressTxt
@@ -108,10 +110,10 @@
             addressTxt.BorderStyle = BorderStyle.FixedSingle;
             addressTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             addressTxt.ForeColor = Color.Black;
-            addressTxt.Location = new Point(441, 421);
+            addressTxt.Location = new Point(565, 732);
             addressTxt.Name = "addressTxt";
             addressTxt.PlaceholderText = "Address";
-            addressTxt.Size = new Size(350, 34);
+            addressTxt.Size = new Size(506, 34);
             addressTxt.TabIndex = 10;
             // 
             // firstnameTxt
@@ -119,10 +121,10 @@
             firstnameTxt.BorderStyle = BorderStyle.FixedSingle;
             firstnameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             firstnameTxt.ForeColor = Color.Black;
-            firstnameTxt.Location = new Point(34, 494);
+            firstnameTxt.Location = new Point(565, 647);
             firstnameTxt.Name = "firstnameTxt";
             firstnameTxt.PlaceholderText = "First Name";
-            firstnameTxt.Size = new Size(164, 34);
+            firstnameTxt.Size = new Size(240, 34);
             firstnameTxt.TabIndex = 11;
             // 
             // usernameTxt
@@ -130,7 +132,7 @@
             usernameTxt.BorderStyle = BorderStyle.FixedSingle;
             usernameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             usernameTxt.ForeColor = Color.Black;
-            usernameTxt.Location = new Point(34, 421);
+            usernameTxt.Location = new Point(79, 647);
             usernameTxt.Name = "usernameTxt";
             usernameTxt.PlaceholderText = "Username";
             usernameTxt.Size = new Size(357, 34);
@@ -141,7 +143,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semilight", 9F);
             label3.ForeColor = Color.FromArgb(255, 228, 186);
-            label3.Location = new Point(441, 469);
+            label3.Location = new Point(1125, 656);
             label3.Name = "label3";
             label3.Size = new Size(97, 25);
             label3.TabIndex = 5;
@@ -149,15 +151,39 @@
             // 
             // CustomerView
             // 
+            CustomerView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             CustomerView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            CustomerView.Location = new Point(34, 92);
+            CustomerView.Location = new Point(79, 141);
             CustomerView.MultiSelect = false;
             CustomerView.Name = "CustomerView";
             CustomerView.RowHeadersWidth = 62;
             CustomerView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            CustomerView.Size = new Size(757, 294);
+            CustomerView.Size = new Size(1499, 435);
             CustomerView.TabIndex = 15;
             CustomerView.CellClick += CustomerView_CellClick;
+            // 
+            // emailTxt
+            // 
+            emailTxt.BorderStyle = BorderStyle.FixedSingle;
+            emailTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            emailTxt.ForeColor = Color.Black;
+            emailTxt.Location = new Point(79, 732);
+            emailTxt.Name = "emailTxt";
+            emailTxt.PlaceholderText = "Email";
+            emailTxt.Size = new Size(357, 34);
+            emailTxt.TabIndex = 10;
+            // 
+            // phoneTxt
+            // 
+            phoneTxt.BorderStyle = BorderStyle.FixedSingle;
+            phoneTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            phoneTxt.ForeColor = Color.Black;
+            phoneTxt.Location = new Point(1125, 732);
+            phoneTxt.MaxLength = 11;
+            phoneTxt.Name = "phoneTxt";
+            phoneTxt.PlaceholderText = "Phone #";
+            phoneTxt.Size = new Size(453, 34);
+            phoneTxt.TabIndex = 10;
             // 
             // CustomerLibrary
             // 
@@ -168,6 +194,8 @@
             Controls.Add(birthDatePicker);
             Controls.Add(registerBtn);
             Controls.Add(lastnameTxt);
+            Controls.Add(phoneTxt);
+            Controls.Add(emailTxt);
             Controls.Add(addressTxt);
             Controls.Add(firstnameTxt);
             Controls.Add(usernameTxt);
@@ -175,7 +203,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "CustomerLibrary";
-            Size = new Size(823, 664);
+            Size = new Size(1663, 1024);
             ((System.ComponentModel.ISupportInitialize)usersBindingSource).EndInit();
             ((System.ComponentModel.ISupportInitialize)CustomerView).EndInit();
             ResumeLayout(false);
@@ -194,5 +222,7 @@
         private TextBox usernameTxt;
         private Label label3;
         private DataGridView CustomerView;
+        private TextBox emailTxt;
+        private TextBox phoneTxt;
     }
 }

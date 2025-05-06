@@ -41,8 +41,11 @@
             videoBindingSource = new BindingSource(components);
             stockTxt = new TextBox();
             label4 = new Label();
+            label5 = new Label();
+            panel1 = new Panel();
             ((System.ComponentModel.ISupportInitialize)VideoView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)videoBindingSource).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // VideoView
@@ -64,9 +67,9 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            addBtn.Location = new Point(34, 479);
+            addBtn.Location = new Point(441, 26);
             addBtn.Name = "addBtn";
-            addBtn.Size = new Size(357, 49);
+            addBtn.Size = new Size(278, 49);
             addBtn.TabIndex = 23;
             addBtn.Text = "Add";
             addBtn.UseVisualStyleBackColor = false;
@@ -77,10 +80,10 @@
             titleTxt.BorderStyle = BorderStyle.FixedSingle;
             titleTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             titleTxt.ForeColor = Color.Black;
-            titleTxt.Location = new Point(34, 423);
+            titleTxt.Location = new Point(126, 26);
             titleTxt.Name = "titleTxt";
             titleTxt.PlaceholderText = "Video Title";
-            titleTxt.Size = new Size(357, 34);
+            titleTxt.Size = new Size(257, 34);
             titleTxt.TabIndex = 22;
             // 
             // label3
@@ -88,11 +91,11 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semilight", 9F);
             label3.ForeColor = Color.FromArgb(255, 228, 186);
-            label3.Location = new Point(423, 428);
+            label3.Location = new Point(26, 106);
             label3.Name = "label3";
-            label3.Size = new Size(105, 25);
+            label3.Size = new Size(91, 25);
             label3.TabIndex = 18;
-            label3.Text = "Video Type :";
+            label3.Text = "Category :";
             // 
             // label2
             // 
@@ -121,21 +124,21 @@
             videoTypeCbx.DropDownStyle = ComboBoxStyle.DropDownList;
             videoTypeCbx.FormattingEnabled = true;
             videoTypeCbx.Items.AddRange(new object[] { "DVD", "VCD" });
-            videoTypeCbx.Location = new Point(534, 423);
+            videoTypeCbx.Location = new Point(126, 103);
             videoTypeCbx.Name = "videoTypeCbx";
             videoTypeCbx.Size = new Size(257, 33);
             videoTypeCbx.TabIndex = 26;
             // 
             // deleteBtn
             // 
-            deleteBtn.BackColor = Color.FromArgb(225, 107, 87);
+            deleteBtn.BackColor = Color.FromArgb(193, 68, 46);
             deleteBtn.FlatAppearance.BorderSize = 0;
             deleteBtn.FlatStyle = FlatStyle.Flat;
             deleteBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             deleteBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            deleteBtn.Location = new Point(34, 560);
+            deleteBtn.Location = new Point(441, 162);
             deleteBtn.Name = "deleteBtn";
-            deleteBtn.Size = new Size(357, 49);
+            deleteBtn.Size = new Size(278, 49);
             deleteBtn.TabIndex = 23;
             deleteBtn.Text = "Delete";
             deleteBtn.UseVisualStyleBackColor = false;
@@ -143,14 +146,14 @@
             // 
             // editBtn
             // 
-            editBtn.BackColor = Color.FromArgb(225, 107, 87);
+            editBtn.BackColor = Color.FromArgb(58, 110, 165);
             editBtn.FlatAppearance.BorderSize = 0;
             editBtn.FlatStyle = FlatStyle.Flat;
             editBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            editBtn.Location = new Point(434, 560);
+            editBtn.Location = new Point(441, 94);
             editBtn.Name = "editBtn";
-            editBtn.Size = new Size(357, 49);
+            editBtn.Size = new Size(278, 49);
             editBtn.TabIndex = 23;
             editBtn.Text = "Edit";
             editBtn.UseVisualStyleBackColor = false;
@@ -165,9 +168,8 @@
             stockTxt.BorderStyle = BorderStyle.FixedSingle;
             stockTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             stockTxt.ForeColor = Color.Black;
-            stockTxt.Location = new Point(534, 494);
+            stockTxt.Location = new Point(126, 177);
             stockTxt.Name = "stockTxt";
-            stockTxt.PlaceholderText = "Video Stocks";
             stockTxt.Size = new Size(257, 34);
             stockTxt.TabIndex = 22;
             // 
@@ -176,32 +178,55 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semilight", 9F);
             label4.ForeColor = Color.FromArgb(255, 228, 186);
-            label4.Location = new Point(423, 499);
+            label4.Location = new Point(26, 182);
             label4.Name = "label4";
             label4.Size = new Size(84, 25);
             label4.TabIndex = 18;
             label4.Text = "Video in :";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semilight", 9F);
+            label5.ForeColor = Color.FromArgb(255, 228, 186);
+            label5.Location = new Point(26, 26);
+            label5.Name = "label5";
+            label5.Size = new Size(53, 25);
+            label5.TabIndex = 18;
+            label5.Text = "Title :";
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(90, 80, 103);
+            panel1.Controls.Add(videoTypeCbx);
+            panel1.Controls.Add(editBtn);
+            panel1.Controls.Add(deleteBtn);
+            panel1.Controls.Add(addBtn);
+            panel1.Controls.Add(stockTxt);
+            panel1.Controls.Add(titleTxt);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label3);
+            panel1.Location = new Point(33, 405);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(758, 239);
+            panel1.TabIndex = 27;
             // 
             // VideoLibrary
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(80, 68, 92);
-            Controls.Add(videoTypeCbx);
+            Controls.Add(panel1);
             Controls.Add(VideoView);
-            Controls.Add(editBtn);
-            Controls.Add(deleteBtn);
-            Controls.Add(addBtn);
-            Controls.Add(stockTxt);
-            Controls.Add(titleTxt);
-            Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "VideoLibrary";
             Size = new Size(823, 664);
             ((System.ComponentModel.ISupportInitialize)VideoView).EndInit();
             ((System.ComponentModel.ISupportInitialize)videoBindingSource).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -220,5 +245,7 @@
         private BindingSource videoBindingSource;
         private TextBox stockTxt;
         private Label label4;
+        private Label label5;
+        private Panel panel1;
     }
 }

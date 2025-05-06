@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace Bogys_Winforms.Windows.Admin.ModalWindows
 {
-    public partial class AddVideo: Form
+    public partial class AddVideo : Form
     {
         public AddVideo()
         {
             InitializeComponent();
+        }
+
+        private void addBtn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

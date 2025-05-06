@@ -12,12 +12,15 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Bogys_Winforms.Migrations;
 using Bogys_Winforms.Services;
 using Bogys_Winforms.Services.AdminFunctions;
+using Bogys_Winforms.Windows.Admin.ModalWindows;
+using Bogys_Winforms.Strings;
 
 namespace Bogys_Winforms.Windows.Admin
 {
     public partial class VideoLibrary : UserControl
     {
         VideoLibraryFunctions vidLibFunction = new VideoLibraryFunctions();
+        StringsVariables strTxt = new StringsVariables();
         public VideoLibrary()
         {
             InitializeComponent();
@@ -42,8 +45,7 @@ namespace Bogys_Winforms.Windows.Admin
             {
                 return;
             }
-            var result = MessageBox.Show("Are you sure you want to Add this Video?",
-                                        "Confirm Add",
+            var result = MessageBox.Show(strTxt.AddBtnMsg, strTxt.AddBtnMsgTitle,
                                          MessageBoxButtons.YesNo,
                                          MessageBoxIcon.Question);
 
@@ -73,7 +75,7 @@ namespace Bogys_Winforms.Windows.Admin
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error saving user: " + ex.Message);
+                    MessageBox.Show(strTxt.errSavingUser + ex.Message);
                 }
             }
         }
@@ -82,9 +84,9 @@ namespace Bogys_Winforms.Windows.Admin
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = VideoView.Rows[e.RowIndex];
-                titleTxt.Text = row.Cells["VideoTitle"].Value.ToString();
-                stockTxt.Text = row.Cells["VideoInCount"].Value.ToString();
-                videoTypeCbx.SelectedItem = VideoView.Rows[e.RowIndex].Cells["VideoCategory"].Value.ToString();
+                titleTxt.Text = row.Cells[strTxt.VideoTitle].Value.ToString();
+                stockTxt.Text = row.Cells[strTxt.VideoInCount].Value.ToString();
+                videoTypeCbx.SelectedItem = VideoView.Rows[e.RowIndex].Cells[strTxt.VideoCategory].Value.ToString();
                 TextFieldControl();
             }
         }

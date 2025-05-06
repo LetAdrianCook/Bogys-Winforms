@@ -59,7 +59,7 @@
             panel2.Dock = DockStyle.Left;
             panel2.Location = new Point(0, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(235, 664);
+            panel2.Size = new Size(235, 1024);
             panel2.TabIndex = 1;
             // 
             // logoutBtn
@@ -67,12 +67,12 @@
             logoutBtn.Dock = DockStyle.Bottom;
             logoutBtn.FlatAppearance.BorderSize = 0;
             logoutBtn.FlatStyle = FlatStyle.Flat;
-            logoutBtn.Font = new Font("Segoe UI Semilight", 10F);
+            logoutBtn.Font = new Font("Microsoft Sans Serif", 10F);
             logoutBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            logoutBtn.Location = new Point(0, 609);
+            logoutBtn.Location = new Point(0, 953);
             logoutBtn.Name = "logoutBtn";
             logoutBtn.Padding = new Padding(5, 0, 0, 0);
-            logoutBtn.Size = new Size(235, 55);
+            logoutBtn.Size = new Size(235, 71);
             logoutBtn.TabIndex = 6;
             logoutBtn.Text = "Logout";
             logoutBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -84,12 +84,12 @@
             reportBtn.Dock = DockStyle.Top;
             reportBtn.FlatAppearance.BorderSize = 0;
             reportBtn.FlatStyle = FlatStyle.Flat;
-            reportBtn.Font = new Font("Segoe UI Semilight", 10F);
+            reportBtn.Font = new Font("Microsoft Sans Serif", 10F);
             reportBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            reportBtn.Location = new Point(0, 261);
+            reportBtn.Location = new Point(0, 366);
             reportBtn.Name = "reportBtn";
             reportBtn.Padding = new Padding(5, 0, 0, 0);
-            reportBtn.Size = new Size(235, 51);
+            reportBtn.Size = new Size(235, 71);
             reportBtn.TabIndex = 5;
             reportBtn.Text = "Rental Report";
             reportBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -101,12 +101,12 @@
             listBtn.Dock = DockStyle.Top;
             listBtn.FlatAppearance.BorderSize = 0;
             listBtn.FlatStyle = FlatStyle.Flat;
-            listBtn.Font = new Font("Segoe UI Semilight", 10F);
+            listBtn.Font = new Font("Microsoft Sans Serif", 10F);
             listBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            listBtn.Location = new Point(0, 210);
+            listBtn.Location = new Point(0, 295);
             listBtn.Name = "listBtn";
             listBtn.Padding = new Padding(5, 0, 0, 0);
-            listBtn.Size = new Size(235, 51);
+            listBtn.Size = new Size(235, 71);
             listBtn.TabIndex = 4;
             listBtn.Text = "Video List";
             listBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -118,12 +118,12 @@
             videoBtn.Dock = DockStyle.Top;
             videoBtn.FlatAppearance.BorderSize = 0;
             videoBtn.FlatStyle = FlatStyle.Flat;
-            videoBtn.Font = new Font("Segoe UI Semilight", 10F);
+            videoBtn.Font = new Font("Microsoft Sans Serif", 10F);
             videoBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            videoBtn.Location = new Point(0, 159);
+            videoBtn.Location = new Point(0, 224);
             videoBtn.Name = "videoBtn";
             videoBtn.Padding = new Padding(5, 0, 0, 0);
-            videoBtn.Size = new Size(235, 51);
+            videoBtn.Size = new Size(235, 71);
             videoBtn.TabIndex = 2;
             videoBtn.Text = "Video Library";
             videoBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -135,12 +135,12 @@
             customerBtn.Dock = DockStyle.Top;
             customerBtn.FlatAppearance.BorderSize = 0;
             customerBtn.FlatStyle = FlatStyle.Flat;
-            customerBtn.Font = new Font("Segoe UI Semilight", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            customerBtn.Font = new Font("Microsoft Sans Serif", 10F);
             customerBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            customerBtn.Location = new Point(0, 108);
+            customerBtn.Location = new Point(0, 153);
             customerBtn.Name = "customerBtn";
             customerBtn.Padding = new Padding(5, 0, 0, 0);
-            customerBtn.Size = new Size(235, 51);
+            customerBtn.Size = new Size(235, 71);
             customerBtn.TabIndex = 1;
             customerBtn.Text = "Customer Library";
             customerBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -154,7 +154,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(235, 108);
+            panel3.Size = new Size(235, 153);
             panel3.TabIndex = 0;
             // 
             // dashboardPanel
@@ -163,20 +163,21 @@
             dashboardPanel.Dock = DockStyle.Fill;
             dashboardPanel.Location = new Point(235, 0);
             dashboardPanel.Name = "dashboardPanel";
-            dashboardPanel.Size = new Size(823, 664);
+            dashboardPanel.Size = new Size(1663, 1024);
             dashboardPanel.TabIndex = 2;
             // 
             // AdminDashboard
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1058, 664);
+            ClientSize = new Size(1898, 1024);
             Controls.Add(dashboardPanel);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "AdminDashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AdminDashboard";
+            WindowState = FormWindowState.Maximized;
             panel2.ResumeLayout(false);
             ResumeLayout(false);
         }

@@ -29,54 +29,76 @@ namespace Bogys_Winforms
         private void registerBtn_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(usernameTxt.Text) ||
-             string.IsNullOrWhiteSpace(passwordTxt.Text) ||
-             string.IsNullOrWhiteSpace(confirmpassTxt.Text) ||
-             string.IsNullOrWhiteSpace(addressTxt.Text) ||
-             string.IsNullOrWhiteSpace(birthDatePicker.Text) ||
-             string.IsNullOrWhiteSpace(firstnameTxt.Text) ||
-             string.IsNullOrWhiteSpace(lastnameTxt.Text))
+                string.IsNullOrWhiteSpace(passwordTxt.Text) ||
+                string.IsNullOrWhiteSpace(confirmpassTxt.Text) ||
+                string.IsNullOrWhiteSpace(addressTxt.Text) ||
+                string.IsNullOrWhiteSpace(birthDatePicker.Text) ||
+                string.IsNullOrWhiteSpace(emailTxt.Text) ||
+                string.IsNullOrWhiteSpace(phoneTxt.Text) ||
+                string.IsNullOrWhiteSpace(firstnameTxt.Text) ||
+                string.IsNullOrWhiteSpace(lastnameTxt.Text))
             {
-                MessageBox.Show("Please fill in all required fields.");
+                MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (passwordTxt.Text != confirmpassTxt.Text)
             {
-                MessageBox.Show("Passwords do not match. Please re-enter.");
+                MessageBox.Show("Passwords do not match. Please re-enter.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 confirmpassTxt.Focus();
                 return;
             }
 
-            var newUser = new Users 
+            string phone = phoneTxt.Text.Trim();
+            if (phone.Length != 11 || !phone.All(char.IsDigit))
             {
-                UserName = usernameTxt.Text.Trim(),
-                UserPassword = passwordTxt.Text, 
-                UserAddress = addressTxt.Text.Trim(),
-                UserType = "CLIENT",
-                BirthDate = DateOnly.FromDateTime(birthDatePicker.Value),
-                FirstName = firstnameTxt.Text.Trim(),
-                LastName = lastnameTxt.Text.Trim(),
-                CreatedAt = DateTime.Now
-            };
+                MessageBox.Show("Phone number must be exactly 11 digits and contain only numbers.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                phoneTxt.Focus();
+                return;
+            }
 
             try
             {
                 using (var context = new AppDbContext())
                 {
+                    bool usernameExists = context.Users.Any(u => u.UserName.ToLower() == usernameTxt.Text.Trim().ToLower());
+                    if (usernameExists)
+                    {
+                        MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        usernameTxt.Focus();
+                        return;
+                    }
+
+                    var newUser = new Users
+                    {
+                        UserName = usernameTxt.Text.Trim(),
+                        UserPassword = passwordTxt.Text,
+                        UserAddress = addressTxt.Text.Trim(),
+                        Email = emailTxt.Text.Trim(),
+                        Phonenumber = phone,
+                        UserType = "CLIENT",
+                        BirthDate = DateOnly.FromDateTime(birthDatePicker.Value),
+                        FirstName = firstnameTxt.Text.Trim(),
+                        LastName = lastnameTxt.Text.Trim(),
+                        CreatedAt = DateTime.Now
+                    };
+
                     context.Users.Add(newUser);
                     context.SaveChanges();
                 }
 
-                MessageBox.Show("Registration successful!");
+                MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 var loginPage = new Login();
                 loginPage.Show();
                 this.Hide();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saving user: " + ex.Message);
+                MessageBox.Show("Error saving user: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
 

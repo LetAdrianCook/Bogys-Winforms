@@ -84,7 +84,6 @@ namespace Bogys_Winforms.Windows.Admin
                     VideoID = videoId,
                     VideoTitle = titleTxt.Text,
                     VideoCategory = category,
-                    RentDays = rentDays,
                     OverdueFee = 0 ,
                     RentDate = rentDate,
                     ReturnDate = returnDate,

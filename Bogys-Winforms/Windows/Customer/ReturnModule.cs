@@ -52,7 +52,6 @@ namespace Bogys_Winforms.Windows.Customer
                     r.VideoID,
                     r.VideoTitle,
                     r.VideoCategory,
-                    r.RentDays,
                     r.OverdueFee,
                     r.RentDate,
                     r.ReturnDate,
@@ -69,7 +68,7 @@ namespace Bogys_Winforms.Windows.Customer
             VideoRentedView.Columns["VideoID"].HeaderText = "Video ID ";
             VideoRentedView.Columns["VideoTitle"].HeaderText = "Title";
             VideoRentedView.Columns["VideoCategory"].HeaderText = "Category";
-            VideoRentedView.Columns["RentDays"].HeaderText = "Day(s) Rented";
+            //VideoRentedView.Columns["RentDays"].HeaderText = "Day(s) Rented";
             VideoRentedView.Columns["OverdueFee"].HeaderText = "Overdue Fee";
             VideoRentedView.Columns["RentDate"].HeaderText = "Rental Date";
             VideoRentedView.Columns["ReturnDate"].HeaderText = "Return Date";
