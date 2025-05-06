@@ -14,6 +14,7 @@ using Bogys_Winforms.Services;
 using Bogys_Winforms.Services.AdminFunctions;
 using Bogys_Winforms.Windows.Admin.ModalWindows;
 using Bogys_Winforms.Strings;
+using Microsoft.Identity.Client;
 
 namespace Bogys_Winforms.Windows.Admin
 {
@@ -42,10 +43,8 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void addBtn_Click(object sender, EventArgs e)
         {
-            if (!checkInput())
-            {
-                return;
-            }
+            if (!checkInput()) return;
+
             var result = MessageBox.Show(strTxt.AddBtnMsg, strTxt.AddBtnMsgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             int vidPrice = VideoPrice();
@@ -103,13 +102,13 @@ namespace Bogys_Winforms.Windows.Admin
             if (!validator.ValidateTextBox(titleTxt, strTxt._VideoTitle)) return false;
             if (string.IsNullOrWhiteSpace(stockTxt.Text))
             {
-                MessageBox.Show("Video in cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(strTxt.validateInCount, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 stockTxt.Focus();
                 return false;
             }
             if (!stockTxt.Text.All(char.IsDigit))
             {
-                MessageBox.Show("Stock must be a whole number no decimals.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(strTxt.validateInCountData, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 stockTxt.Focus();
                 return false;
             }
@@ -117,21 +116,15 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private int VideoPrice()
         {
-            if (videoTypeCbx.Text == "VCD")
-            {
-                return 25;
-            }
-            if (videoTypeCbx.Text == "DVD")
-            {
-                return 50;
-            }
+            if (videoTypeCbx.Text == strTxt.vcd) return 25;
+            if (videoTypeCbx.Text == strTxt.dvd) return 50;          
             return 0;
         }
         private bool CheckID()
         {
             if (VideoView.CurrentRow == null || VideoView.CurrentRow.Cells[strTxt.ID].Value == null)
             {
-                MessageBox.Show("Please select a Video to edit or delete.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(strTxt.validateEditDelete, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -143,30 +136,21 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void deleteBtn_Click(object sender, EventArgs e)
         {
-            if (!CheckID())
-            {
-                return;
-            }
-            var result = MessageBox.Show("Are you sure you want to delete this Video?",
-                                        "Confirm Edit",
-                                         MessageBoxButtons.YesNo,
-                                         MessageBoxIcon.Question);
+            if (!CheckID()) return;
 
-            if (result == DialogResult.Yes)
+            var result = MessageBox.Show(strTxt.confirmDelete, strTxt.confirmDeleteTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes) return;
+    
+            int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.ID].Value);
+            bool success = vidLibFunction.DeleteVideo(videoId);
+
+            if (success)
             {
-                int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells["ID"].Value);
-                using (var context = new AppDbContext())
-                {
-                    var videos = context.Video.FirstOrDefault(u => u.ID == videoId);
-                    if (videos != null)
-                    {
-                        context.Video.Remove(videos);
-                        context.SaveChanges();
-                    }
-                }
                 ClearFields();
                 LoadVideos();
-            }               
+            }           
         }
+
     }
 }

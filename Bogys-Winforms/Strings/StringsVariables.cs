@@ -21,6 +21,13 @@ namespace Bogys_Winforms.Strings
         public string validatePhoneMsg = "Phone number must be exactly 11 digits and contain only numbers.";
         public string validateBday = "Birthdate cannot be in the future.";
         public string validateVidTitle = "Video title already exists.";
+        public string validateInCount = "Video in cannot be empty.";
+        public string validateInCountData = "Stock must be a whole number no decimals.";
+        public string validateEditDelete = "Please select a Video to edit or delete.";
+        public string confirmDelete = "Are you sure you want to delete this Video?";
+        public string confirmDeleteTitle = "Confirm Delete";
+        public string vcd = "VCD";
+        public string dvd = "DVD";
     }
     class StringVideoHeaders : StringCustomerAttribute
     {

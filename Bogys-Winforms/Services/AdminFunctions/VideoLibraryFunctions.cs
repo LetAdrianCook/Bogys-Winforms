@@ -77,6 +77,18 @@ namespace Bogys_Winforms.Services.AdminFunctions
             }
         }
 
+        public bool DeleteVideo(int videoId)
+        {
+            using (var context = new AppDbContext())
+            {
+                var video = context.Video.FirstOrDefault(u => u.ID == videoId);
+                if (video == null) return false;
+            
+                context.Video.Remove(video);
+                context.SaveChanges();
+                return true;                    
+            }
+        }
 
 
     }
