@@ -31,7 +31,7 @@ namespace Bogys_Winforms.Services.AdminFunctions
         }
         public void HeaderTitle(DataGridView dateGridView)
         {
-            dateGridView.Columns["ID"].HeaderText = "Customer ID ";
+            dateGridView.Columns["ID"].Visible = false;
             dateGridView.Columns["UserName"].HeaderText = "Username ";
             dateGridView.Columns["UserPassword"].Visible = false;
             dateGridView.Columns["UserType"].Visible = false;

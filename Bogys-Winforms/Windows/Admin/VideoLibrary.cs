@@ -10,11 +10,14 @@ using System.Windows.Forms;
 using Bogys_Winforms.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Bogys_Winforms.Migrations;
+using Bogys_Winforms.Services;
+using Bogys_Winforms.Services.AdminFunctions;
 
 namespace Bogys_Winforms.Windows.Admin
 {
     public partial class VideoLibrary : UserControl
     {
+        VideoLibraryFunctions vidLibFunction = new VideoLibraryFunctions();
         public VideoLibrary()
         {
             InitializeComponent();
@@ -25,11 +28,8 @@ namespace Bogys_Winforms.Windows.Admin
         private void LoadVideos()
         {
             videoTypeCbx.SelectedIndex = 0;
-            using (var context = new AppDbContext())
-            {
-                var videos = context.Video.ToList();
-                VideoView.DataSource = videos;
-            }
+            VideoView.DataSource = vidLibFunction.GetAllVideos();
+            vidLibFunction.HeaderTitle(VideoView);
         }
         private void VideoView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
