@@ -25,7 +25,9 @@ namespace Bogys_Winforms.Strings
         public string validateInCountData = "Stock must be a whole number no decimals.";
         public string validateEditDelete = "Please select a Video to edit or delete.";
         public string confirmDelete = "Are you sure you want to delete this Video?";
+        public string validateDelete = "Cannot delete a video that is currently rented.";
         public string confirmDeleteTitle = "Confirm Delete";
+        public string inputValidator = " cannot be empty.";
         public string vcd = "VCD";
         public string dvd = "DVD";
     }
