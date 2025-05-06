@@ -14,8 +14,32 @@ namespace Bogys_Winforms.Services.AdminFunctions
         {
             using (var context = new AppDbContext())
             {
-                return context.Users.ToList();
+             return context.Users
+            .Where(u => u.UserType == "CLIENT")
+            .Select(u => new Users
+            {
+                ID = u.ID,
+                UserName = u.UserName,
+                FirstName = u.FirstName,
+                LastName = u.LastName,
+                UserAddress = u.UserAddress,
+                BirthDate = u.BirthDate,
+                CreatedAt = u.CreatedAt
+            })
+            .ToList();
             }
+        }
+        public void HeaderTitle(DataGridView dateGridView)
+        {
+            dateGridView.Columns["ID"].HeaderText = "Customer ID ";
+            dateGridView.Columns["UserName"].HeaderText = "Username ";
+            dateGridView.Columns["UserPassword"].Visible = false;
+            dateGridView.Columns["UserType"].Visible = false;
+            dateGridView.Columns["FirstName"].HeaderText = "First Name";
+            dateGridView.Columns["LastName"].HeaderText = "Last Name";
+            dateGridView.Columns["UserAddress"].HeaderText = "Address";
+            dateGridView.Columns["BirthDate"].HeaderText = "Birth Date";
+            dateGridView.Columns["CreatedAt"].HeaderText = "Creation Date";
         }
         public bool EditCustomer(int userId, string username, string firstName,
                              string lastName, string address, DateOnly birthDate)

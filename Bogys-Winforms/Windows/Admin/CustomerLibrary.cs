@@ -23,8 +23,8 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void LoadCustomer()
         {
-            var customers = customerFunction.GetAllCustomers();
-            CustomerView.DataSource = customers;
+            CustomerView.DataSource = customerFunction.GetAllCustomers();
+            customerFunction.HeaderTitle(CustomerView);
         }
         private void CustomerView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -47,10 +47,7 @@ namespace Bogys_Winforms.Windows.Admin
         {
             if (!checkInput()) return;
 
-            var result = MessageBox.Show("Are you sure you want to edit this customer?",
-                                        "Confirm Edit",
-                                        MessageBoxButtons.YesNo,
-                                        MessageBoxIcon.Question);
+            var result = MessageBox.Show("Are you sure you want to edit this customer?","Confirm Edit",MessageBoxButtons.YesNo,MessageBoxIcon.Question);
 
             if (result != DialogResult.Yes) return;
 
@@ -70,10 +67,6 @@ namespace Bogys_Winforms.Windows.Admin
             {
                 clearFields();
                 LoadCustomer();
-            }
-            else
-            {
-                MessageBox.Show("Customer not found");
             }
         }
         private void clearFields()
