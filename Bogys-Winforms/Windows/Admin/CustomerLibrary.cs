@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bogys_Winforms.Models;
 using Bogys_Winforms.Services.AdminFunctions;
+using Bogys_Winforms.Services;
 
 namespace Bogys_Winforms.Windows.Admin
 {
@@ -84,30 +85,10 @@ namespace Bogys_Winforms.Windows.Admin
                 MessageBox.Show("Please select a customer to edit.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(usernameTxt.Text))
-            {
-                MessageBox.Show("Username cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                usernameTxt.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(firstnameTxt.Text))
-            {
-                MessageBox.Show("First name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                firstnameTxt.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(lastnameTxt.Text))
-            {
-                MessageBox.Show("Last name cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                lastnameTxt.Focus();
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(addressTxt.Text))
-            {
-                MessageBox.Show("Address cannot be empty.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                addressTxt.Focus();
-                return false;
-            }
+            if (!InputValidator.ValidateTextBox(usernameTxt, "Username")) return false;
+            if (!InputValidator.ValidateTextBox(firstnameTxt, "First name")) return false;
+            if (!InputValidator.ValidateTextBox(lastnameTxt, "Last name")) return false;
+            if (!InputValidator.ValidateTextBox(addressTxt, "Address")) return false;
             if (birthDatePicker.Value.Date > DateTime.Today)
             {
                 MessageBox.Show("Birthdate cannot be in the future.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
