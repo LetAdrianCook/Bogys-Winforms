@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static Bogys_Winforms.Models.Users;
 
-namespace Bogys_Winforms
+namespace Bogys_Winforms.Services
 {
     class AppDbContext : DbContext
     {
