@@ -36,6 +36,15 @@ namespace Bogys_Winforms.Windows.Admin
             CustomerView.ClearSelection();
             CustomerView.CurrentCell = null;
         }
+        public void RefreshControl()
+        {
+            LoadCustomer();
+            CustomerView.DataBindingComplete -= CustomerView_DataBindingComplete;
+            CustomerView.DataBindingComplete += CustomerView_DataBindingComplete;
+            clearFields();
+            CustomerView.ClearSelection();
+            CustomerView.CurrentCell = null;
+        }
         private void CustomerView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)

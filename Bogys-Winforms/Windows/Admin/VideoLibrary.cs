@@ -41,6 +41,15 @@ namespace Bogys_Winforms.Windows.Admin
             VideoView.ClearSelection();
             VideoView.CurrentCell = null;
         }
+        public void RefreshControl()
+        {
+            LoadVideos();
+            VideoView.DataBindingComplete -= VideoView_DataBindingComplete;
+            VideoView.DataBindingComplete += VideoView_DataBindingComplete;
+            ClearFields();
+            VideoView.ClearSelection();
+            VideoView.CurrentCell = null;
+        }
         private void addBtn_Click(object sender, EventArgs e)
         {
             if (!checkInput()) return;

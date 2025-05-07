@@ -12,6 +12,7 @@ using Bogys_Winforms.Services;
 using Bogys_Winforms.Strings;
 using Bogys_Winforms.Services.CustomerFunctions;
 using Microsoft.Identity.Client;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Bogys_Winforms.Windows.Admin
 {
@@ -68,6 +69,7 @@ namespace Bogys_Winforms.Windows.Admin
 
             int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.ID].Value);
             int rentDays = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.RentDays].Value);
+            int price = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.VideoPrice].Value);
             string category = categoryTxt.Text;
             string title = titleTxt.Text;
             string customerName = rentFunction.GetCustomerName(currentCustomerID);
@@ -81,6 +83,7 @@ namespace Bogys_Winforms.Windows.Admin
                 MessageBox.Show(strTxt.validateRentTitle, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            Receipts.PrintReceipt(customerName, videoId, title, category, rentDays, rentDate, returnDate, price);
             ClearFields();
             LoadVideos();           
         }
