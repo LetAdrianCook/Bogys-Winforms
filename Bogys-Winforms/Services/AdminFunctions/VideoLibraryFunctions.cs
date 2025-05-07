@@ -38,11 +38,8 @@ namespace Bogys_Winforms.Services.AdminFunctions
             using (var context = new AppDbContext())
             {
                 bool exists = context.Video.Any(v => v.VideoTitle.ToLower() == title.Trim().ToLower());
-                if (exists)
-                {
-                    return false;
-                }
-
+                if (exists) return false;
+                
                 var newVideo = new Video
                 {
                     VideoTitle = title.Trim(),
@@ -88,7 +85,6 @@ namespace Bogys_Winforms.Services.AdminFunctions
                     MessageBox.Show(strTxt.validateDelete, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return false;
                 }
-
                 context.Video.Remove(video);
                 context.SaveChanges();
                 return true;

@@ -67,7 +67,7 @@
             logoutBtn.Dock = DockStyle.Bottom;
             logoutBtn.FlatAppearance.BorderSize = 0;
             logoutBtn.FlatStyle = FlatStyle.Flat;
-            logoutBtn.Font = new Font("Microsoft Sans Serif", 10F);
+            logoutBtn.Font = new Font("Segoe UI", 10F);
             logoutBtn.ForeColor = Color.FromArgb(255, 228, 186);
             logoutBtn.Location = new Point(0, 953);
             logoutBtn.Name = "logoutBtn";
@@ -84,9 +84,9 @@
             reportBtn.Dock = DockStyle.Top;
             reportBtn.FlatAppearance.BorderSize = 0;
             reportBtn.FlatStyle = FlatStyle.Flat;
-            reportBtn.Font = new Font("Microsoft Sans Serif", 10F);
+            reportBtn.Font = new Font("Segoe UI", 10F);
             reportBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            reportBtn.Location = new Point(0, 366);
+            reportBtn.Location = new Point(0, 360);
             reportBtn.Name = "reportBtn";
             reportBtn.Padding = new Padding(5, 0, 0, 0);
             reportBtn.Size = new Size(235, 71);
@@ -101,9 +101,9 @@
             listBtn.Dock = DockStyle.Top;
             listBtn.FlatAppearance.BorderSize = 0;
             listBtn.FlatStyle = FlatStyle.Flat;
-            listBtn.Font = new Font("Microsoft Sans Serif", 10F);
+            listBtn.Font = new Font("Segoe UI", 10F);
             listBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            listBtn.Location = new Point(0, 295);
+            listBtn.Location = new Point(0, 289);
             listBtn.Name = "listBtn";
             listBtn.Padding = new Padding(5, 0, 0, 0);
             listBtn.Size = new Size(235, 71);
@@ -118,12 +118,12 @@
             videoBtn.Dock = DockStyle.Top;
             videoBtn.FlatAppearance.BorderSize = 0;
             videoBtn.FlatStyle = FlatStyle.Flat;
-            videoBtn.Font = new Font("Microsoft Sans Serif", 10F);
+            videoBtn.Font = new Font("Segoe UI", 10F);
             videoBtn.ForeColor = Color.FromArgb(255, 228, 186);
             videoBtn.Location = new Point(0, 224);
             videoBtn.Name = "videoBtn";
             videoBtn.Padding = new Padding(5, 0, 0, 0);
-            videoBtn.Size = new Size(235, 71);
+            videoBtn.Size = new Size(235, 65);
             videoBtn.TabIndex = 2;
             videoBtn.Text = "Video Library";
             videoBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -135,7 +135,7 @@
             customerBtn.Dock = DockStyle.Top;
             customerBtn.FlatAppearance.BorderSize = 0;
             customerBtn.FlatStyle = FlatStyle.Flat;
-            customerBtn.Font = new Font("Microsoft Sans Serif", 10F);
+            customerBtn.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             customerBtn.ForeColor = Color.FromArgb(255, 228, 186);
             customerBtn.Location = new Point(0, 153);
             customerBtn.Name = "customerBtn";

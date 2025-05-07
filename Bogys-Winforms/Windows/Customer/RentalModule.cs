@@ -9,11 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bogys_Winforms.Models;
 using Bogys_Winforms.Services;
+using Bogys_Winforms.Strings;
+using Bogys_Winforms.Services.CustomerFunctions;
 
 namespace Bogys_Winforms.Windows.Admin
 {
     public partial class RentalModule : UserControl
     {
+        StringsVariables strTxt = new StringsVariables();
+        RentalModuleFunctions rentFunction = new RentalModuleFunctions();
         private int currentCustomerID;
         public RentalModule(int userID)
         {
@@ -25,29 +29,8 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void LoadVideos()
         {
-            rentalDaysCbx.SelectedIndex = 0;
-            using (var context = new AppDbContext())
-            {
-                var videos = context.Video.Where(v => v.VideoInCount > 0).Select(v => new
-                    {
-                        v.ID,
-                        v.VideoTitle,
-                        v.VideoCategory,
-                        v.VideoInCount,
-                        v.VideoPrice
-                    }).ToList();
-            
-                VideoView.DataSource = videos;
-                SetVideoColumnHeader();
-            }
-        }
-        private void SetVideoColumnHeader()
-        {
-            VideoView.Columns["ID"].HeaderText = "Video ID";
-            VideoView.Columns["VideoTitle"].HeaderText = "Title";
-            VideoView.Columns["VideoCategory"].HeaderText = "Category";
-            VideoView.Columns["VideoInCount"].HeaderText = "Available Stock";
-            VideoView.Columns["VideoPrice"].HeaderText = "Rental Price";
+            VideoView.DataSource = rentFunction.GetAvailableVideos();
+            rentFunction.HeaderTitle(VideoView);
         }
         private void VideoView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -59,7 +42,10 @@ namespace Bogys_Winforms.Windows.Admin
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = VideoView.Rows[e.RowIndex];
-                titleTxt.Text = row.Cells["VideoTitle"].Value.ToString();
+                titleTxt.Text = row.Cells[strTxt.VideoTitle].Value.ToString();
+                priceTxt.Text = row.Cells[strTxt.VideoPrice].Value.ToString();
+                categoryTxt.Text = row.Cells[strTxt.VideoCategory].Value.ToString();
+                rentDaysTxt.Text = row.Cells[strTxt.RentDays].Value.ToString();
             }
         }
 
@@ -72,11 +58,11 @@ namespace Bogys_Winforms.Windows.Admin
 
             if (result == DialogResult.Yes)
             {
-                int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells["ID"].Value);
-                int rentDays = Convert.ToInt32(rentalDaysCbx.SelectedItem);
-                string category = Convert.ToString(VideoView.CurrentRow.Cells["VideoCategory"].Value);
+                int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.ID].Value);
+                int rentDays = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.RentDays].Value);
+                string category = categoryTxt.Text;
                 DateOnly rentDate = DateOnly.FromDateTime(DateTime.Now);
-                DateOnly returnDate = rentDate.AddDays(Convert.ToInt32(rentalDaysCbx.SelectedItem));
+                DateOnly returnDate = rentDate.AddDays(rentDays);
 
                 var newVideoRent = new Rent
                 {

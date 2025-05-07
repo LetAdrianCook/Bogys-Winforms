@@ -30,7 +30,6 @@
         {
             panel1 = new Panel();
             panel2 = new Panel();
-            userIdTxt = new Label();
             returnBtn = new Button();
             logoutBtn = new Button();
             rentalBtn = new Button();
@@ -49,7 +48,6 @@
             // panel2
             // 
             panel2.BackColor = Color.FromArgb(61, 52, 70);
-            panel2.Controls.Add(userIdTxt);
             panel2.Controls.Add(returnBtn);
             panel2.Controls.Add(logoutBtn);
             panel2.Controls.Add(rentalBtn);
@@ -60,29 +58,17 @@
             panel2.Size = new Size(235, 1024);
             panel2.TabIndex = 1;
             // 
-            // userIdTxt
-            // 
-            userIdTxt.AutoSize = true;
-            userIdTxt.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            userIdTxt.ForeColor = Color.FromArgb(255, 228, 186);
-            userIdTxt.Location = new Point(54, 260);
-            userIdTxt.Name = "userIdTxt";
-            userIdTxt.Size = new Size(133, 25);
-            userIdTxt.TabIndex = 0;
-            userIdTxt.Text = "User : John Doe";
-            userIdTxt.TextAlign = ContentAlignment.TopRight;
-            // 
             // returnBtn
             // 
             returnBtn.Dock = DockStyle.Top;
             returnBtn.FlatAppearance.BorderSize = 0;
             returnBtn.FlatStyle = FlatStyle.Flat;
-            returnBtn.Font = new Font("Segoe UI Semilight", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            returnBtn.Font = new Font("Segoe UI", 10F);
             returnBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            returnBtn.Location = new Point(0, 159);
+            returnBtn.Location = new Point(0, 224);
             returnBtn.Name = "returnBtn";
             returnBtn.Padding = new Padding(5, 0, 0, 0);
-            returnBtn.Size = new Size(235, 51);
+            returnBtn.Size = new Size(235, 71);
             returnBtn.TabIndex = 7;
             returnBtn.Text = "Return Module";
             returnBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -96,10 +82,10 @@
             logoutBtn.FlatStyle = FlatStyle.Flat;
             logoutBtn.Font = new Font("Segoe UI Semilight", 10F);
             logoutBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            logoutBtn.Location = new Point(0, 969);
+            logoutBtn.Location = new Point(0, 953);
             logoutBtn.Name = "logoutBtn";
             logoutBtn.Padding = new Padding(5, 0, 0, 0);
-            logoutBtn.Size = new Size(235, 55);
+            logoutBtn.Size = new Size(235, 71);
             logoutBtn.TabIndex = 6;
             logoutBtn.Text = "Logout";
             logoutBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -111,12 +97,12 @@
             rentalBtn.Dock = DockStyle.Top;
             rentalBtn.FlatAppearance.BorderSize = 0;
             rentalBtn.FlatStyle = FlatStyle.Flat;
-            rentalBtn.Font = new Font("Segoe UI Semilight", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            rentalBtn.Font = new Font("Segoe UI", 10F);
             rentalBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            rentalBtn.Location = new Point(0, 108);
+            rentalBtn.Location = new Point(0, 153);
             rentalBtn.Name = "rentalBtn";
             rentalBtn.Padding = new Padding(5, 0, 0, 0);
-            rentalBtn.Size = new Size(235, 51);
+            rentalBtn.Size = new Size(235, 71);
             rentalBtn.TabIndex = 1;
             rentalBtn.Text = "Rental Module";
             rentalBtn.TextAlign = ContentAlignment.MiddleLeft;
@@ -130,7 +116,7 @@
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
-            panel3.Size = new Size(235, 108);
+            panel3.Size = new Size(235, 153);
             panel3.TabIndex = 0;
             // 
             // dashboardPanel
@@ -155,7 +141,6 @@
             Text = "CustomerDashboard";
             WindowState = FormWindowState.Maximized;
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -167,7 +152,6 @@
         private Panel panel3;
         private Panel dashboardPanel;
         private Button logoutBtn;
-        private Label userIdTxt;
         private Button returnBtn;
     }
 }
