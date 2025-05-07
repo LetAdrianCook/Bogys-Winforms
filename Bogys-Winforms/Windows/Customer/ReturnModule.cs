@@ -8,21 +8,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bogys_Winforms.Services;
+using Bogys_Winforms.Strings;
 
 namespace Bogys_Winforms.Windows.Customer
 {
     public partial class ReturnModule : UserControl
     {
         private int currentCustomerID;
+        StringsVariables strTxt = new StringsVariables();
         public ReturnModule(int userID)
         {
             InitializeComponent();
             currentCustomerID = userID;
             VideoRentedView.DataBindingComplete += VideoRentedView_DataBindingComplete;
-            LoadVideosRented();
-        }
-        private void ReturnModule_Load(object sender, EventArgs e)
-        {
             LoadVideosRented();
         }
         private void VideoRentedView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -40,7 +38,7 @@ namespace Bogys_Winforms.Windows.Customer
                 feeTxt.Text = row.Cells["OverdueFee"].Value.ToString();
             }
         }
-        public void LoadVideosRented()
+        private void LoadVideosRented()
         {
             UpdateAllOverdueFees();
             using (var context = new AppDbContext())
@@ -61,6 +59,15 @@ namespace Bogys_Winforms.Windows.Customer
                 VideoRentedView.DataSource = rent;
                 SetVideoColumnHeader();
             }
+        }
+        public void RefreshControl()
+        {
+            LoadVideosRented();
+            VideoRentedView.DataBindingComplete -= VideoRentedView_DataBindingComplete;
+            VideoRentedView.DataBindingComplete += VideoRentedView_DataBindingComplete;
+            ClearFields();
+            VideoRentedView.ClearSelection();
+            VideoRentedView.CurrentCell = null;
         }
         private void SetVideoColumnHeader()
         {
@@ -109,16 +116,11 @@ namespace Bogys_Winforms.Windows.Customer
 
         private void returnBtn_Click(object sender, EventArgs e)
         {
-            // Get rental ID from grid (adjust column name if needed)
+            if (!CheckID()) return;
+
             var selectedRow = VideoRentedView.CurrentRow;
             int rentalId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
             string overdueFeeTxt = Convert.ToString(selectedRow.Cells["OverdueFee"].Value);
-
-            if (VideoRentedView.CurrentRow == null)
-            {
-                MessageBox.Show("Please select a video to return");
-                return;
-            }
 
             var confirmResult = MessageBox.Show(
                 "Are you sure you want to return this movie? with overdue fee of " + overdueFeeTxt ,
@@ -141,6 +143,7 @@ namespace Bogys_Winforms.Windows.Customer
                 if (success)
                 {
                     LoadVideosRented();
+                    ClearFields();
                     MessageBox.Show("Video returned successfully!");
                 }
                 else
@@ -188,6 +191,20 @@ namespace Bogys_Winforms.Windows.Customer
                     }
                 }
             }
+        }
+        private void ClearFields()
+        {
+            titleTxt.Clear();
+            feeTxt.Clear();
+        }
+        private bool CheckID()
+        {
+            if (VideoRentedView.CurrentRow == null || VideoRentedView.CurrentRow.Cells[strTxt.ID].Value == null)
+            {
+                MessageBox.Show(strTxt.returnNoSelect, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
         }
     }
 }

@@ -26,6 +26,7 @@ namespace Bogys_Winforms.Windows.Admin
         {
             InitializeComponent();
             currentCustomer = sessionID;
+
             InitializeNavigationButton();
             InitializeNavigationControl();
         }

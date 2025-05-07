@@ -33,6 +33,15 @@ namespace Bogys_Winforms.Windows.Admin
             VideoView.DataSource = rentFunction.GetAvailableVideos();
             rentFunction.HeaderTitle(VideoView);
         }
+        public void RefreshControl()
+        {
+            LoadVideos();
+            VideoView.DataBindingComplete -= VideoView_DataBindingComplete; 
+            VideoView.DataBindingComplete += VideoView_DataBindingComplete;
+            ClearFields();
+            VideoView.ClearSelection();
+            VideoView.CurrentCell = null;
+        }
         private void VideoView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             VideoView.ClearSelection();
@@ -52,6 +61,8 @@ namespace Bogys_Winforms.Windows.Admin
 
         private void rentBtn_Click(object sender, EventArgs e)
         {
+            if (!CheckID()) return;
+
             var result = MessageBox.Show(strTxt.rentMsg, strTxt.rentMsgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result != DialogResult.Yes) return;
 
@@ -79,6 +90,15 @@ namespace Bogys_Winforms.Windows.Admin
             categoryTxt.Clear();
             rentDaysTxt.Clear();
             priceTxt.Clear();
+        }
+        private bool CheckID()
+        {
+            if (VideoView.CurrentRow == null || VideoView.CurrentRow.Cells[strTxt.ID].Value == null)
+            {
+                MessageBox.Show(strTxt.rentNoSelect, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
         }
     }
 }

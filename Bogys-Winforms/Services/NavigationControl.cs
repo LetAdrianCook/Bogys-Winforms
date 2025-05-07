@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bogys_Winforms.Strings;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,7 @@ namespace Bogys_Winforms.Services
     {
         List<UserControl> userControlList = new List<UserControl>();
         Panel panel;
+        StringsVariables strTxt = new StringsVariables();
 
         public NavigationControl(List<UserControl> userControlList, Panel panel) {
         
@@ -26,14 +28,19 @@ namespace Bogys_Winforms.Services
                 panel.Controls.Add(userControlList[i]);
             }
         }
-
-        public void Display (int index)
+        public void Display(int index)
         {
-            if (index < userControlList.Count())
+            if (index < userControlList.Count)
             {
-                userControlList[index].BringToFront();
+                var control = userControlList[index];
+                var method = control.GetType().GetMethod(strTxt.refreshtab);
+                if (method != null)
+                {
+                    method.Invoke(control, null);
+                }
+                control.BringToFront();
             }
-           
         }
+
     }
 }

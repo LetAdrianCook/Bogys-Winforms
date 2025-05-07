@@ -30,11 +30,14 @@ namespace Bogys_Winforms.Strings
         public string confirmDeleteTitle = "Confirm Delete";
         public string inputValidator = " cannot be empty.";
         public string rentMsg = "Are you sure you want to Rent this Video?";
+        public string rentNoSelect = "Please select a video to rent.";
+        public string returnNoSelect = "Please select a video to return.";
         public string rentMsgTitle = "Confirm Rent";
         public string vcd = "VCD";
         public string dvd = "DVD";
         public string active = "ACTIVE";
         public string overdue = "OVERDUE";
+        public string refreshtab = "RefreshControl";
     }
     class StringVideoHeaders : StringCustomerAttribute
     {

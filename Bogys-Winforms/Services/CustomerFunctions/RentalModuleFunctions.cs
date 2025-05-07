@@ -47,6 +47,13 @@ namespace Bogys_Winforms.Services.CustomerFunctions
                 bool exists = context.Rent.Any(r => r.UserID == userID && r.VideoID == videoID);
                 if (exists) return false;
 
+                var videos = context.Video.FirstOrDefault(u => u.ID == videoID);
+                if (videos != null)
+                {
+                    videos.VideoInCount -= 1;
+                    videos.VideoOutCount += 1;
+                }
+
                 var newVideoRent = new Rent
                 {
                     UserID = userID,
