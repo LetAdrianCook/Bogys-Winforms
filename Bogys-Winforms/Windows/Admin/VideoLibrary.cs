@@ -46,6 +46,7 @@ namespace Bogys_Winforms.Windows.Admin
             if (!checkInput()) return;
 
             var result = MessageBox.Show(strTxt.AddBtnMsg, strTxt.AddBtnMsgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes) return;
 
             int vidPrice = VideoPrice();
             int rentDays = Convert.ToInt32(rentDaysCbx.SelectedItem);

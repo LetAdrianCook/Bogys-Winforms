@@ -31,5 +31,39 @@ namespace Bogys_Winforms.Services.CustomerFunctions
             dataGridView.Columns[strTxt.VideoPrice].HeaderText = strTxt._VideoPrice;
             dataGridView.Columns[strTxt.VideoAdded].HeaderText = strTxt._VideoAdded;
         }
+        public string GetCustomerName(int userId)
+        {
+            using (var context = new AppDbContext())
+            {
+                var user = context.Users.First(u => u.ID == userId);
+                return $"{user.FirstName} {user.LastName}";
+            }
+        }
+        public bool RentVideo(int userID, int videoID, string customerName, string videoTitle,
+            string videoCategory, int rentDays, DateOnly rentDate, DateOnly returnDate)
+        {
+            using (var context = new AppDbContext())
+            {
+                bool exists = context.Rent.Any(r => r.UserID == userID && r.VideoID == videoID);
+                if (exists) return false;
+
+                var newVideoRent = new Rent
+                {
+                    UserID = userID,
+                    VideoID = videoID,
+                    CustomerName = customerName,
+                    VideoTitle = videoTitle,
+                    VideoCategory = videoCategory,
+                    OverdueFee = 0,
+                    RentDays = rentDays,
+                    RentDate = rentDate,
+                    ReturnDate = returnDate,
+                    Status = strTxt.active,
+                };
+
+                context.Rent.Add(newVideoRent);
+                return context.SaveChanges() > 0;
+            }
+        }
     }
 }

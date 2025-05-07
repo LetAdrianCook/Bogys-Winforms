@@ -21,6 +21,7 @@ namespace Bogys_Winforms.Strings
         public string validatePhoneMsg = "Phone number must be exactly 11 digits and contain only numbers.";
         public string validateBday = "Birthdate cannot be in the future.";
         public string validateVidTitle = "Video title already exists.";
+        public string validateRentTitle = "You have already rented this Video.";
         public string validateInCount = "Video in cannot be empty.";
         public string validateInCountData = "Stock must be a whole number no decimals.";
         public string validateEditDelete = "Please select a Video to edit or delete.";
@@ -28,8 +29,12 @@ namespace Bogys_Winforms.Strings
         public string validateDelete = "Cannot delete a video that is currently rented.";
         public string confirmDeleteTitle = "Confirm Delete";
         public string inputValidator = " cannot be empty.";
+        public string rentMsg = "Are you sure you want to Rent this Video?";
+        public string rentMsgTitle = "Confirm Rent";
         public string vcd = "VCD";
         public string dvd = "DVD";
+        public string active = "ACTIVE";
+        public string overdue = "OVERDUE";
     }
     class StringVideoHeaders : StringCustomerAttribute
     {

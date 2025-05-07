@@ -11,6 +11,7 @@ using Bogys_Winforms.Models;
 using Bogys_Winforms.Services;
 using Bogys_Winforms.Strings;
 using Bogys_Winforms.Services.CustomerFunctions;
+using Microsoft.Identity.Client;
 
 namespace Bogys_Winforms.Windows.Admin
 {
@@ -51,54 +52,33 @@ namespace Bogys_Winforms.Windows.Admin
 
         private void rentBtn_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Are you sure you want to Add this Video?",
-                                      "Confirm Add",
-                                       MessageBoxButtons.YesNo,
-                                       MessageBoxIcon.Question);
+            var result = MessageBox.Show(strTxt.rentMsg, strTxt.rentMsgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result != DialogResult.Yes) return;
 
-            if (result == DialogResult.Yes)
+            int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.ID].Value);
+            int rentDays = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.RentDays].Value);
+            string category = categoryTxt.Text;
+            string title = titleTxt.Text;
+            string customerName = rentFunction.GetCustomerName(currentCustomerID);
+            DateOnly rentDate = DateOnly.FromDateTime(DateTime.Now);
+            DateOnly returnDate = rentDate.AddDays(rentDays);        
+
+            bool success = rentFunction.RentVideo(currentCustomerID, videoId, customerName, title,
+                                                  category, rentDays, rentDate, returnDate);
+            if (!success)
             {
-                int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.ID].Value);
-                int rentDays = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.RentDays].Value);
-                string category = categoryTxt.Text;
-                DateOnly rentDate = DateOnly.FromDateTime(DateTime.Now);
-                DateOnly returnDate = rentDate.AddDays(rentDays);
-
-                var newVideoRent = new Rent
-                {
-                    UserID = currentCustomerID,
-                    VideoID = videoId,
-                    VideoTitle = titleTxt.Text,
-                    VideoCategory = category,
-                    OverdueFee = 0 ,
-                    RentDate = rentDate,
-                    ReturnDate = returnDate,
-                    Status = "ACTIVE",
-                };
-
-                try
-                {
-                    using (var context = new AppDbContext())
-                    {
-                        var videos = context.Video.FirstOrDefault(u => u.ID == videoId);
-                        if (videos != null)
-                        {
-                            videos.VideoInCount -= 1;
-                            videos.VideoOutCount += 1;
-
-                            context.Rent.Add(newVideoRent);
-
-                            context.SaveChanges();
-                        }
-                    }
-                   
-                    LoadVideos();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error saving user: " + ex.Message);
-                }
+                MessageBox.Show(strTxt.validateRentTitle, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
+            ClearFields();
+            LoadVideos();           
+        }
+        private void ClearFields()
+        {
+            titleTxt.Clear();
+            categoryTxt.Clear();
+            rentDaysTxt.Clear();
+            priceTxt.Clear();
         }
     }
 }

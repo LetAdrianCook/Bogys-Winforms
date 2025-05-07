@@ -11,6 +11,7 @@ namespace Bogys_Winforms.Models
         public int ID { get; set; }
         public int UserID  { get; set; }
         public int VideoID { get; set; }
+        public string CustomerName { get; set; }
         public string VideoTitle { get; set; }
         public string VideoCategory { get; set; }
         public int RentDays { get; set; }
