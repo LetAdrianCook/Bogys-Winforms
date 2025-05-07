@@ -53,6 +53,7 @@
             // 
             // VideoRentedView
             // 
+            VideoRentedView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             VideoRentedView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             VideoRentedView.Location = new Point(340, 200);
             VideoRentedView.MultiSelect = false;

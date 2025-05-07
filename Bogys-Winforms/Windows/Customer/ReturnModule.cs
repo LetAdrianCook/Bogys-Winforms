@@ -18,6 +18,7 @@ namespace Bogys_Winforms.Windows.Customer
         private int currentCustomerID;
         StringsVariables strTxt = new StringsVariables();
         ReturnModuleFunctions returnModuleFunc = new ReturnModuleFunctions();
+        Receipts returnReceipt = new Receipts();
         public ReturnModule(int userID)
         {
             InitializeComponent();
@@ -59,9 +60,16 @@ namespace Bogys_Winforms.Windows.Customer
         {
             if (!CheckID()) return;
 
-            var selectedRow = VideoRentedView.CurrentRow;
-            int rentalId = Convert.ToInt32(selectedRow.Cells[strTxt.ID].Value);
-            string overdueFeeTxt = selectedRow.Cells[strTxt.OverdueFee].Value.ToString();
+            int rentDays = Convert.ToInt32(VideoRentedView.CurrentRow.Cells[strTxt.RentDays].Value);
+            DateOnly rentDate = (DateOnly)VideoRentedView.CurrentRow.Cells[strTxt.RentDate].Value;
+            DateOnly returnDate = (DateOnly)VideoRentedView.CurrentRow.Cells[strTxt.ReturnDate].Value;
+            DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+            int rentalId = Convert.ToInt32(VideoRentedView.CurrentRow.Cells[strTxt.ID].Value);
+            int videoId = Convert.ToInt32(VideoRentedView.CurrentRow.Cells[strTxt.VideoID].Value);
+            int overdueFeeTxt = Convert.ToInt32(VideoRentedView.CurrentRow.Cells[strTxt.OverdueFee].Value);
+            string customerName = VideoRentedView.CurrentRow.Cells[strTxt.CustomerName].Value.ToString();
+            string title = VideoRentedView.CurrentRow.Cells[strTxt.VideoTitle].Value.ToString();
+            string category = VideoRentedView.CurrentRow.Cells[strTxt.VideoCategory].Value.ToString();
 
             var result = MessageBox.Show(strTxt.validateReturn + overdueFeeTxt, strTxt.validationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -71,6 +79,7 @@ namespace Bogys_Winforms.Windows.Customer
 
             if (success)
             {
+                returnReceipt.PrintReturnReceipt(customerName, videoId, title, category, rentDays, rentDate, returnDate, overdueFeeTxt, currentDate);
                 LoadVideosRented();
                 ClearFields();
             }

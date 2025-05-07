@@ -21,6 +21,7 @@ namespace Bogys_Winforms.Services.CustomerFunctions
                 {
                     ID = r.ID,
                     VideoID = r.VideoID,
+                    CustomerName = r.CustomerName,
                     VideoTitle = r.VideoTitle,
                     VideoCategory = r.VideoCategory,
                     OverdueFee = r.OverdueFee,
@@ -35,6 +36,8 @@ namespace Bogys_Winforms.Services.CustomerFunctions
         {
             dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font(dataGridView.ColumnHeadersDefaultCellStyle.Font, FontStyle.Bold);
             dataGridView.Columns[strTxt.ID].Visible = false;
+            dataGridView.Columns[strTxt.UserID].Visible = false;
+            dataGridView.Columns[strTxt.CustomerName].Visible = false;
             dataGridView.Columns[strTxt.VideoID].Visible = false;
             dataGridView.Columns[strTxt.VideoTitle].HeaderText = strTxt._VideoTitle;
             dataGridView.Columns[strTxt.VideoCategory].HeaderText = strTxt._VideoCategory;

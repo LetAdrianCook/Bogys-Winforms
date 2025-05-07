@@ -20,6 +20,7 @@ namespace Bogys_Winforms.Windows.Admin
     {
         StringsVariables strTxt = new StringsVariables();
         RentalModuleFunctions rentFunction = new RentalModuleFunctions();
+        Receipts rentReceipt = new Receipts();
         private int currentCustomerID;
         public RentalModule(int userID)
         {
@@ -83,7 +84,7 @@ namespace Bogys_Winforms.Windows.Admin
                 MessageBox.Show(strTxt.validateRentTitle, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            Receipts.PrintReceipt(customerName, videoId, title, category, rentDays, rentDate, returnDate, price);
+            rentReceipt.PrintReceipt(customerName, videoId, title, category, rentDays, rentDate, returnDate, price);
             ClearFields();
             LoadVideos();           
         }
