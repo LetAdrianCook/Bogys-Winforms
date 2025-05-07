@@ -28,8 +28,8 @@ namespace Bogys_Winforms.Services
             receiptText += $"Rent Date   : {rentDateStr}\n\n";
             receiptText += $"Return Date : {returnDateStr}\n\n\n";
             receiptText += $"Video Price : {formattedPrice}\n\n\n";
-            receiptText += $"Thank you for buying our {sloganTitle} for {rentDays} day(s).\n\n";
-            receiptText += $"Note: Please return it during {returnDateStr}. A charge of ₱5.00 pesos per day will be included during return.\n";
+            receiptText += $"Thank you for renting {sloganTitle} for {rentDays} day(s).\n\n";
+            receiptText += $"Note: Please return it during {returnDateStr}. A charge of ₱5.00 pesos per day will be the consequence.\n";
 
             PrintDocument printDoc = new PrintDocument();
 

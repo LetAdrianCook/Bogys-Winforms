@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bogys_Winforms.Services;
 using Bogys_Winforms.Strings;
+using Bogys_Winforms.Services.CustomerFunctions;
 
 namespace Bogys_Winforms.Windows.Customer
 {
@@ -16,6 +17,7 @@ namespace Bogys_Winforms.Windows.Customer
     {
         private int currentCustomerID;
         StringsVariables strTxt = new StringsVariables();
+        ReturnModuleFunctions returnModuleFunc = new ReturnModuleFunctions();
         public ReturnModule(int userID)
         {
             InitializeComponent();
@@ -34,31 +36,15 @@ namespace Bogys_Winforms.Windows.Customer
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = VideoRentedView.Rows[e.RowIndex];
-                titleTxt.Text = row.Cells["VideoTitle"].Value.ToString();
-                feeTxt.Text = row.Cells["OverdueFee"].Value.ToString();
+                titleTxt.Text = row.Cells[strTxt.VideoTitle].Value.ToString();
+                feeTxt.Text = row.Cells[strTxt.OverdueFee].Value.ToString();
             }
         }
         private void LoadVideosRented()
         {
-            UpdateAllOverdueFees();
-            using (var context = new AppDbContext())
-            {
-                var rent = context.Rent
-                .Where(r => r.UserID == currentCustomerID).Select(r => new
-                {
-                    r.ID,
-                    r.VideoID,
-                    r.VideoTitle,
-                    r.VideoCategory,
-                    r.OverdueFee,
-                    r.RentDate,
-                    r.ReturnDate,
-                    r.Status
-                }).ToList();
-
-                VideoRentedView.DataSource = rent;
-                SetVideoColumnHeader();
-            }
+            returnModuleFunc.UpdateAllOverdueFees();
+            VideoRentedView.DataSource = returnModuleFunc.GetCustomerRent(currentCustomerID);
+            returnModuleFunc.HeaderTitle(VideoRentedView);
         }
         public void RefreshControl()
         {
@@ -68,128 +54,25 @@ namespace Bogys_Winforms.Windows.Customer
             ClearFields();
             VideoRentedView.ClearSelection();
             VideoRentedView.CurrentCell = null;
-        }
-        private void SetVideoColumnHeader()
-        {
-            VideoRentedView.Columns["ID"].HeaderText = "Rent ID ";
-            VideoRentedView.Columns["VideoID"].HeaderText = "Video ID ";
-            VideoRentedView.Columns["VideoTitle"].HeaderText = "Title";
-            VideoRentedView.Columns["VideoCategory"].HeaderText = "Category";
-            //VideoRentedView.Columns["RentDays"].HeaderText = "Day(s) Rented";
-            VideoRentedView.Columns["OverdueFee"].HeaderText = "Overdue Fee";
-            VideoRentedView.Columns["RentDate"].HeaderText = "Rental Date";
-            VideoRentedView.Columns["ReturnDate"].HeaderText = "Return Date";
-            VideoRentedView.Columns["Status"].HeaderText = "Status";
-        }
-
-        public void UpdateAllOverdueFees()
-        {
-            try
-            {
-                using (var context = new AppDbContext())
-                {
-                    DateOnly today = DateOnly.FromDateTime(DateTime.Today);
-
-                    var overdueItems = context.Rent.Where(r => r.ReturnDate < today).ToList();
-
-                    foreach (var rentedVideo in overdueItems)
-                    {
-                        if (rentedVideo.Status != "OVERDUE")
-                        {
-                            rentedVideo.Status = "OVERDUE";
-                        }
-
-                        int daysOverdue = today.DayNumber - rentedVideo.ReturnDate.DayNumber;
-
-                        float fee = daysOverdue * 5f;
-
-                        rentedVideo.OverdueFee = fee;
-                    }
-                    context.SaveChanges();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error updating overdue fees and status: " + ex.Message);
-            }
-        }
-
+        }    
         private void returnBtn_Click(object sender, EventArgs e)
         {
             if (!CheckID()) return;
 
             var selectedRow = VideoRentedView.CurrentRow;
-            int rentalId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
-            string overdueFeeTxt = Convert.ToString(selectedRow.Cells["OverdueFee"].Value);
+            int rentalId = Convert.ToInt32(selectedRow.Cells[strTxt.ID].Value);
+            string overdueFeeTxt = selectedRow.Cells[strTxt.OverdueFee].Value.ToString();
 
-            var confirmResult = MessageBox.Show(
-                "Are you sure you want to return this movie? with overdue fee of " + overdueFeeTxt ,
-                "Confirm Return",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question
-            );
+            var result = MessageBox.Show(strTxt.validateReturn + overdueFeeTxt, strTxt.validationTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            if (confirmResult != DialogResult.Yes)
+            if (result != DialogResult.Yes) return;
+
+            bool success = returnModuleFunc.ReturnMovie(rentalId);
+
+            if (success)
             {
-                return;
-            }
-
-
-
-            try
-            {
-                bool success = ReturnMovie(rentalId);
-
-                if (success)
-                {
-                    LoadVideosRented();
-                    ClearFields();
-                    MessageBox.Show("Video returned successfully!");
-                }
-                else
-                {
-                    MessageBox.Show("Return failed: Rental or video not found");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error returning movie: {ex.Message}");
-            }
-        }
-
-        public bool ReturnMovie(int rentalId)
-        {
-            using (var context = new AppDbContext())
-            {
-                using (var returnVideo = context.Database.BeginTransaction())
-                {
-                    try
-                    {
-                        var rentedMovie = context.Rent
-                            .FirstOrDefault(r => r.ID == rentalId);
-
-                        if (rentedMovie == null) return false;
-
-                        var video = context.Video
-                            .FirstOrDefault(v => v.ID == rentedMovie.VideoID);
-
-                        if (video == null) return false;
-
-                        video.VideoInCount += 1;
-                        video.VideoOutCount -= 1;
-
-                        context.Rent.Remove(rentedMovie);
-
-                        context.SaveChanges();
-                        returnVideo.Commit();
-                        return true;
-                    }
-                    catch
-                    {
-                        returnVideo.Rollback();
-                        throw;
-                    }
-                }
+                LoadVideosRented();
+                ClearFields();
             }
         }
         private void ClearFields()

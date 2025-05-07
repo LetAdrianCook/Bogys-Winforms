@@ -38,6 +38,8 @@ namespace Bogys_Winforms.Strings
         public string active = "ACTIVE";
         public string overdue = "OVERDUE";
         public string refreshtab = "RefreshControl";
+        public string updateFeesMsg = "Error updating overdue fees and status: ";
+        public string validateReturn = "Are you sure you want to return this movie? with overdue fee of ";
     }
     class StringVideoHeaders : StringCustomerAttribute
     {
@@ -48,6 +50,14 @@ namespace Bogys_Winforms.Strings
         public string VideoAdded = "VideoAdded";
         public string VideoPrice = "VideoPrice";
         public string RentDays = "RentDays";
+        //Para sa rent table
+        public string VideoID = "VideoID";
+        public string UserID = "UserID";
+        public string CustomerName = "CustomerName";
+        public string OverdueFee = "OverdueFee";
+        public string RentDate = "RentDate";
+        public string ReturnDate = "ReturnDate";
+        public string Status = "Status";
         //Title sa video sa gridview
         public string _VideoTitle = "Title";
         public string _VideoCategory = "Category";
@@ -56,6 +66,14 @@ namespace Bogys_Winforms.Strings
         public string _VideoAdded = "Video Added";
         public string _VideoPrice = "Price";
         public string _RentDays = "Rent Days";
+        //Title para sa rent table
+        public string _VideoID = "Video ID";
+        public string _UserID = "Customer ID";
+        public string _CustomerName = "CustomerName";
+        public string _OverdueFee = "Due Charge";
+        public string _RentDate = "Date Rented";
+        public string _ReturnDate = "Return Date";
+        public string _Status = "Status";
     }
     class StringCustomerAttribute
     {
