@@ -37,8 +37,4 @@
     </EmbeddedResource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\LoginRegisterFunction\" />
-  </ItemGroup>
-
 </Project>

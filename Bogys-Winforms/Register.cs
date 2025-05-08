@@ -1,5 +1,6 @@
 ﻿using Bogys_Winforms.Models;
 using Bogys_Winforms.Services;
+using Bogys_Winforms.Strings;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace Bogys_Winforms
 {
     public partial class Register : Form
     {
+        StringsVariables strTxt = new StringsVariables();
         public Register()
         {
             InitializeComponent();
@@ -38,13 +40,13 @@ namespace Bogys_Winforms
                 string.IsNullOrWhiteSpace(firstnameTxt.Text) ||
                 string.IsNullOrWhiteSpace(lastnameTxt.Text))
             {
-                MessageBox.Show("Please fill in all required fields.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(strTxt.fillReqFields, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (passwordTxt.Text != confirmpassTxt.Text)
             {
-                MessageBox.Show("Passwords do not match. Please re-enter.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(strTxt.confirmPass, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 confirmpassTxt.Focus();
                 return;
             }
@@ -52,7 +54,7 @@ namespace Bogys_Winforms
             string phone = phoneTxt.Text.Trim();
             if (phone.Length != 11 || !phone.All(char.IsDigit))
             {
-                MessageBox.Show("Phone number must be exactly 11 digits and contain only numbers.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(strTxt.validatePhoneMsg, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 phoneTxt.Focus();
                 return;
             }
@@ -64,7 +66,7 @@ namespace Bogys_Winforms
                     bool usernameExists = context.Users.Any(u => u.UserName.ToLower() == usernameTxt.Text.Trim().ToLower());
                     if (usernameExists)
                     {
-                        MessageBox.Show("Username already exists. Please choose a different username.", "Duplicate Username", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(strTxt.usernameExist, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         usernameTxt.Focus();
                         return;
                     }
@@ -76,7 +78,7 @@ namespace Bogys_Winforms
                         UserAddress = addressTxt.Text.Trim(),
                         Email = emailTxt.Text.Trim(),
                         Phonenumber = phone,
-                        UserType = "CLIENT",
+                        UserType = strTxt.ClientType,
                         BirthDate = DateOnly.FromDateTime(birthDatePicker.Value),
                         FirstName = firstnameTxt.Text.Trim(),
                         LastName = lastnameTxt.Text.Trim(),
@@ -87,7 +89,7 @@ namespace Bogys_Winforms
                     context.SaveChanges();
                 }
 
-                MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(strTxt.registerSuccess, strTxt.successTitle, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 var loginPage = new Login();
                 loginPage.Show();
@@ -95,7 +97,7 @@ namespace Bogys_Winforms
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error saving user: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(strTxt.errorRegister + ex.Message, strTxt.databaseTitleError, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

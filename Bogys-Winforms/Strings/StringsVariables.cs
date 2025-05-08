@@ -11,6 +11,15 @@ namespace Bogys_Winforms.Strings
     {
         public string ID = "ID";
         public string ClientType = "CLIENT";
+        public string AdminType = "ADMIN";
+        public string invalidUser = "Invalid username or password.";
+        public string fillReqFields = "Please fill in all required fields.";
+        public string successTitle = "Success";
+        public string registerSuccess = "Registration successful!";
+        public string errorRegister = "Error saving user: ";
+        public string databaseTitleError = "Database Error";
+        public string usernameExist = "Username already exists. Please choose a different username.";
+        public string confirmPass = "Passwords do not match. Please re-enter.";
         public string AddBtnMsg = "Are you sure you want to Add this Video? Add";
         public string AddBtnMsgTitle = "Confirm Add";
         public string errSavingUser = "Error saving user: ";

@@ -1,4 +1,5 @@
 ﻿using Bogys_Winforms.Services;
+using Bogys_Winforms.Strings;
 using Bogys_Winforms.Windows.Admin;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Bogys_Winforms
 {
     public partial class Login : Form
     {
+        StringsVariables strTxt = new StringsVariables();
         public Login()
         {
             InitializeComponent();
@@ -30,12 +32,12 @@ namespace Bogys_Winforms
 
                 if (user != null)
                 {
-                    if (user.UserType == "ADMIN")
+                    if (user.UserType == strTxt.AdminType)
                     {
                         var adminDashboard = new AdminDashboard();
                         adminDashboard.Show();
                     }
-                    else if (user.UserType == "CLIENT")
+                    else if (user.UserType == strTxt.ClientType)
                     {
                         var clientDashboard = new CustomerDashboard(user.ID);
                         clientDashboard.Show();
@@ -44,7 +46,7 @@ namespace Bogys_Winforms
                 }
                 else
                 {
-                    MessageBox.Show("Invalid username or password.");
+                    MessageBox.Show(strTxt.invalidUser);
                 }
             }
 
