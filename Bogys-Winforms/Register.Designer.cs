@@ -33,6 +33,8 @@
             birthDatePicker = new DateTimePicker();
             registerBtn = new Button();
             confirmpassTxt = new TextBox();
+            phoneTxt = new TextBox();
+            emailTxt = new TextBox();
             passwordTxt = new TextBox();
             lastnameTxt = new TextBox();
             addressTxt = new TextBox();
@@ -42,8 +44,6 @@
             label4 = new Label();
             label2 = new Label();
             label1 = new Label();
-            emailTxt = new TextBox();
-            phoneTxt = new TextBox();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -78,7 +78,7 @@
             LoginLink.Location = new Point(533, 359);
             LoginLink.Name = "LoginLink";
             LoginLink.Size = new Size(54, 25);
-            LoginLink.TabIndex = 4;
+            LoginLink.TabIndex = 11;
             LoginLink.TabStop = true;
             LoginLink.Text = "Login";
             LoginLink.LinkClicked += LoginLink_LinkClicked;
@@ -88,7 +88,7 @@
             birthDatePicker.Location = new Point(333, 267);
             birthDatePicker.Name = "birthDatePicker";
             birthDatePicker.Size = new Size(350, 31);
-            birthDatePicker.TabIndex = 3;
+            birthDatePicker.TabIndex = 9;
             // 
             // registerBtn
             // 
@@ -100,7 +100,7 @@
             registerBtn.Location = new Point(63, 347);
             registerBtn.Name = "registerBtn";
             registerBtn.Size = new Size(245, 49);
-            registerBtn.TabIndex = 2;
+            registerBtn.TabIndex = 10;
             registerBtn.Text = "Register";
             registerBtn.UseVisualStyleBackColor = false;
             registerBtn.Click += registerBtn_Click;
@@ -114,7 +114,31 @@
             confirmpassTxt.Name = "confirmpassTxt";
             confirmpassTxt.PlaceholderText = " Confirm Password";
             confirmpassTxt.Size = new Size(245, 34);
-            confirmpassTxt.TabIndex = 1;
+            confirmpassTxt.TabIndex = 3;
+            confirmpassTxt.UseSystemPasswordChar = true;
+            // 
+            // phoneTxt
+            // 
+            phoneTxt.BorderStyle = BorderStyle.FixedSingle;
+            phoneTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            phoneTxt.ForeColor = Color.Black;
+            phoneTxt.Location = new Point(707, 199);
+            phoneTxt.MaxLength = 11;
+            phoneTxt.Name = "phoneTxt";
+            phoneTxt.PlaceholderText = "Phone #";
+            phoneTxt.Size = new Size(245, 34);
+            phoneTxt.TabIndex = 8;
+            // 
+            // emailTxt
+            // 
+            emailTxt.BorderStyle = BorderStyle.FixedSingle;
+            emailTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            emailTxt.ForeColor = Color.Black;
+            emailTxt.Location = new Point(707, 132);
+            emailTxt.Name = "emailTxt";
+            emailTxt.PlaceholderText = "Email";
+            emailTxt.Size = new Size(245, 34);
+            emailTxt.TabIndex = 6;
             // 
             // passwordTxt
             // 
@@ -125,7 +149,8 @@
             passwordTxt.Name = "passwordTxt";
             passwordTxt.PlaceholderText = "Password";
             passwordTxt.Size = new Size(245, 34);
-            passwordTxt.TabIndex = 1;
+            passwordTxt.TabIndex = 2;
+            passwordTxt.UseSystemPasswordChar = true;
             // 
             // lastnameTxt
             // 
@@ -136,7 +161,7 @@
             lastnameTxt.Name = "lastnameTxt";
             lastnameTxt.PlaceholderText = "Last Name";
             lastnameTxt.Size = new Size(164, 34);
-            lastnameTxt.TabIndex = 1;
+            lastnameTxt.TabIndex = 5;
             // 
             // addressTxt
             // 
@@ -147,7 +172,7 @@
             addressTxt.Name = "addressTxt";
             addressTxt.PlaceholderText = "Address";
             addressTxt.Size = new Size(350, 34);
-            addressTxt.TabIndex = 1;
+            addressTxt.TabIndex = 7;
             // 
             // firstnameTxt
             // 
@@ -158,7 +183,7 @@
             firstnameTxt.Name = "firstnameTxt";
             firstnameTxt.PlaceholderText = "First Name";
             firstnameTxt.Size = new Size(164, 34);
-            firstnameTxt.TabIndex = 1;
+            firstnameTxt.TabIndex = 4;
             // 
             // usernameTxt
             // 
@@ -214,29 +239,6 @@
             label1.Size = new Size(107, 32);
             label1.TabIndex = 0;
             label1.Text = "Register";
-            // 
-            // emailTxt
-            // 
-            emailTxt.BorderStyle = BorderStyle.FixedSingle;
-            emailTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            emailTxt.ForeColor = Color.Black;
-            emailTxt.Location = new Point(707, 132);
-            emailTxt.Name = "emailTxt";
-            emailTxt.PlaceholderText = "Email";
-            emailTxt.Size = new Size(245, 34);
-            emailTxt.TabIndex = 1;
-            // 
-            // phoneTxt
-            // 
-            phoneTxt.BorderStyle = BorderStyle.FixedSingle;
-            phoneTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            phoneTxt.ForeColor = Color.Black;
-            phoneTxt.Location = new Point(707, 199);
-            phoneTxt.MaxLength = 11;
-            phoneTxt.Name = "phoneTxt";
-            phoneTxt.PlaceholderText = "Phone #";
-            phoneTxt.Size = new Size(245, 34);
-            phoneTxt.TabIndex = 1;
             // 
             // Register
             // 
