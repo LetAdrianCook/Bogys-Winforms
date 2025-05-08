@@ -95,7 +95,9 @@
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(reportView);
+            MaximizeBox = false;
             Name = "RentalReport";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "RentalReport";
             ((System.ComponentModel.ISupportInitialize)reportView).EndInit();
             ResumeLayout(false);

@@ -14,8 +14,7 @@ namespace Bogys_Winforms.Windows.Admin
     public partial class VideoReport: Form
     {
         StringsVariables strTxt = new StringsVariables();
-        DateOnly today = DateOnly.FromDateTime(DateTime.Now);
-        
+        DateOnly today = DateOnly.FromDateTime(DateTime.Now);        
         public VideoReport(object dataSource)
         {
             InitializeComponent();

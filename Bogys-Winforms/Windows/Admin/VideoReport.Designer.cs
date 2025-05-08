@@ -95,6 +95,7 @@
             Controls.Add(label3);
             Controls.Add(label1);
             Controls.Add(reportView);
+            MaximizeBox = false;
             Name = "VideoReport";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "VideoReport";
