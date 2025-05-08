@@ -26,19 +26,24 @@ namespace Bogys_Winforms.Windows.Admin
         {
             InitializeComponent();
             currentCustomerID = userID;
+            videoTypeCbx.SelectedIndex = 0;
             txtUserID.Text = currentCustomerID.ToString();
-            VideoView.DataBindingComplete += VideoView_DataBindingComplete;
             LoadVideos();
         }
         private void LoadVideos()
         {
-            VideoView.DataSource = rentFunction.GetAvailableVideos();
+            string titleSearch = searchTitleTxt.Text.Trim();
+            string categoryFilter = videoTypeCbx.SelectedItem?.ToString();
+
+            if (categoryFilter == strTxt.all) categoryFilter = null;
+
+            VideoView.DataSource = rentFunction.GetAvailableVideos(titleSearch, categoryFilter);
             rentFunction.HeaderTitle(VideoView);
         }
         public void RefreshControl()
         {
             LoadVideos();
-            VideoView.DataBindingComplete -= VideoView_DataBindingComplete; 
+            VideoView.DataBindingComplete -= VideoView_DataBindingComplete;
             VideoView.DataBindingComplete += VideoView_DataBindingComplete;
             ClearFields();
             VideoView.ClearSelection();
@@ -60,7 +65,6 @@ namespace Bogys_Winforms.Windows.Admin
                 rentDaysTxt.Text = row.Cells[strTxt.RentDays].Value.ToString();
             }
         }
-
         private void rentBtn_Click(object sender, EventArgs e)
         {
             if (!CheckID()) return;
@@ -75,7 +79,7 @@ namespace Bogys_Winforms.Windows.Admin
             string title = titleTxt.Text;
             string customerName = rentFunction.GetCustomerName(currentCustomerID);
             DateOnly rentDate = DateOnly.FromDateTime(DateTime.Now);
-            DateOnly returnDate = rentDate.AddDays(rentDays);        
+            DateOnly returnDate = rentDate.AddDays(rentDays);
 
             bool success = rentFunction.RentVideo(currentCustomerID, videoId, customerName, title,
                                                   category, rentDays, rentDate, returnDate);
@@ -86,7 +90,7 @@ namespace Bogys_Winforms.Windows.Admin
             }
             rentReceipt.PrintReceipt(customerName, videoId, title, category, rentDays, rentDate, returnDate, price);
             ClearFields();
-            LoadVideos();           
+            LoadVideos();
         }
         private void ClearFields()
         {
@@ -103,6 +107,14 @@ namespace Bogys_Winforms.Windows.Admin
                 return false;
             }
             return true;
+        }
+        private void searchTitleTxt_TextChanged(object sender, EventArgs e)
+        {
+            LoadVideos();
+        }
+        private void videoTypeCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadVideos();
         }
     }
 }

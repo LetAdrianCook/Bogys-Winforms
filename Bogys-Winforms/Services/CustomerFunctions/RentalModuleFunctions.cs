@@ -12,11 +12,16 @@ namespace Bogys_Winforms.Services.CustomerFunctions
     class RentalModuleFunctions
     {
         StringsVariables strTxt = new StringsVariables();
-        public List<Video> GetAvailableVideos()
+        public List<Video> GetAvailableVideos(string title, string category)
         {
             using (var context = new AppDbContext())
             {
-                return context.Video.Where(v => v.VideoInCount > 0).ToList();
+                var query = context.Video.AsQueryable();
+
+                if (!string.IsNullOrEmpty(title)) query = query.Where(r => r.VideoTitle.Contains(title));
+                if (!string.IsNullOrEmpty(category)) query = query.Where(r => r.VideoCategory == category);
+
+                return query.Where(v => v.VideoInCount > 0).ToList();
             }
         }
         public void HeaderTitle(DataGridView dataGridView)

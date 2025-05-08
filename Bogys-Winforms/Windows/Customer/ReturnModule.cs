@@ -23,7 +23,8 @@ namespace Bogys_Winforms.Windows.Customer
         {
             InitializeComponent();
             currentCustomerID = userID;
-            VideoRentedView.DataBindingComplete += VideoRentedView_DataBindingComplete;
+            videoTypeCbx.SelectedIndex = 0;
+            statusCbx.SelectedIndex = 0;
             LoadVideosRented();
         }
         private void VideoRentedView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -44,7 +45,15 @@ namespace Bogys_Winforms.Windows.Customer
         private void LoadVideosRented()
         {
             returnModuleFunc.UpdateAllOverdueFees();
-            VideoRentedView.DataSource = returnModuleFunc.GetCustomerRent(currentCustomerID);
+
+            string titleSearch = searchTitleTxt.Text.Trim();
+            string categoryFilter = videoTypeCbx.SelectedItem?.ToString();
+            string statusFilter = statusCbx.SelectedItem?.ToString();
+
+            if (categoryFilter == strTxt.all) categoryFilter = null;
+            if (statusFilter == strTxt.all) statusFilter = null;
+
+            VideoRentedView.DataSource = returnModuleFunc.GetCustomerRent(currentCustomerID, titleSearch, categoryFilter, statusFilter);
             returnModuleFunc.HeaderTitle(VideoRentedView);
         }
         public void RefreshControl()
@@ -55,7 +64,7 @@ namespace Bogys_Winforms.Windows.Customer
             ClearFields();
             VideoRentedView.ClearSelection();
             VideoRentedView.CurrentCell = null;
-        }    
+        }
         private void returnBtn_Click(object sender, EventArgs e)
         {
             if (!CheckID()) return;
@@ -97,6 +106,18 @@ namespace Bogys_Winforms.Windows.Customer
                 return false;
             }
             return true;
+        }
+        private void searchTitleTxt_TextChanged(object sender, EventArgs e)
+        {
+            LoadVideosRented();
+        }
+        private void videoTypeCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadVideosRented();
+        }
+        private void statusCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadVideosRented();
         }
     }
 }

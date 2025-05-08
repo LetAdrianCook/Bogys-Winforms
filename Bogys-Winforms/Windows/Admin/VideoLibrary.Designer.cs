@@ -44,10 +44,10 @@
             label6 = new Label();
             rentDaysCbx = new ComboBox();
             videoTypeCbx = new ComboBox();
+            searchTitleTxt = new TextBox();
+            categoryFilterCbx = new ComboBox();
             label7 = new Label();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
+            reportBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)VideoView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)videoBindingSource).BeginInit();
             SuspendLayout();
@@ -56,7 +56,7 @@
             // 
             VideoView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             VideoView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            VideoView.Location = new Point(79, 141);
+            VideoView.Location = new Point(79, 229);
             VideoView.MultiSelect = false;
             VideoView.Name = "VideoView";
             VideoView.RowHeadersWidth = 62;
@@ -72,9 +72,9 @@
             label2.ForeColor = Color.FromArgb(255, 228, 186);
             label2.Location = new Point(79, 94);
             label2.Name = "label2";
-            label2.Size = new Size(195, 25);
+            label2.Size = new Size(289, 25);
             label2.TabIndex = 16;
-            label2.Text = "Add, Edit, Delete Videos";
+            label2.Text = "Add, Edit, Delete, and Report Videos";
             // 
             // label1
             // 
@@ -96,7 +96,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semilight", 9F);
             label3.ForeColor = Color.FromArgb(255, 228, 186);
-            label3.Location = new Point(79, 715);
+            label3.Location = new Point(73, 844);
             label3.Name = "label3";
             label3.Size = new Size(91, 25);
             label3.TabIndex = 18;
@@ -107,7 +107,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semilight", 9F);
             label5.ForeColor = Color.FromArgb(255, 228, 186);
-            label5.Location = new Point(79, 635);
+            label5.Location = new Point(73, 753);
             label5.Name = "label5";
             label5.Size = new Size(53, 25);
             label5.TabIndex = 18;
@@ -118,7 +118,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semilight", 9F);
             label4.ForeColor = Color.FromArgb(255, 228, 186);
-            label4.Location = new Point(79, 782);
+            label4.Location = new Point(550, 753);
             label4.Name = "label4";
             label4.Size = new Size(84, 25);
             label4.TabIndex = 18;
@@ -129,7 +129,7 @@
             titleTxt.BorderStyle = BorderStyle.FixedSingle;
             titleTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             titleTxt.ForeColor = Color.Black;
-            titleTxt.Location = new Point(179, 635);
+            titleTxt.Location = new Point(173, 753);
             titleTxt.Name = "titleTxt";
             titleTxt.Size = new Size(257, 34);
             titleTxt.TabIndex = 22;
@@ -139,7 +139,7 @@
             stockTxt.BorderStyle = BorderStyle.FixedSingle;
             stockTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             stockTxt.ForeColor = Color.Black;
-            stockTxt.Location = new Point(179, 777);
+            stockTxt.Location = new Point(650, 748);
             stockTxt.Name = "stockTxt";
             stockTxt.Size = new Size(257, 34);
             stockTxt.TabIndex = 22;
@@ -151,7 +151,7 @@
             addBtn.FlatStyle = FlatStyle.Flat;
             addBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             addBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            addBtn.Location = new Point(570, 635);
+            addBtn.Location = new Point(981, 738);
             addBtn.Name = "addBtn";
             addBtn.Size = new Size(278, 49);
             addBtn.TabIndex = 23;
@@ -166,7 +166,7 @@
             deleteBtn.FlatStyle = FlatStyle.Flat;
             deleteBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             deleteBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            deleteBtn.Location = new Point(570, 839);
+            deleteBtn.Location = new Point(981, 827);
             deleteBtn.Name = "deleteBtn";
             deleteBtn.Size = new Size(278, 49);
             deleteBtn.TabIndex = 23;
@@ -181,7 +181,7 @@
             editBtn.FlatStyle = FlatStyle.Flat;
             editBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             editBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            editBtn.Location = new Point(570, 737);
+            editBtn.Location = new Point(1300, 738);
             editBtn.Name = "editBtn";
             editBtn.Size = new Size(278, 49);
             editBtn.TabIndex = 23;
@@ -194,7 +194,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semilight", 9F);
             label6.ForeColor = Color.FromArgb(255, 228, 186);
-            label6.Location = new Point(79, 858);
+            label6.Location = new Point(550, 840);
             label6.Name = "label6";
             label6.Size = new Size(96, 25);
             label6.TabIndex = 18;
@@ -205,7 +205,7 @@
             rentDaysCbx.DropDownStyle = ComboBoxStyle.DropDownList;
             rentDaysCbx.FormattingEnabled = true;
             rentDaysCbx.Items.AddRange(new object[] { "1", "2", "3" });
-            rentDaysCbx.Location = new Point(179, 855);
+            rentDaysCbx.Location = new Point(650, 837);
             rentDaysCbx.Name = "rentDaysCbx";
             rentDaysCbx.Size = new Size(257, 33);
             rentDaysCbx.TabIndex = 26;
@@ -215,67 +215,72 @@
             videoTypeCbx.DropDownStyle = ComboBoxStyle.DropDownList;
             videoTypeCbx.FormattingEnabled = true;
             videoTypeCbx.Items.AddRange(new object[] { "DVD", "VCD" });
-            videoTypeCbx.Location = new Point(179, 707);
+            videoTypeCbx.Location = new Point(173, 836);
             videoTypeCbx.Name = "videoTypeCbx";
             videoTypeCbx.Size = new Size(257, 33);
             videoTypeCbx.TabIndex = 26;
+            // 
+            // searchTitleTxt
+            // 
+            searchTitleTxt.BorderStyle = BorderStyle.FixedSingle;
+            searchTitleTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchTitleTxt.ForeColor = Color.Black;
+            searchTitleTxt.Location = new Point(79, 170);
+            searchTitleTxt.Name = "searchTitleTxt";
+            searchTitleTxt.PlaceholderText = "Search by Title";
+            searchTitleTxt.Size = new Size(301, 34);
+            searchTitleTxt.TabIndex = 39;
+            searchTitleTxt.TextChanged += searchTitleTxt_TextChanged;
+            // 
+            // categoryFilterCbx
+            // 
+            categoryFilterCbx.DropDownStyle = ComboBoxStyle.DropDownList;
+            categoryFilterCbx.FormattingEnabled = true;
+            categoryFilterCbx.Items.AddRange(new object[] { "ALL", "DVD", "VCD" });
+            categoryFilterCbx.Location = new Point(522, 170);
+            categoryFilterCbx.Name = "categoryFilterCbx";
+            categoryFilterCbx.Size = new Size(233, 33);
+            categoryFilterCbx.TabIndex = 41;
+            categoryFilterCbx.SelectedIndexChanged += categoryFilterCbx_SelectedIndexChanged;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semilight", 9F);
             label7.ForeColor = Color.FromArgb(255, 228, 186);
-            label7.Location = new Point(1034, 671);
+            label7.Location = new Point(411, 170);
             label7.Name = "label7";
-            label7.Size = new Size(531, 25);
-            label7.TabIndex = 27;
-            label7.Text = "1. Before Editing a Video. Make sure to select a TITLE from the table.";
+            label7.Size = new Size(105, 25);
+            label7.TabIndex = 40;
+            label7.Text = "Video Type :";
             // 
-            // label8
+            // reportBtn
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.ForeColor = Color.FromArgb(255, 228, 186);
-            label8.Location = new Point(1034, 628);
-            label8.Name = "label8";
-            label8.Size = new Size(95, 32);
-            label8.TabIndex = 28;
-            label8.Text = "Guide :";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI Semilight", 9F);
-            label9.ForeColor = Color.FromArgb(255, 228, 186);
-            label9.Location = new Point(1034, 715);
-            label9.Name = "label9";
-            label9.Size = new Size(544, 25);
-            label9.TabIndex = 27;
-            label9.Text = "2. Before Deleting a Video. Make sure to select a TITLE from the table.";
-            // 
-            // label10
-            // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI Semilight", 9F);
-            label10.ForeColor = Color.FromArgb(255, 228, 186);
-            label10.Location = new Point(1034, 761);
-            label10.Name = "label10";
-            label10.Size = new Size(430, 25);
-            label10.TabIndex = 27;
-            label10.Text = "3. Adding Video Title that already exists is not possible.";
+            reportBtn.BackColor = Color.FromArgb(58, 158, 90);
+            reportBtn.FlatAppearance.BorderSize = 0;
+            reportBtn.FlatStyle = FlatStyle.Flat;
+            reportBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            reportBtn.ForeColor = Color.FromArgb(255, 228, 186);
+            reportBtn.Location = new Point(1300, 828);
+            reportBtn.Name = "reportBtn";
+            reportBtn.Size = new Size(278, 49);
+            reportBtn.TabIndex = 23;
+            reportBtn.Text = "Report";
+            reportBtn.UseVisualStyleBackColor = false;
+            reportBtn.Click += reportBtn_Click;
             // 
             // VideoLibrary
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(80, 68, 92);
-            Controls.Add(label10);
-            Controls.Add(label9);
+            Controls.Add(categoryFilterCbx);
             Controls.Add(label7);
-            Controls.Add(label8);
+            Controls.Add(searchTitleTxt);
             Controls.Add(videoTypeCbx);
             Controls.Add(rentDaysCbx);
             Controls.Add(VideoView);
+            Controls.Add(reportBtn);
             Controls.Add(editBtn);
             Controls.Add(label2);
             Controls.Add(deleteBtn);
@@ -312,9 +317,9 @@
         private Label label6;
         private ComboBox rentDaysCbx;
         private ComboBox videoTypeCbx;
+        private TextBox searchTitleTxt;
+        private ComboBox categoryFilterCbx;
         private Label label7;
-        private Label label8;
-        private Label label9;
-        private Label label10;
+        private Button reportBtn;
     }
 }

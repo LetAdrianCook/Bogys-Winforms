@@ -8,17 +8,23 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Bogys_Winforms.Services.AdminFunctions
 {
     class VideoLibraryFunctions
     {
         StringsVariables strTxt = new StringsVariables();
-        public List<Video> GetAllVideos()
+        public List<Video> GetAllVideos(string title, string category)
         {
             using (var context = new AppDbContext())
             {
-                return context.Video.ToList();
+                var query = context.Video.AsQueryable();
+
+                if (!string.IsNullOrEmpty(title)) query = query.Where(r => r.VideoTitle.Contains(title));
+                if (!string.IsNullOrEmpty(category)) query = query.Where(r => r.VideoCategory == category);
+
+                return query.OrderBy(r => r.VideoTitle).ToList();
             }
         }
         public void HeaderTitle(DataGridView dataGridView)

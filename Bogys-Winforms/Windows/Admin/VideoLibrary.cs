@@ -12,7 +12,6 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Bogys_Winforms.Migrations;
 using Bogys_Winforms.Services;
 using Bogys_Winforms.Services.AdminFunctions;
-using Bogys_Winforms.Windows.Admin.ModalWindows;
 using Bogys_Winforms.Strings;
 using Microsoft.Identity.Client;
 
@@ -27,13 +26,19 @@ namespace Bogys_Winforms.Windows.Admin
         {
             InitializeComponent();
             VideoView.DataBindingComplete += VideoView_DataBindingComplete;
+            videoTypeCbx.SelectedIndex = 0;
+            rentDaysCbx.SelectedIndex = 0;
+            categoryFilterCbx.SelectedIndex = 0;
             LoadVideos();
         }
         private void LoadVideos()
         {
-            videoTypeCbx.SelectedIndex = 0;
-            rentDaysCbx.SelectedIndex = 0;
-            VideoView.DataSource = vidLibFunction.GetAllVideos();
+            string titleSearch = searchTitleTxt.Text.Trim();
+            string categoryFilter = categoryFilterCbx.SelectedItem?.ToString();
+
+            if (categoryFilter == strTxt.all) categoryFilter = null;
+
+            VideoView.DataSource = vidLibFunction.GetAllVideos(titleSearch, categoryFilter);
             vidLibFunction.HeaderTitle(VideoView);
         }
         private void VideoView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -116,7 +121,7 @@ namespace Bogys_Winforms.Windows.Admin
                 stockTxt.Focus();
                 return false;
             }
-            if (!stockTxt.Text.All(char.IsDigit))
+            if (!stockTxt.Text.All(char.IsDigit) || int.Parse(stockTxt.Text) < 1)
             {
                 MessageBox.Show(strTxt.validateInCountData, strTxt.validationTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 stockTxt.Focus();
@@ -127,7 +132,7 @@ namespace Bogys_Winforms.Windows.Admin
         private int VideoPrice()
         {
             if (videoTypeCbx.Text == strTxt.vcd) return 25;
-            if (videoTypeCbx.Text == strTxt.dvd) return 50;          
+            if (videoTypeCbx.Text == strTxt.dvd) return 50;
             return 0;
         }
         private bool CheckID()
@@ -151,7 +156,7 @@ namespace Bogys_Winforms.Windows.Admin
             var result = MessageBox.Show(strTxt.confirmDelete, strTxt.confirmDeleteTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (result != DialogResult.Yes) return;
-    
+
             int videoId = Convert.ToInt32(VideoView.CurrentRow.Cells[strTxt.ID].Value);
             bool success = vidLibFunction.DeleteVideo(videoId);
 
@@ -159,8 +164,22 @@ namespace Bogys_Winforms.Windows.Admin
             {
                 ClearFields();
                 LoadVideos();
-            }           
+            }
+        }
+        private void searchTitleTxt_TextChanged(object sender, EventArgs e)
+        {
+            LoadVideos();
+        }
+        private void reportBtn_Click(object sender, EventArgs e)
+        {
+            var currentData = VideoView.DataSource;
+            VideoReport reportForm = new VideoReport(currentData);
+            reportForm.Show();
         }
 
+        private void categoryFilterCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadVideos();
+        }
     }
 }

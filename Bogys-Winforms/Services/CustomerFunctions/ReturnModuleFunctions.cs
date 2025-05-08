@@ -3,6 +3,7 @@ using Bogys_Winforms.Strings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,25 +12,17 @@ namespace Bogys_Winforms.Services.CustomerFunctions
     class ReturnModuleFunctions
     {
         StringsVariables strTxt = new StringsVariables();
-        public List<Rent> GetCustomerRent(int customerID)
+        public List<Rent> GetCustomerRent(int customerID, string title, string category, string status)
         {
             using (var context = new AppDbContext())
             {
-                return context.Rent
-                .Where(r => r.UserID == customerID)
-                .Select(r => new Rent
-                {
-                    ID = r.ID,
-                    VideoID = r.VideoID,
-                    CustomerName = r.CustomerName,
-                    VideoTitle = r.VideoTitle,
-                    VideoCategory = r.VideoCategory,
-                    OverdueFee = r.OverdueFee,
-                    RentDays = r.RentDays,
-                    RentDate = r.RentDate,
-                    ReturnDate = r.ReturnDate,
-                    Status = r.Status
-                }).ToList();
+                var query = context.Rent.AsQueryable();
+
+                if (!string.IsNullOrEmpty(title)) query = query.Where(r => r.VideoTitle.Contains(title));
+                if (!string.IsNullOrEmpty(category)) query = query.Where(r => r.VideoCategory == category);
+                if (!string.IsNullOrEmpty(status)) query = query.Where(r => r.Status == status);
+
+                return query.Where(r => r.UserID == customerID).ToList();
             }
         }
         public void HeaderTitle(DataGridView dataGridView)

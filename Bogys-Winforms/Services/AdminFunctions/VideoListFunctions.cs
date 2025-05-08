@@ -11,7 +11,7 @@ namespace Bogys_Winforms.Services.AdminFunctions
     class VideoListFunctions
     {
         StringsVariables strTxt = new StringsVariables();
-        public List<Rent> GetAllVideosRented(string videoTitle, string customerName, string categoryFilter)
+        public List<Rent> GetAllVideosRented(string videoTitle, string customerName, string category, string status)
         {
             using (var context = new AppDbContext())
             {
@@ -19,9 +19,10 @@ namespace Bogys_Winforms.Services.AdminFunctions
 
                 if (!string.IsNullOrEmpty(videoTitle)) query = query.Where(r => r.VideoTitle.Contains(videoTitle));
                 if (!string.IsNullOrEmpty(customerName)) query = query.Where(r => r.CustomerName.Contains(customerName));
-                if (!string.IsNullOrEmpty(categoryFilter)) query = query.Where(r => r.VideoCategory == categoryFilter);
+                if (!string.IsNullOrEmpty(category)) query = query.Where(r => r.VideoCategory == category);
+                if (!string.IsNullOrEmpty(status)) query = query.Where(r => r.Status == status);
 
-                return query.OrderBy(r => r.VideoTitle).ToList();
+                return query.OrderBy(r => r.UserID).ToList();
             }
         }
         public void HeaderTitle(DataGridView dataGridView)

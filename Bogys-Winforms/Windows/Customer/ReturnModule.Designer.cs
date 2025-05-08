@@ -35,21 +35,25 @@
             feeTxt = new TextBox();
             label4 = new Label();
             label6 = new Label();
-            searchTxt = new TextBox();
+            searchTitleTxt = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            label5 = new Label();
+            statusCbx = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)VideoRentedView).BeginInit();
             SuspendLayout();
             // 
             // videoTypeCbx
             // 
+            videoTypeCbx.DropDownStyle = ComboBoxStyle.DropDownList;
             videoTypeCbx.FormattingEnabled = true;
-            videoTypeCbx.Items.AddRange(new object[] { "DVD", "VCD" });
+            videoTypeCbx.Items.AddRange(new object[] { "ALL", "DVD", "VCD" });
             videoTypeCbx.Location = new Point(792, 148);
             videoTypeCbx.Name = "videoTypeCbx";
             videoTypeCbx.Size = new Size(152, 33);
             videoTypeCbx.TabIndex = 61;
+            videoTypeCbx.SelectedIndexChanged += videoTypeCbx_SelectedIndexChanged;
             // 
             // VideoRentedView
             // 
@@ -58,6 +62,7 @@
             VideoRentedView.Location = new Point(340, 200);
             VideoRentedView.MultiSelect = false;
             VideoRentedView.Name = "VideoRentedView";
+            VideoRentedView.ReadOnly = true;
             VideoRentedView.RowHeadersWidth = 62;
             VideoRentedView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             VideoRentedView.Size = new Size(1225, 711);
@@ -123,16 +128,17 @@
             label6.TabIndex = 51;
             label6.Text = "Video Selected :";
             // 
-            // searchTxt
+            // searchTitleTxt
             // 
-            searchTxt.BorderStyle = BorderStyle.FixedSingle;
-            searchTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchTxt.ForeColor = Color.Black;
-            searchTxt.Location = new Point(340, 148);
-            searchTxt.Name = "searchTxt";
-            searchTxt.PlaceholderText = "Search by Title";
-            searchTxt.Size = new Size(280, 34);
-            searchTxt.TabIndex = 58;
+            searchTitleTxt.BorderStyle = BorderStyle.FixedSingle;
+            searchTitleTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchTitleTxt.ForeColor = Color.Black;
+            searchTitleTxt.Location = new Point(340, 148);
+            searchTitleTxt.Name = "searchTitleTxt";
+            searchTitleTxt.PlaceholderText = "Search by Title";
+            searchTitleTxt.Size = new Size(280, 34);
+            searchTitleTxt.TabIndex = 58;
+            searchTitleTxt.TextChanged += searchTitleTxt_TextChanged;
             // 
             // label3
             // 
@@ -167,11 +173,34 @@
             label1.TabIndex = 50;
             label1.Text = "Return Module";
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semilight", 9F);
+            label5.ForeColor = Color.FromArgb(255, 228, 186);
+            label5.Location = new Point(1008, 151);
+            label5.Name = "label5";
+            label5.Size = new Size(67, 25);
+            label5.TabIndex = 54;
+            label5.Text = "Status :";
+            // 
+            // statusCbx
+            // 
+            statusCbx.DropDownStyle = ComboBoxStyle.DropDownList;
+            statusCbx.FormattingEnabled = true;
+            statusCbx.Items.AddRange(new object[] { "ALL", "ACTIVE", "OVERDUE" });
+            statusCbx.Location = new Point(1081, 148);
+            statusCbx.Name = "statusCbx";
+            statusCbx.Size = new Size(152, 33);
+            statusCbx.TabIndex = 61;
+            statusCbx.SelectedIndexChanged += statusCbx_SelectedIndexChanged;
+            // 
             // ReturnModule
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(80, 68, 92);
+            Controls.Add(statusCbx);
             Controls.Add(videoTypeCbx);
             Controls.Add(VideoRentedView);
             Controls.Add(returnBtn);
@@ -179,7 +208,8 @@
             Controls.Add(feeTxt);
             Controls.Add(label4);
             Controls.Add(label6);
-            Controls.Add(searchTxt);
+            Controls.Add(label5);
+            Controls.Add(searchTitleTxt);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -199,9 +229,11 @@
         private TextBox feeTxt;
         private Label label4;
         private Label label6;
-        private TextBox searchTxt;
+        private TextBox searchTitleTxt;
         private Label label3;
         private Label label2;
         private Label label1;
+        private Label label5;
+        private ComboBox statusCbx;
     }
 }

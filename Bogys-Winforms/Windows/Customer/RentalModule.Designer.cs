@@ -30,7 +30,7 @@
         {
             VideoView = new DataGridView();
             rentBtn = new Button();
-            searchTxt = new TextBox();
+            searchTitleTxt = new TextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -55,6 +55,7 @@
             VideoView.Location = new Point(340, 200);
             VideoView.MultiSelect = false;
             VideoView.Name = "VideoView";
+            VideoView.ReadOnly = true;
             VideoView.RowHeadersWidth = 62;
             VideoView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             VideoView.Size = new Size(1225, 711);
@@ -76,16 +77,17 @@
             rentBtn.UseVisualStyleBackColor = false;
             rentBtn.Click += rentBtn_Click;
             // 
-            // searchTxt
+            // searchTitleTxt
             // 
-            searchTxt.BorderStyle = BorderStyle.FixedSingle;
-            searchTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchTxt.ForeColor = Color.Black;
-            searchTxt.Location = new Point(340, 148);
-            searchTxt.Name = "searchTxt";
-            searchTxt.PlaceholderText = "Search by Title";
-            searchTxt.Size = new Size(280, 34);
-            searchTxt.TabIndex = 30;
+            searchTitleTxt.BorderStyle = BorderStyle.FixedSingle;
+            searchTitleTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchTitleTxt.ForeColor = Color.Black;
+            searchTitleTxt.Location = new Point(340, 148);
+            searchTitleTxt.Name = "searchTitleTxt";
+            searchTitleTxt.PlaceholderText = "Search by Title";
+            searchTitleTxt.Size = new Size(280, 34);
+            searchTitleTxt.TabIndex = 30;
+            searchTitleTxt.TextChanged += searchTitleTxt_TextChanged;
             // 
             // label3
             // 
@@ -122,12 +124,14 @@
             // 
             // videoTypeCbx
             // 
+            videoTypeCbx.DropDownStyle = ComboBoxStyle.DropDownList;
             videoTypeCbx.FormattingEnabled = true;
-            videoTypeCbx.Items.AddRange(new object[] { "DVD", "VCD" });
+            videoTypeCbx.Items.AddRange(new object[] { "ALL", "DVD", "VCD" });
             videoTypeCbx.Location = new Point(792, 148);
             videoTypeCbx.Name = "videoTypeCbx";
             videoTypeCbx.Size = new Size(152, 33);
             videoTypeCbx.TabIndex = 35;
+            videoTypeCbx.SelectedIndexChanged += videoTypeCbx_SelectedIndexChanged;
             // 
             // label5
             // 
@@ -256,7 +260,7 @@
             Controls.Add(label4);
             Controls.Add(label6);
             Controls.Add(label5);
-            Controls.Add(searchTxt);
+            Controls.Add(searchTitleTxt);
             Controls.Add(label8);
             Controls.Add(label3);
             Controls.Add(label2);
@@ -272,7 +276,7 @@
         #endregion
         private DataGridView VideoView;
         private Button rentBtn;
-        private TextBox searchTxt;
+        private TextBox searchTitleTxt;
         private Label label3;
         private Label label2;
         private Label label1;

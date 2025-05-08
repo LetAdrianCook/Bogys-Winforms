@@ -23,7 +23,7 @@ namespace Bogys_Winforms.Strings
         public string validateVidTitle = "Video title already exists.";
         public string validateRentTitle = "You have already rented this Video.";
         public string validateInCount = "Video in cannot be empty.";
-        public string validateInCountData = "Stock must be a whole number no decimals.";
+        public string validateInCountData = "Stock must be a whole number.";
         public string validateEditDelete = "Please select a Video to edit or delete.";
         public string confirmDelete = "Are you sure you want to delete this Video?";
         public string validateDelete = "Cannot delete a video that is currently rented.";
@@ -70,7 +70,7 @@ namespace Bogys_Winforms.Strings
         //Title para sa rent table
         public string _VideoID = "Video ID";
         public string _UserID = "Customer ID";
-        public string _CustomerName = "CustomerName";
+        public string _CustomerName = "Customer Name";
         public string _OverdueFee = "Due Charge";
         public string _RentDate = "Date Rented";
         public string _ReturnDate = "Return Date";

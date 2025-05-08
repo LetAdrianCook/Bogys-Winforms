@@ -89,7 +89,7 @@
             listBtn.Padding = new Padding(5, 0, 0, 0);
             listBtn.Size = new Size(235, 71);
             listBtn.TabIndex = 4;
-            listBtn.Text = "Video List";
+            listBtn.Text = "Rental List";
             listBtn.TextAlign = ContentAlignment.MiddleLeft;
             listBtn.UseVisualStyleBackColor = true;
             listBtn.Click += listBtn_Click;
