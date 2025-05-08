@@ -31,7 +31,6 @@
             panel1 = new Panel();
             panel2 = new Panel();
             logoutBtn = new Button();
-            reportBtn = new Button();
             listBtn = new Button();
             videoBtn = new Button();
             customerBtn = new Button();
@@ -51,7 +50,6 @@
             // 
             panel2.BackColor = Color.FromArgb(61, 52, 70);
             panel2.Controls.Add(logoutBtn);
-            panel2.Controls.Add(reportBtn);
             panel2.Controls.Add(listBtn);
             panel2.Controls.Add(videoBtn);
             panel2.Controls.Add(customerBtn);
@@ -78,23 +76,6 @@
             logoutBtn.TextAlign = ContentAlignment.MiddleLeft;
             logoutBtn.UseVisualStyleBackColor = true;
             logoutBtn.Click += logoutBtn_Click;
-            // 
-            // reportBtn
-            // 
-            reportBtn.Dock = DockStyle.Top;
-            reportBtn.FlatAppearance.BorderSize = 0;
-            reportBtn.FlatStyle = FlatStyle.Flat;
-            reportBtn.Font = new Font("Segoe UI", 10F);
-            reportBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            reportBtn.Location = new Point(0, 360);
-            reportBtn.Name = "reportBtn";
-            reportBtn.Padding = new Padding(5, 0, 0, 0);
-            reportBtn.Size = new Size(235, 71);
-            reportBtn.TabIndex = 5;
-            reportBtn.Text = "Rental Report";
-            reportBtn.TextAlign = ContentAlignment.MiddleLeft;
-            reportBtn.UseVisualStyleBackColor = true;
-            reportBtn.Click += reportBtn_Click;
             // 
             // listBtn
             // 
@@ -189,7 +170,6 @@
         private Button customerBtn;
         private Panel panel3;
         private Panel dashboardPanel;
-        private Button reportBtn;
         private Button listBtn;
         private Button videoBtn;
         private Button logoutBtn;

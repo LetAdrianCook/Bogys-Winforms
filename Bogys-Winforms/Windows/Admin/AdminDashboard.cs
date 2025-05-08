@@ -27,7 +27,7 @@ namespace Bogys_Winforms.Windows.Admin
         private void InitializeNavigationControl()
         {
             List<UserControl> userControls = new List<UserControl>()
-            { new CustomerLibrary(), new VideoLibrary(), new VideoList(), new RentalReport()};
+            { new CustomerLibrary(), new VideoLibrary(), new VideoList()};
 
             navigationControl = new NavigationControl(userControls, dashboardPanel);
             navigationControl.Display(0);
@@ -35,7 +35,7 @@ namespace Bogys_Winforms.Windows.Admin
         private void InitializeNavigationButton()
         {
             List<Button> buttons = new List<Button>()
-            { customerBtn, videoBtn, listBtn, reportBtn};
+            { customerBtn, videoBtn, listBtn};
 
             navigationButtons = new NavigationButtons(buttons, btndDefaultColor, btndSelectedColor);
             navigationButtons.Highlight(customerBtn);
@@ -55,12 +55,6 @@ namespace Bogys_Winforms.Windows.Admin
             navigationControl.Display(2);
             navigationButtons.Highlight(listBtn);
         }
-        private void reportBtn_Click(object sender, EventArgs e)
-        {
-            navigationControl.Display(3);
-            navigationButtons.Highlight(reportBtn);
-        }
-
         private void logoutBtn_Click(object sender, EventArgs e)
         {
             var loginForm = new Login();

@@ -34,22 +34,20 @@
             videoTypeCbx = new ComboBox();
             searchTxt = new TextBox();
             label3 = new Label();
-            dateTimePicker1 = new DateTimePicker();
-            label4 = new Label();
-            dateTimePicker2 = new DateTimePicker();
-            button1 = new Button();
+            textBox1 = new TextBox();
             ((System.ComponentModel.ISupportInitialize)VideoView).BeginInit();
             SuspendLayout();
             // 
             // VideoView
             // 
+            VideoView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             VideoView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            VideoView.Location = new Point(32, 213);
+            VideoView.Location = new Point(79, 229);
             VideoView.MultiSelect = false;
             VideoView.Name = "VideoView";
             VideoView.RowHeadersWidth = 62;
             VideoView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            VideoView.Size = new Size(757, 385);
+            VideoView.Size = new Size(1532, 694);
             VideoView.TabIndex = 28;
             // 
             // label2
@@ -57,7 +55,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semilight", 9F);
             label2.ForeColor = Color.FromArgb(255, 228, 186);
-            label2.Location = new Point(32, 59);
+            label2.Location = new Point(79, 94);
             label2.Name = "label2";
             label2.Size = new Size(171, 25);
             label2.TabIndex = 26;
@@ -68,7 +66,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(255, 228, 186);
-            label1.Location = new Point(32, 27);
+            label1.Location = new Point(79, 62);
             label1.Name = "label1";
             label1.Size = new Size(126, 32);
             label1.TabIndex = 27;
@@ -78,9 +76,9 @@
             // 
             videoTypeCbx.FormattingEnabled = true;
             videoTypeCbx.Items.AddRange(new object[] { "DVD", "VCD" });
-            videoTypeCbx.Location = new Point(450, 102);
+            videoTypeCbx.Location = new Point(891, 170);
             videoTypeCbx.Name = "videoTypeCbx";
-            videoTypeCbx.Size = new Size(339, 33);
+            videoTypeCbx.Size = new Size(233, 33);
             videoTypeCbx.TabIndex = 38;
             // 
             // searchTxt
@@ -88,7 +86,7 @@
             searchTxt.BorderStyle = BorderStyle.FixedSingle;
             searchTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             searchTxt.ForeColor = Color.Black;
-            searchTxt.Location = new Point(32, 102);
+            searchTxt.Location = new Point(79, 170);
             searchTxt.Name = "searchTxt";
             searchTxt.PlaceholderText = "Search by Title";
             searchTxt.Size = new Size(301, 34);
@@ -99,63 +97,37 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semilight", 9F);
             label3.ForeColor = Color.FromArgb(255, 228, 186);
-            label3.Location = new Point(339, 102);
+            label3.Location = new Point(780, 170);
             label3.Name = "label3";
             label3.Size = new Size(105, 25);
             label3.TabIndex = 36;
             label3.Text = "Video Type :";
             // 
-            // dateTimePicker1
+            // textBox1
             // 
-            dateTimePicker1.Location = new Point(32, 165);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(339, 31);
-            dateTimePicker1.TabIndex = 39;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Semilight", 9F);
-            label4.ForeColor = Color.FromArgb(255, 228, 186);
-            label4.Location = new Point(404, 165);
-            label4.Name = "label4";
-            label4.Size = new Size(19, 25);
-            label4.TabIndex = 40;
-            label4.Text = "-";
-            // 
-            // dateTimePicker2
-            // 
-            dateTimePicker2.Location = new Point(450, 165);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(339, 31);
-            dateTimePicker2.TabIndex = 39;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(600, 613);
-            button1.Name = "button1";
-            button1.Size = new Size(189, 37);
-            button1.TabIndex = 41;
-            button1.Text = "Generate Report";
-            button1.UseVisualStyleBackColor = true;
+            textBox1.BorderStyle = BorderStyle.FixedSingle;
+            textBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.ForeColor = Color.Black;
+            textBox1.Location = new Point(434, 170);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Search by Customer Name";
+            textBox1.Size = new Size(301, 34);
+            textBox1.TabIndex = 37;
             // 
             // VideoList
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(80, 68, 92);
-            Controls.Add(button1);
-            Controls.Add(label4);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
             Controls.Add(videoTypeCbx);
+            Controls.Add(textBox1);
             Controls.Add(searchTxt);
             Controls.Add(label3);
             Controls.Add(VideoView);
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "VideoList";
-            Size = new Size(823, 664);
+            Size = new Size(1663, 1024);
             ((System.ComponentModel.ISupportInitialize)VideoView).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -169,9 +141,6 @@
         private ComboBox videoTypeCbx;
         private TextBox searchTxt;
         private Label label3;
-        private DateTimePicker dateTimePicker1;
-        private Label label4;
-        private DateTimePicker dateTimePicker2;
-        private Button button1;
+        private TextBox textBox1;
     }
 }

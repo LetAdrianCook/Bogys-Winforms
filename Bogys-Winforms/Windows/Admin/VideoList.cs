@@ -8,50 +8,29 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bogys_Winforms.Services;
+using Bogys_Winforms.Services.AdminFunctions;
 
 namespace Bogys_Winforms.Windows.Admin
 {
     public partial class VideoList: UserControl
     {
+        VideoListFunctions vidListFunction = new VideoListFunctions();
         public VideoList()
         {
             InitializeComponent();
             LoadVideosRented();
         }
+        public void RefreshControl()
+        {
+            LoadVideosRented();
+            VideoView.ClearSelection();
+            VideoView.CurrentCell = null;
+        }
         private void LoadVideosRented()
         {
-            using (var context = new AppDbContext())
-            {
-                var rent = context.Rent.Select(r => new
-                {
-                    r.ID,
-                    r.UserID,
-                    r.VideoID,
-                    r.VideoTitle,
-                    r.VideoCategory,
-                    r.RentDays,
-                    r.OverdueFee,
-                    r.RentDate,
-                    r.ReturnDate,
-                    r.Status
-                }).ToList();
-
-                VideoView.DataSource = rent;
-                SetVideoColumnHeader();
-            }
+            VideoView.DataSource = vidListFunction.GetAllVideosRented();
+            vidListFunction.HeaderTitle(VideoView);
         }
-        private void SetVideoColumnHeader()
-        {
-            VideoView.Columns["ID"].HeaderText = "Rent ID";
-            VideoView.Columns["VideoID"].HeaderText = "Video ID ";
-            VideoView.Columns["UserID"].HeaderText = "User ID";
-            VideoView.Columns["VideoTitle"].HeaderText = "Title";
-            VideoView.Columns["VideoCategory"].HeaderText = "Category";
-            VideoView.Columns["RentDays"].HeaderText = "Rent Days";
-            VideoView.Columns["OverdueFee"].HeaderText = "Overdue Fee";
-            VideoView.Columns["RentDate"].HeaderText = "Rental Date";
-            VideoView.Columns["ReturnDate"].HeaderText = "Return Date";
-            VideoView.Columns["Status"].HeaderText = "Status";
-        }
+      
     }
 }
