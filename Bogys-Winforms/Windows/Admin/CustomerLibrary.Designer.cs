@@ -42,6 +42,9 @@
             CustomerView = new DataGridView();
             emailTxt = new TextBox();
             phoneTxt = new TextBox();
+            searchuserTxt = new TextBox();
+            searchFirstTxt = new TextBox();
+            searchLastTxt = new TextBox();
             ((System.ComponentModel.ISupportInitialize)usersBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CustomerView).BeginInit();
             SuspendLayout();
@@ -74,7 +77,7 @@
             // 
             // birthDatePicker
             // 
-            birthDatePicker.Location = new Point(1228, 650);
+            birthDatePicker.Location = new Point(1228, 719);
             birthDatePicker.Name = "birthDatePicker";
             birthDatePicker.Size = new Size(350, 31);
             birthDatePicker.TabIndex = 14;
@@ -86,7 +89,7 @@
             registerBtn.FlatStyle = FlatStyle.Flat;
             registerBtn.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             registerBtn.ForeColor = Color.FromArgb(255, 228, 186);
-            registerBtn.Location = new Point(653, 869);
+            registerBtn.Location = new Point(651, 887);
             registerBtn.Name = "registerBtn";
             registerBtn.Size = new Size(357, 49);
             registerBtn.TabIndex = 13;
@@ -99,7 +102,7 @@
             lastnameTxt.BorderStyle = BorderStyle.FixedSingle;
             lastnameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lastnameTxt.ForeColor = Color.Black;
-            lastnameTxt.Location = new Point(831, 647);
+            lastnameTxt.Location = new Point(824, 716);
             lastnameTxt.Name = "lastnameTxt";
             lastnameTxt.PlaceholderText = "Last Name";
             lastnameTxt.Size = new Size(240, 34);
@@ -110,7 +113,7 @@
             addressTxt.BorderStyle = BorderStyle.FixedSingle;
             addressTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             addressTxt.ForeColor = Color.Black;
-            addressTxt.Location = new Point(565, 732);
+            addressTxt.Location = new Point(558, 801);
             addressTxt.Name = "addressTxt";
             addressTxt.PlaceholderText = "Address";
             addressTxt.Size = new Size(506, 34);
@@ -121,7 +124,7 @@
             firstnameTxt.BorderStyle = BorderStyle.FixedSingle;
             firstnameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             firstnameTxt.ForeColor = Color.Black;
-            firstnameTxt.Location = new Point(565, 647);
+            firstnameTxt.Location = new Point(558, 716);
             firstnameTxt.Name = "firstnameTxt";
             firstnameTxt.PlaceholderText = "First Name";
             firstnameTxt.Size = new Size(240, 34);
@@ -132,7 +135,7 @@
             usernameTxt.BorderStyle = BorderStyle.FixedSingle;
             usernameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             usernameTxt.ForeColor = Color.Black;
-            usernameTxt.Location = new Point(79, 647);
+            usernameTxt.Location = new Point(79, 716);
             usernameTxt.Name = "usernameTxt";
             usernameTxt.PlaceholderText = "Username";
             usernameTxt.Size = new Size(357, 34);
@@ -143,7 +146,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semilight", 9F);
             label3.ForeColor = Color.FromArgb(255, 228, 186);
-            label3.Location = new Point(1125, 656);
+            label3.Location = new Point(1125, 725);
             label3.Name = "label3";
             label3.Size = new Size(97, 25);
             label3.TabIndex = 5;
@@ -153,9 +156,10 @@
             // 
             CustomerView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             CustomerView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            CustomerView.Location = new Point(79, 141);
+            CustomerView.Location = new Point(79, 229);
             CustomerView.MultiSelect = false;
             CustomerView.Name = "CustomerView";
+            CustomerView.ReadOnly = true;
             CustomerView.RowHeadersWidth = 62;
             CustomerView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             CustomerView.Size = new Size(1499, 435);
@@ -167,7 +171,7 @@
             emailTxt.BorderStyle = BorderStyle.FixedSingle;
             emailTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             emailTxt.ForeColor = Color.Black;
-            emailTxt.Location = new Point(79, 732);
+            emailTxt.Location = new Point(79, 801);
             emailTxt.Name = "emailTxt";
             emailTxt.PlaceholderText = "Email";
             emailTxt.Size = new Size(357, 34);
@@ -178,18 +182,57 @@
             phoneTxt.BorderStyle = BorderStyle.FixedSingle;
             phoneTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
             phoneTxt.ForeColor = Color.Black;
-            phoneTxt.Location = new Point(1125, 732);
+            phoneTxt.Location = new Point(1125, 801);
             phoneTxt.MaxLength = 11;
             phoneTxt.Name = "phoneTxt";
             phoneTxt.PlaceholderText = "Phone #";
             phoneTxt.Size = new Size(453, 34);
             phoneTxt.TabIndex = 10;
             // 
+            // searchuserTxt
+            // 
+            searchuserTxt.BorderStyle = BorderStyle.FixedSingle;
+            searchuserTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchuserTxt.ForeColor = Color.Black;
+            searchuserTxt.Location = new Point(79, 170);
+            searchuserTxt.Name = "searchuserTxt";
+            searchuserTxt.PlaceholderText = "Search by Username";
+            searchuserTxt.Size = new Size(301, 34);
+            searchuserTxt.TabIndex = 38;
+            searchuserTxt.TextChanged += searchuserTxt_TextChanged;
+            // 
+            // searchFirstTxt
+            // 
+            searchFirstTxt.BorderStyle = BorderStyle.FixedSingle;
+            searchFirstTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchFirstTxt.ForeColor = Color.Black;
+            searchFirstTxt.Location = new Point(427, 170);
+            searchFirstTxt.Name = "searchFirstTxt";
+            searchFirstTxt.PlaceholderText = "Search by First Name";
+            searchFirstTxt.Size = new Size(301, 34);
+            searchFirstTxt.TabIndex = 38;
+            searchFirstTxt.TextChanged += searchFirstTxt_TextChanged;
+            // 
+            // searchLastTxt
+            // 
+            searchLastTxt.BorderStyle = BorderStyle.FixedSingle;
+            searchLastTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchLastTxt.ForeColor = Color.Black;
+            searchLastTxt.Location = new Point(763, 170);
+            searchLastTxt.Name = "searchLastTxt";
+            searchLastTxt.PlaceholderText = "Search by Last Name";
+            searchLastTxt.Size = new Size(301, 34);
+            searchLastTxt.TabIndex = 38;
+            searchLastTxt.TextChanged += searchLastTxt_TextChanged;
+            // 
             // CustomerLibrary
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(80, 68, 92);
+            Controls.Add(searchLastTxt);
+            Controls.Add(searchFirstTxt);
+            Controls.Add(searchuserTxt);
             Controls.Add(CustomerView);
             Controls.Add(birthDatePicker);
             Controls.Add(registerBtn);
@@ -224,5 +267,8 @@
         private DataGridView CustomerView;
         private TextBox emailTxt;
         private TextBox phoneTxt;
+        private TextBox searchuserTxt;
+        private TextBox searchFirstTxt;
+        private TextBox searchLastTxt;
     }
 }

@@ -32,9 +32,9 @@
             label2 = new Label();
             label1 = new Label();
             videoTypeCbx = new ComboBox();
-            searchTxt = new TextBox();
+            searchTitleTxt = new TextBox();
             label3 = new Label();
-            textBox1 = new TextBox();
+            searchNameTxt = new TextBox();
             ((System.ComponentModel.ISupportInitialize)VideoView).BeginInit();
             SuspendLayout();
             // 
@@ -45,6 +45,7 @@
             VideoView.Location = new Point(79, 229);
             VideoView.MultiSelect = false;
             VideoView.Name = "VideoView";
+            VideoView.ReadOnly = true;
             VideoView.RowHeadersWidth = 62;
             VideoView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             VideoView.Size = new Size(1532, 694);
@@ -74,23 +75,26 @@
             // 
             // videoTypeCbx
             // 
+            videoTypeCbx.DropDownStyle = ComboBoxStyle.DropDownList;
             videoTypeCbx.FormattingEnabled = true;
-            videoTypeCbx.Items.AddRange(new object[] { "DVD", "VCD" });
+            videoTypeCbx.Items.AddRange(new object[] { "ALL", "DVD", "VCD" });
             videoTypeCbx.Location = new Point(891, 170);
             videoTypeCbx.Name = "videoTypeCbx";
             videoTypeCbx.Size = new Size(233, 33);
             videoTypeCbx.TabIndex = 38;
+            videoTypeCbx.SelectedIndexChanged += videoTypeCbx_SelectedIndexChanged;
             // 
-            // searchTxt
+            // searchTitleTxt
             // 
-            searchTxt.BorderStyle = BorderStyle.FixedSingle;
-            searchTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchTxt.ForeColor = Color.Black;
-            searchTxt.Location = new Point(79, 170);
-            searchTxt.Name = "searchTxt";
-            searchTxt.PlaceholderText = "Search by Title";
-            searchTxt.Size = new Size(301, 34);
-            searchTxt.TabIndex = 37;
+            searchTitleTxt.BorderStyle = BorderStyle.FixedSingle;
+            searchTitleTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchTitleTxt.ForeColor = Color.Black;
+            searchTitleTxt.Location = new Point(79, 170);
+            searchTitleTxt.Name = "searchTitleTxt";
+            searchTitleTxt.PlaceholderText = "Search by Title";
+            searchTitleTxt.Size = new Size(301, 34);
+            searchTitleTxt.TabIndex = 37;
+            searchTitleTxt.TextChanged += searchTitleTxt_TextChanged;
             // 
             // label3
             // 
@@ -103,16 +107,17 @@
             label3.TabIndex = 36;
             label3.Text = "Video Type :";
             // 
-            // textBox1
+            // searchNameTxt
             // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.ForeColor = Color.Black;
-            textBox1.Location = new Point(434, 170);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Search by Customer Name";
-            textBox1.Size = new Size(301, 34);
-            textBox1.TabIndex = 37;
+            searchNameTxt.BorderStyle = BorderStyle.FixedSingle;
+            searchNameTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchNameTxt.ForeColor = Color.Black;
+            searchNameTxt.Location = new Point(434, 170);
+            searchNameTxt.Name = "searchNameTxt";
+            searchNameTxt.PlaceholderText = "Search by Customer Name";
+            searchNameTxt.Size = new Size(301, 34);
+            searchNameTxt.TabIndex = 37;
+            searchNameTxt.TextChanged += searchNameTxt_TextChanged;
             // 
             // VideoList
             // 
@@ -120,8 +125,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(80, 68, 92);
             Controls.Add(videoTypeCbx);
-            Controls.Add(textBox1);
-            Controls.Add(searchTxt);
+            Controls.Add(searchNameTxt);
+            Controls.Add(searchTitleTxt);
             Controls.Add(label3);
             Controls.Add(VideoView);
             Controls.Add(label2);
@@ -139,8 +144,8 @@
         private Label label2;
         private Label label1;
         private ComboBox videoTypeCbx;
-        private TextBox searchTxt;
+        private TextBox searchTitleTxt;
         private Label label3;
-        private TextBox textBox1;
+        private TextBox searchNameTxt;
     }
 }

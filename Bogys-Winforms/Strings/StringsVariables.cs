@@ -33,6 +33,7 @@ namespace Bogys_Winforms.Strings
         public string rentNoSelect = "Please select a video to rent.";
         public string returnNoSelect = "Please select a video to return.";
         public string rentMsgTitle = "Confirm Rent";
+        public string all = "ALL";
         public string vcd = "VCD";
         public string dvd = "DVD";
         public string active = "ACTIVE";

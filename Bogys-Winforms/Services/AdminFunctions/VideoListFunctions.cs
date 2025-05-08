@@ -11,11 +11,17 @@ namespace Bogys_Winforms.Services.AdminFunctions
     class VideoListFunctions
     {
         StringsVariables strTxt = new StringsVariables();
-        public List<Rent> GetAllVideosRented()
+        public List<Rent> GetAllVideosRented(string videoTitle, string customerName, string categoryFilter)
         {
             using (var context = new AppDbContext())
             {
-                return context.Rent.ToList();
+                var query = context.Rent.AsQueryable();
+
+                if (!string.IsNullOrEmpty(videoTitle)) query = query.Where(r => r.VideoTitle.Contains(videoTitle));
+                if (!string.IsNullOrEmpty(customerName)) query = query.Where(r => r.CustomerName.Contains(customerName));
+                if (!string.IsNullOrEmpty(categoryFilter)) query = query.Where(r => r.VideoCategory == categoryFilter);
+
+                return query.OrderBy(r => r.VideoTitle).ToList();
             }
         }
         public void HeaderTitle(DataGridView dataGridView)

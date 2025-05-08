@@ -28,7 +28,11 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void LoadCustomer()
         {
-            CustomerView.DataSource = customerFunction.GetAllCustomers();
+            string usernameSearch = searchuserTxt.Text.Trim();
+            string firstnameSearch = searchFirstTxt.Text.Trim();
+            string lastNameSearch = searchLastTxt.Text.Trim();
+
+            CustomerView.DataSource = customerFunction.GetAllCustomers(usernameSearch, firstnameSearch, lastNameSearch);
             customerFunction.HeaderTitle(CustomerView);
         }
         private void CustomerView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
@@ -72,7 +76,7 @@ namespace Bogys_Winforms.Windows.Admin
 
             bool success = customerFunction.EditCustomer(customerId, usernameTxt.Text,
                                                          firstnameTxt.Text, lastnameTxt.Text,
-                                                         addressTxt.Text, emailTxt.Text, phoneTxt.Text, 
+                                                         addressTxt.Text, emailTxt.Text, phoneTxt.Text,
                                                          birthDate);
             if (success)
             {
@@ -117,6 +121,17 @@ namespace Bogys_Winforms.Windows.Admin
             }
             return true;
         }
-
+        private void searchuserTxt_TextChanged(object sender, EventArgs e)
+        {
+            LoadCustomer();
+        }
+        private void searchFirstTxt_TextChanged(object sender, EventArgs e)
+        {
+            LoadCustomer();
+        }
+        private void searchLastTxt_TextChanged(object sender, EventArgs e)
+        {
+            LoadCustomer();
+        }
     }
 }

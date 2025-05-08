@@ -12,25 +12,17 @@ namespace Bogys_Winforms.Services.AdminFunctions
     class CustomerLibraryFunctions
     {
         StringsVariables strTxt = new StringsVariables();
-        public List<Users> GetAllCustomers()
+        public List<Users> GetAllCustomers(string username, string firstName, string lastName)
         {
             using (var context = new AppDbContext())
             {
-             return context.Users
-            .Where(u => u.UserType == strTxt.ClientType)
-            .Select(u => new Users
-            {
-                ID = u.ID,
-                UserName = u.UserName,
-                FirstName = u.FirstName,
-                LastName = u.LastName,
-                UserAddress = u.UserAddress,
-                Email = u.Email,
-                Phonenumber = u.Phonenumber,
-                BirthDate = u.BirthDate,
-                CreatedAt = u.CreatedAt
-            })
-            .ToList();
+                var query = context.Users.AsQueryable();
+
+                if (!string.IsNullOrEmpty(username)) query = query.Where(r => r.UserName.Contains(username));
+                if (!string.IsNullOrEmpty(firstName)) query = query.Where(r => r.FirstName.Contains(firstName));
+                if (!string.IsNullOrEmpty(lastName)) query = query.Where(r => r.LastName.Contains(lastName));
+
+                return query.OrderBy(r => r.ID).ToList();
             }
         }
         public void HeaderTitle(DataGridView dataGridView)
