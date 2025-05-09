@@ -21,7 +21,7 @@ namespace Bogys_Winforms.Services.CustomerFunctions
                 if (!string.IsNullOrEmpty(title)) query = query.Where(r => r.VideoTitle.Contains(title));
                 if (!string.IsNullOrEmpty(category)) query = query.Where(r => r.VideoCategory == category);
 
-                return query.Where(v => v.VideoInCount > 0).ToList();
+                return query.Where(v => v.VideoInCount > 0).OrderBy( v => v.VideoTitle).ToList();
             }
         }
         public void HeaderTitle(DataGridView dataGridView)

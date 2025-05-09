@@ -22,7 +22,7 @@ namespace Bogys_Winforms.Services.CustomerFunctions
                 if (!string.IsNullOrEmpty(category)) query = query.Where(r => r.VideoCategory == category);
                 if (!string.IsNullOrEmpty(status)) query = query.Where(r => r.Status == status);
 
-                return query.Where(r => r.UserID == customerID).ToList();
+                return query.Where(r => r.UserID == customerID).OrderBy(r => r.VideoTitle).ToList();
             }
         }
         public void HeaderTitle(DataGridView dataGridView)

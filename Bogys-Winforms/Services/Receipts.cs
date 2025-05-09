@@ -33,7 +33,7 @@ namespace Bogys_Winforms.Services
 
             PrintDocument printDoc = new PrintDocument();
 
-            PaperSize receiptSize = new PaperSize("Receipt", 315, 800);
+            PaperSize receiptSize = new PaperSize("Receipt", 315, 375);
             printDoc.DefaultPageSettings.PaperSize = receiptSize;
             printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10);
 
@@ -82,7 +82,7 @@ namespace Bogys_Winforms.Services
 
             PrintDocument printDoc = new PrintDocument();
 
-            PaperSize receiptSize = new PaperSize("Receipt", 315, 800);
+            PaperSize receiptSize = new PaperSize("Receipt", 315, 375);
             printDoc.DefaultPageSettings.PaperSize = receiptSize;
             printDoc.DefaultPageSettings.Margins = new Margins(10, 10, 10, 10);
 
