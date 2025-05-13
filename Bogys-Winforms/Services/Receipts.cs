@@ -42,6 +42,7 @@ namespace Bogys_Winforms.Services
             using (PrintPreviewDialog printDialog = new PrintPreviewDialog())
             {
                 printDialog.Document = printDoc;
+                printDialog.StartPosition = FormStartPosition.CenterScreen;
                 if (printDialog.ShowDialog() == DialogResult.OK)
                 {
                     printDoc.Print();
@@ -91,8 +92,9 @@ namespace Bogys_Winforms.Services
             using (PrintPreviewDialog printDialog = new PrintPreviewDialog())
             {
                 printDialog.Document = printDoc;
+                printDialog.StartPosition = FormStartPosition.CenterScreen;
                 if (printDialog.ShowDialog() == DialogResult.OK)
-                {
+                {                  
                     printDoc.Print();
                 }
             }
