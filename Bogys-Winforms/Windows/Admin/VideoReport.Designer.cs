@@ -43,7 +43,6 @@
             reportView.BackgroundColor = SystemColors.Control;
             reportView.BorderStyle = BorderStyle.None;
             reportView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            reportView.Enabled = false;
             reportView.Location = new Point(76, 118);
             reportView.Name = "reportView";
             reportView.ReadOnly = true;

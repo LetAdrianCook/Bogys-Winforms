@@ -56,6 +56,10 @@ namespace Bogys_Winforms.Services.AdminFunctions
                 customer.Phonenumber = phonenumber;
                 customer.BirthDate = birthDate;
 
+                var rents = context.Rent.Where(r => r.UserID == userId).ToList();
+                string fullName = firstName + " " + lastName;
+                foreach (var rent in rents) rent.CustomerName = fullName;
+
                 context.SaveChanges();
                 return true;
             }
