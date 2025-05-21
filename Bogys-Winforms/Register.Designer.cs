@@ -249,6 +249,7 @@
             ClientSize = new Size(1154, 534);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Register";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Register";

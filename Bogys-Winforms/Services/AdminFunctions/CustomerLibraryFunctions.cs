@@ -12,16 +12,20 @@ namespace Bogys_Winforms.Services.AdminFunctions
     class CustomerLibraryFunctions
     {
         StringsVariables strTxt = new StringsVariables();
-        public List<Users> GetAllCustomers(string username, string firstName, string lastName)
+        public List<Users> GetAllCustomers(string searchTxt)
         {
             using (var context = new AppDbContext())
             {
                 var query = context.Users.AsQueryable();
 
-                if (!string.IsNullOrEmpty(username)) query = query.Where(r => r.UserName.Contains(username));
-                if (!string.IsNullOrEmpty(firstName)) query = query.Where(r => r.FirstName.Contains(firstName));
-                if (!string.IsNullOrEmpty(lastName)) query = query.Where(r => r.LastName.Contains(lastName));
-
+                if (!string.IsNullOrEmpty(searchTxt))
+                {
+                    query = query.Where(r =>
+                        r.UserName.Contains(searchTxt) ||
+                        r.FirstName.Contains(searchTxt) ||
+                        r.LastName.Contains(searchTxt)
+                    );
+                }
                 return query.OrderBy(r => r.ID).ToList();
             }
         }

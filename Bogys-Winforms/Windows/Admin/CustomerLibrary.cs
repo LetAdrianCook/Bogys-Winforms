@@ -28,11 +28,8 @@ namespace Bogys_Winforms.Windows.Admin
         }
         private void LoadCustomer()
         {
-            string usernameSearch = searchuserTxt.Text.Trim();
-            string firstnameSearch = searchFirstTxt.Text.Trim();
-            string lastNameSearch = searchLastTxt.Text.Trim();
-
-            CustomerView.DataSource = customerFunction.GetAllCustomers(usernameSearch, firstnameSearch, lastNameSearch);
+            string searchFilter = searchTxt.Text.Trim();
+            CustomerView.DataSource = customerFunction.GetAllCustomers(searchFilter);
             customerFunction.HeaderTitle(CustomerView);
         }
         private void CustomerView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)

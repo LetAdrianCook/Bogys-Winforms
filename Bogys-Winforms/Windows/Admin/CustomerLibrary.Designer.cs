@@ -42,9 +42,7 @@
             CustomerView = new DataGridView();
             emailTxt = new TextBox();
             phoneTxt = new TextBox();
-            searchuserTxt = new TextBox();
-            searchFirstTxt = new TextBox();
-            searchLastTxt = new TextBox();
+            searchTxt = new TextBox();
             ((System.ComponentModel.ISupportInitialize)usersBindingSource).BeginInit();
             ((System.ComponentModel.ISupportInitialize)CustomerView).BeginInit();
             SuspendLayout();
@@ -189,50 +187,24 @@
             phoneTxt.Size = new Size(453, 34);
             phoneTxt.TabIndex = 10;
             // 
-            // searchuserTxt
+            // searchTxt
             // 
-            searchuserTxt.BorderStyle = BorderStyle.FixedSingle;
-            searchuserTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchuserTxt.ForeColor = Color.Black;
-            searchuserTxt.Location = new Point(79, 170);
-            searchuserTxt.Name = "searchuserTxt";
-            searchuserTxt.PlaceholderText = "Search by Username";
-            searchuserTxt.Size = new Size(301, 34);
-            searchuserTxt.TabIndex = 38;
-            searchuserTxt.TextChanged += searchuserTxt_TextChanged;
-            // 
-            // searchFirstTxt
-            // 
-            searchFirstTxt.BorderStyle = BorderStyle.FixedSingle;
-            searchFirstTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchFirstTxt.ForeColor = Color.Black;
-            searchFirstTxt.Location = new Point(427, 170);
-            searchFirstTxt.Name = "searchFirstTxt";
-            searchFirstTxt.PlaceholderText = "Search by First Name";
-            searchFirstTxt.Size = new Size(301, 34);
-            searchFirstTxt.TabIndex = 38;
-            searchFirstTxt.TextChanged += searchFirstTxt_TextChanged;
-            // 
-            // searchLastTxt
-            // 
-            searchLastTxt.BorderStyle = BorderStyle.FixedSingle;
-            searchLastTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            searchLastTxt.ForeColor = Color.Black;
-            searchLastTxt.Location = new Point(763, 170);
-            searchLastTxt.Name = "searchLastTxt";
-            searchLastTxt.PlaceholderText = "Search by Last Name";
-            searchLastTxt.Size = new Size(301, 34);
-            searchLastTxt.TabIndex = 38;
-            searchLastTxt.TextChanged += searchLastTxt_TextChanged;
+            searchTxt.BorderStyle = BorderStyle.FixedSingle;
+            searchTxt.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            searchTxt.ForeColor = Color.Black;
+            searchTxt.Location = new Point(79, 170);
+            searchTxt.Name = "searchTxt";
+            searchTxt.PlaceholderText = "Search by Username, First Name, and Last Name";
+            searchTxt.Size = new Size(529, 34);
+            searchTxt.TabIndex = 38;
+            searchTxt.TextChanged += searchuserTxt_TextChanged;
             // 
             // CustomerLibrary
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(80, 68, 92);
-            Controls.Add(searchLastTxt);
-            Controls.Add(searchFirstTxt);
-            Controls.Add(searchuserTxt);
+            Controls.Add(searchTxt);
             Controls.Add(CustomerView);
             Controls.Add(birthDatePicker);
             Controls.Add(registerBtn);
@@ -267,8 +239,6 @@
         private DataGridView CustomerView;
         private TextBox emailTxt;
         private TextBox phoneTxt;
-        private TextBox searchuserTxt;
-        private TextBox searchFirstTxt;
-        private TextBox searchLastTxt;
+        private TextBox searchTxt;
     }
 }
